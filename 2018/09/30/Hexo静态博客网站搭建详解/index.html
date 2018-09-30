@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Hexo静态博客网站搭建详解 | madmanazo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="说明：虽说现在各大平台的各种优秀的博客网站已经有很多很多了，但作为一个技术控，还是想拥有一个自己的博客网站，这样不用受限于各大平台的规则约束，自己想怎么发想发什么完全由自己做主(当然不能干违法的事)，还有一个更重要的原因是：为了装逼吧！，哈哈哈。 方案选择：关于搭建自己的博客网站的帖子网上一大堆，一般也就三种方案： 1. WorkPress 2. GithubPages+Jekell 3. Git">
+  <meta name="description" content="说明： 虽说现在各大平台的各种优秀的博客网站已经有很多很多了，但作为一个技术控，还是想拥有一个自己的博客网站，这样不用受限于各大平台的规则约束，自己想怎么发想发什么完全由自己做主(当然不能干违法的事)，还有一个更重要的原因是：为了装逼吧！，哈哈哈。 方案选择： 关于搭建自己的博客网站的帖子网上一大堆，一般也就三种方案： 1. WorkPress 2. GithubPages+Jekell 3. G">
 <meta name="keywords" content="-Hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo静态博客网站搭建详解">
 <meta property="og:url" content="http://yoursite.com/2018/09/30/Hexo静态博客网站搭建详解/index.html">
 <meta property="og:site_name" content="madmanazo">
-<meta property="og:description" content="说明：虽说现在各大平台的各种优秀的博客网站已经有很多很多了，但作为一个技术控，还是想拥有一个自己的博客网站，这样不用受限于各大平台的规则约束，自己想怎么发想发什么完全由自己做主(当然不能干违法的事)，还有一个更重要的原因是：为了装逼吧！，哈哈哈。 方案选择：关于搭建自己的博客网站的帖子网上一大堆，一般也就三种方案： 1. WorkPress 2. GithubPages+Jekell 3. Git">
+<meta property="og:description" content="说明： 虽说现在各大平台的各种优秀的博客网站已经有很多很多了，但作为一个技术控，还是想拥有一个自己的博客网站，这样不用受限于各大平台的规则约束，自己想怎么发想发什么完全由自己做主(当然不能干违法的事)，还有一个更重要的原因是：为了装逼吧！，哈哈哈。 方案选择： 关于搭建自己的博客网站的帖子网上一大堆，一般也就三种方案： 1. WorkPress 2. GithubPages+Jekell 3. G">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://i.imgur.com/65l2QsH.png">
-<meta property="og:updated_time" content="2018-09-30T07:42:57.055Z">
+<meta property="og:updated_time" content="2018-09-30T14:15:19.155Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo静态博客网站搭建详解">
-<meta name="twitter:description" content="说明：虽说现在各大平台的各种优秀的博客网站已经有很多很多了，但作为一个技术控，还是想拥有一个自己的博客网站，这样不用受限于各大平台的规则约束，自己想怎么发想发什么完全由自己做主(当然不能干违法的事)，还有一个更重要的原因是：为了装逼吧！，哈哈哈。 方案选择：关于搭建自己的博客网站的帖子网上一大堆，一般也就三种方案： 1. WorkPress 2. GithubPages+Jekell 3. Git">
+<meta name="twitter:description" content="说明： 虽说现在各大平台的各种优秀的博客网站已经有很多很多了，但作为一个技术控，还是想拥有一个自己的博客网站，这样不用受限于各大平台的规则约束，自己想怎么发想发什么完全由自己做主(当然不能干违法的事)，还有一个更重要的原因是：为了装逼吧！，哈哈哈。 方案选择： 关于搭建自己的博客网站的帖子网上一大堆，一般也就三种方案： 1. WorkPress 2. GithubPages+Jekell 3. G">
 <meta name="twitter:image" content="https://i.imgur.com/65l2QsH.png">
   
     <link rel="alternative" href="/atom.xml" title="madmanazo" type="application/atom+xml">
@@ -194,7 +194,7 @@
 	<div id="toc-article" class="toc-article">
 	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
 		<strong class="toc-title">文章目录</strong>
-           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#说明："><span class="toc-number">1.</span> <span class="toc-text">说明：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方案选择："><span class="toc-number">2.</span> <span class="toc-text">方案选择：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搭建步骤："><span class="toc-number">3.</span> <span class="toc-text">搭建步骤：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结尾："><span class="toc-number">4.</span> <span class="toc-text">结尾：</span></a></li></ol>
+           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#说明："><span class="toc-number">1.</span> <span class="toc-text">说明：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#方案选择："><span class="toc-number">2.</span> <span class="toc-text">方案选择：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#搭建步骤："><span class="toc-number">3.</span> <span class="toc-text">搭建步骤：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结尾："><span class="toc-number">4.</span> <span class="toc-text">结尾：</span></a></li></ol>
          </div>
    <script type="text/javascript">
 	function showToc(){
@@ -215,13 +215,16 @@
 	
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h2><p>虽说现在各大平台的各种优秀的博客网站已经有很多很多了，但作为一个技术控，还是想拥有一个自己的博客网站，这样不用受限于各大平台的规则约束，自己想怎么发想发什么完全由自己做主(当然不能干违法的事)，还有一个更重要的原因是：为了装逼吧！，哈哈哈。</p>
-<h2 id="方案选择："><a href="#方案选择：" class="headerlink" title="方案选择："></a>方案选择：</h2><p>关于搭建自己的博客网站的帖子网上一大堆，一般也就三种方案：</p>
+        <h1 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h1><hr>
+<p>虽说现在各大平台的各种优秀的博客网站已经有很多很多了，但作为一个技术控，还是想拥有一个自己的博客网站，这样不用受限于各大平台的规则约束，自己想怎么发想发什么完全由自己做主(当然不能干违法的事)，还有一个更重要的原因是：为了装逼吧！，哈哈哈。</p>
+<h1 id="方案选择："><a href="#方案选择：" class="headerlink" title="方案选择："></a>方案选择：</h1><hr>
+<p>关于搭建自己的博客网站的帖子网上一大堆，一般也就三种方案：</p>
 <pre><code>1. WorkPress
 2. GithubPages+Jekell
 3. GitHubPages + Hexo
 </code></pre><p>具体哪种方案好，其实各有利弊吧，我选择<strong>GitHubPages + Hexo</strong>，<strong>主要原因：搭建简单，网上那种5分钟搭建好说实话确实没有吹牛逼；免费，这个是天朝人民比较关心的；使用者众多，也就意味着它的反馈比较好。</strong>不怕大家笑话，因为我是搞嵌入式系统设计和高速PCB设计的，对这方面基础基本没有吧，但也能快速搭建一个属于自己的博客网站，幸福感和成就感还是满满的。</p>
-<h2 id="搭建步骤："><a href="#搭建步骤：" class="headerlink" title="搭建步骤："></a>搭建步骤：</h2><p>我在搭建的时候也是阅读大佬们的开源博客按照他们的步骤一步一步搭建成功的，我觉得他们已经写的很详细很详细了，所以在这里直接推荐几篇帖子吧：</p>
+<h1 id="搭建步骤："><a href="#搭建步骤：" class="headerlink" title="搭建步骤："></a>搭建步骤：</h1><hr>
+<p>我在搭建的时候也是阅读大佬们的开源博客按照他们的步骤一步一步搭建成功的，我觉得他们已经写的很详细很详细了，所以在这里直接推荐几篇帖子吧：</p>
 <ol>
 <li><a href="https://www.jianshu.com/p/380290deb8f0?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation" title="免费个人博客搭建详解---李旺成" target="_blank" rel="noopener">免费个人博客搭建详解—李旺成</a></li>
 <li><a href="https://www.jianshu.com/p/4eaddcbe4d12" title="5分钟搭建个人免费博客---dimsky" target="_blank" rel="noopener">5分钟搭建个人免费博客—dimsky</a></li>
@@ -230,7 +233,8 @@
 <li><a href="http://www.lookk.cn/" title="枫之木落的博客" target="_blank" rel="noopener">枫之木落的博客</a></li>
 </ol>
 <p>基本上上面5篇帖子已经将<strong>Hexo静态博客网站搭建</strong>完全讲明白了，包括基本功能实现，各种插件安装等等。</p>
-<h2 id="结尾："><a href="#结尾：" class="headerlink" title="结尾："></a>结尾：</h2><p>安装上述方法搭建好博客平台之后，以后只需要在source/_posts下按照规定的格式写xxx.md文章，写好之后利用命令(<strong>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</strong>)提交即可，最后附上自己搭建成功的博客网站，如果有您感兴趣的话题，希望多来踩踩，谢谢：</p>
+<h1 id="结尾："><a href="#结尾：" class="headerlink" title="结尾："></a>结尾：</h1><hr>
+<p>安装上述方法搭建好博客平台之后，以后只需要在source/_posts下按照规定的格式写xxx.md文章，写好之后利用命令(<strong>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</strong>)提交即可，最后附上自己搭建成功的博客网站，如果有您感兴趣的话题，希望多来踩踩，谢谢：</p>
 <p><strong><a href="https://madmanazo.github.io/" title="madmanazo的博客" target="_blank" rel="noopener">https://madmanazo.github.io/</a></strong></p>
 <p><img src="https://i.imgur.com/65l2QsH.png" alt="我的博客网站"></p>
 
@@ -401,7 +405,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#说明："><span class="toc-number">1.</span> <span class="toc-text">说明：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方案选择："><span class="toc-number">2.</span> <span class="toc-text">方案选择：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搭建步骤："><span class="toc-number">3.</span> <span class="toc-text">搭建步骤：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结尾："><span class="toc-number">4.</span> <span class="toc-text">结尾：</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#说明："><span class="toc-number">1.</span> <span class="toc-text">说明：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#方案选择："><span class="toc-number">2.</span> <span class="toc-text">方案选择：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#搭建步骤："><span class="toc-number">3.</span> <span class="toc-text">搭建步骤：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结尾："><span class="toc-number">4.</span> <span class="toc-text">结尾：</span></a></li></ol>
                     </div>
                 </span>
             </div>
