@@ -288,7 +288,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/28/CCS7.3.0安装教程/">CCS7.3.0安装教程</a>
+      <a class="article-title" href="/2018/09/28/CCS7.3.0安装教程/">CCS7.4.0安装教程</a>
     </h1>
   
 
@@ -306,30 +306,63 @@
 	
     <div class="article-entry" itemprop="articleBody">
       
-        <p>说明：最近项目需要用到MSP430单片机芯片，MSP430系列超低功耗单片机编译软件主要是IAR和CCS，其实大体上差不多，不过使用过的人就知道CCS是Ti出的针对MSP430的话写程序会更友好一些，软件只是工具，使用起来其实和Keil、MDK等都类似，主要还是掌握程序的编写</p>
-<p>安装平台：windows10系统</p>
-<p><img src="https://i.imgur.com/NthNNP1.png" alt=""></p>
-<p>CCS版本：这里安装的是最新的版本7.3.0，其他版本试过均成功</p>
-<p>软件的话太大了无法上传，自己不方便去下载的，如有需要QQ1370085531免费分享，直接下载安装</p>
-<p><img src="https://i.imgur.com/Jf1HGbT.png" alt=""></p>
-<p>安装教程：</p>
-<h2 id="Code-Composer-Studio-7-for-Windows-README"><a href="#Code-Composer-Studio-7-for-Windows-README" class="headerlink" title="Code Composer Studio 7 for Windows README"></a>Code Composer Studio 7 for Windows README</h2><p>Please note that use of anti-virus software or a firewall may cause issues<br>during installation.  McAfee software in particular has been especially<br>troublesome.  If possible, disable anti-virus and firewall software during<br>installation.  If not, use of the Offline Installer is strongly recommended.</p>
-<p>If you are using an Offline CCS Installer, the zip file in which it is<br>distributed must first be extracted:</p>
-<pre><code>1. Right-click on CCS7.x.x.xxxxx_win32.zip and select &quot;Extract All...&quot;.
-2. Enter the directory where you wish to extract the files.
-3. Click on Extract.
-</code></pre><p>Once extraction has successfully completed, proceed with the installation<br>steps below.</p>
+        <h2 id="Code-Composer-Studio-Introduction："><a href="#Code-Composer-Studio-Introduction：" class="headerlink" title="Code Composer Studio Introduction："></a>Code Composer Studio Introduction：</h2><p>Code Composer Studio 是一种集成开发环境 (IDE)，支持 TI 的微控制器和嵌入式处理器产品系列。Code Composer Studio 包含一整套用于开发和调试嵌入式应用的工具。它包含了用于优化的 C/C++ 编译器、源码编辑器、项目构建环境、调试器、描述器以及多种其他功能。直观的 IDE 提供了单个用户界面，可帮助您完成应用开发流程的每个步骤。熟悉的工具和界面使用户能够比以前更快地入手。Code Composer Studio 将 Eclipse 软件框架的优点和 TI 先进的嵌入式调试功能相结合，为嵌入式开发人员提供了一个引人注目、功能丰富的开发环境。<br><img src="https://i.imgur.com/8z5z6Hf.png" alt="CCS"></p>
+<h2 id="CCS各版本详细介绍及下载链接："><a href="#CCS各版本详细介绍及下载链接：" class="headerlink" title="CCS各版本详细介绍及下载链接："></a>CCS各版本详细介绍及下载链接：</h2><p>给出<strong><a href="http://processors.wiki.ti.com/index.php/Download_CCS" title="CCS各版本详细介绍及下载链接地址" target="_blank" rel="noopener">官方CCS各版本详细介绍及下载链接地址</a></strong>，里面对各个版本CCS都进行了最准确最详细的介绍，可根据自己所使用的仿真器和开发平台选择相应的版本下载使用；如果您下载失败或者不知道选择哪一个版本进行使用的话可以通过微信公众号(<strong>兵哥的博客</strong>)发消息给我，我会通过百度云等方式将相关资料共享给您</p>
+<h2 id="安装教程："><a href="#安装教程：" class="headerlink" title="安装教程："></a>安装教程：</h2><p>CCS已经是我见过安装很友好的软件了，安装非常简单版本比较高的都不需要破解，在这里提供两个版本(CCS8.2.0、CCS5.5.0）的安装方法，其他版本安装方法类似(建议不要使用版本太低的CCS，因为版本太低的官方不会提供补丁)。<br><img src="https://i.imgur.com/Z22ALSK.png" alt="CCS最新版本8.2.0"><br><img src="https://i.imgur.com/LpxJKep.png" alt="CCS5.5.0版本"></p>
+<p>各个版本CCS软件安装方法类似，官方也给了我们详细的安装方法：</p>
+<h2 id="CCS8-2-0安装方法"><a href="#CCS8-2-0安装方法" class="headerlink" title="CCS8.2.0安装方法"></a>CCS8.2.0安装方法</h2><p>Please note that use of anti-virus software or a firewall may cause issues during installation.McAfee software in particular has been especially troublesome.  If possible, disable anti-virus and firewall software during installation. If not, use of the Offline Installer is strongly recommended.If you are using an Offline CCS Installer, the zip file in which it is distributed must first be extracted:</p>
+<ol>
+<li>Right-click on CCS8.x.x.xxxxx_win32.zip and select “Extract All…”.</li>
+<li>Enter the directory where you wish to extract the files.</li>
+<li>Click on Extract.</li>
+</ol>
+<p>Once extraction has successfully completed, proceed with the installation<br>steps below.</p>
 <p>To install Code Composer Studio:</p>
-<pre><code>1. Run ccs_setup_7.x.x.xxxxx.exe.
-2. Choose where you want to install.
-3. Select the components you wish to install.
-</code></pre><p>英文不好的google一下就OK,上面大概意思就是让你安装之前关闭电脑所有杀毒软件和防火墙，最好网络一起关闭，还有就是国外软件尽量都不要安装在中文目录下，强力推荐；</p>
-<p>一定要安装之前关闭电脑所有杀毒软件和防火墙，最好网络一起关闭，否则一般都会报错</p>
-<p>之后解压下载的CCS压缩包；</p>
-<p>接下来点击解压缩的包打开之后在你已经关杀毒软件、关防火墙、断网状态下点击：<br><img src="https://i.imgur.com/elTRtgx.png" alt=""></p>
-<p>进行安装，安装过程基本为傻瓜式安装，需要注意的是如果你对电脑管理有严格要求，可以安装在D盘，安装过程中会出现你需要装哪些芯片支持，选择MSP430，应该就是第一项，可以轻易识别出来就好，也可以安装全部，但是会耗费电脑更多资源，容易卡顿。</p>
-<p>安装完成后有个选择workspace选项，默认C盘，如果不喜欢可以改到安装目录下，新建一个文件夹就可以，这一步看个人喜好无所谓：</p>
-<p>其他版本安装基本是一样的。</p>
+<ol>
+<li>Run ccs_setup_8.x.x.xxxxx.exe.  </li>
+<li>Choose where you want to install. </li>
+<li>Select the components you wish to install.</li>
+</ol>
+<h2 id="CCS5-5-0安装方法"><a href="#CCS5-5-0安装方法" class="headerlink" title="CCS5.5.0安装方法"></a>CCS5.5.0安装方法</h2><p>If you are using a full compressed image of CCSv5.5.0:</p>
+<pre><code>On Windows, double-click on CCS_5.5.0.xxxxx_win32.zip
+    1. On the menu bar, go to Actions -&gt; Extract
+    2. Select the directory where you wish to extract the files
+    3. Select all of the following:
+        a. &quot;All files/folders in archive&quot;
+        b. Overwrite existing files
+        c. De-select the following:
+        d. Open Explorer Window
+        e. Skip older files
+    4. Click on Extract
+    Note: If you are using McAfee, your installation may hang.  Instead, use the offline installer 
+or disable the McAfee firewall. McAfee will allow you disable it for a period of time. 
+60min should be enough to complete the installation. 
+
+On Linux, untar CCS_5.5.0.xxxxx_linux.tar.gz and extract all files
+       If installing from DVD on Linux, you need to either mount the DVD with execute permissions first, 
+       or copy the files off the DVD to a local drive and change permissions there to run the installer. 
+</code></pre><p>Once extraction has successfully completed, proceed with the installation steps below.</p>
+<p>To install Code Composer Studio</p>
+<pre><code>On Windows:
+    1. Run ccs_setup_5.5.0.xxxxx.exe 
+    2. Choose where you want to install 
+    3. Select the components you wish to install 
+On Linux:
+    1. Run ccs_setup_5.5.0.xxxxx.bin 
+    2. Choose where you want to install 
+    3. Select the components you wish to install 
+    * Note: To facilitate the installation of emulation drivers, it is necessary to run part of the installation process as root.?
+         You may either run the whole install as root, or install the drivers after CCS installation has completed. ?
+         If you decide to not run the whole CCS installation as root, you can navigate to the &lt;Install-Folder&gt;/ccsv5/install_scripts folder, 
+          and run the 搃nstall_drivers.sh?script as root. 
+</code></pre><p>阅读安装文档(<strong>英文不好的google一下</strong>)之后会发现CCS各个版本安装的几个必须要做的关键性步骤：</p>
+<ol>
+<li><strong>关闭电脑防火墙</strong></li>
+<li><strong>关闭电脑杀毒软件(注意有的人的电脑有好几个杀毒软件都得全部关闭)</strong></li>
+<li><strong>切记不要将CCS软件装在中文路径下(其实对于各种软件来说都一样，不要将它们装在中文路径下，否则可能会出现难以预料的问题)</strong></li>
+<li>其他没有什么可注意的，都是傻瓜式安装，安装时按照步骤选择好自己所开发的平台就OK</li>
+<li><strong>CCS8.2.0不需要破解，但是CCS5.5.0需要破解</strong>，破解方法如下：<br><strong>将许可证文件(CCSv5-China-University-Site_License.lic)，拷贝到/ccsv5/ccs_base/DebugServer/license 下面，即可使用</strong>，许可证文件可<strong><a href="https://madmanazo.github.io/MyInformation/" title="我的联系方式" target="_blank" rel="noopener">找我</a></strong>索取</li>
+</ol>
 
       
 
@@ -343,7 +376,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">-TI</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">-CCS</a>
         		</li>
       		
 		</ul>
@@ -355,7 +388,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/单片机//" class="article-tag-list-link color5">-单片机</a>
+        			<a href="/categories/软件//" class="article-tag-list-link color4">-软件</a>
         		</li>
       		
 		</ul>
@@ -597,7 +630,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">-TI</a>
+                <a href="javascript:void(0)" class="js-tag color5">-CCS</a>
               </li>
              
               <li class="article-tag-list-item">
