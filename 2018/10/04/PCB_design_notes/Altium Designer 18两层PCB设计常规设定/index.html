@@ -6,15 +6,29 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>madmanazo</title>
+  <title>Altium Designer 18两层PCB设计常规设定 | madmanazo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="madmanazo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="PCB规则及约束编辑器 PCB两层板设计的一些常规设置 Clearance(安全间距)一般简单的两层板的话6mil或者8mil安全间距就OK，设置为8mil可能元器件管脚间距会报错，可以改小一点就OK ShortCircuit(短路)不要勾选允许短路 Width(线宽设定)最小设置为6mil，优先8mil，最大50mil，因为有些电源线走得比较宽，可根据板子做相应调整 Routing Via St">
+<meta name="keywords" content="-PCB">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Altium Designer 18两层PCB设计常规设定">
+<meta property="og:url" content="http://yoursite.com/2018/10/04/PCB_design_notes/Altium Designer 18两层PCB设计常规设定/index.html">
 <meta property="og:site_name" content="madmanazo">
+<meta property="og:description" content="PCB规则及约束编辑器 PCB两层板设计的一些常规设置 Clearance(安全间距)一般简单的两层板的话6mil或者8mil安全间距就OK，设置为8mil可能元器件管脚间距会报错，可以改小一点就OK ShortCircuit(短路)不要勾选允许短路 Width(线宽设定)最小设置为6mil，优先8mil，最大50mil，因为有些电源线走得比较宽，可根据板子做相应调整 Routing Via St">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/RUjEaYR.png">
+<meta property="og:image" content="https://i.imgur.com/8ExnsmB.png">
+<meta property="og:image" content="https://i.imgur.com/MdGIdtF.png">
+<meta property="og:image" content="https://i.imgur.com/DYxUcjS.png">
+<meta property="og:image" content="https://i.imgur.com/hCb62XP.png">
+<meta property="og:image" content="https://i.imgur.com/NAadYrN.png">
+<meta property="og:image" content="https://i.imgur.com/y2LApb2.png">
+<meta property="og:image" content="https://i.imgur.com/pTa8eTi.png">
+<meta property="og:updated_time" content="2018-10-04T12:24:00.651Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="madmanazo">
+<meta name="twitter:title" content="Altium Designer 18两层PCB设计常规设定">
+<meta name="twitter:description" content="PCB规则及约束编辑器 PCB两层板设计的一些常规设置 Clearance(安全间距)一般简单的两层板的话6mil或者8mil安全间距就OK，设置为8mil可能元器件管脚间距会报错，可以改小一点就OK ShortCircuit(短路)不要勾选允许短路 Width(线宽设定)最小设置为6mil，优先8mil，最大50mil，因为有些电源线走得比较宽，可根据板子做相应调整 Routing Via St">
+<meta name="twitter:image" content="https://i.imgur.com/RUjEaYR.png">
   
     <link rel="alternative" href="/atom.xml" title="madmanazo" type="application/atom+xml">
   
@@ -159,16 +173,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-PCB_design_notes/Altium Designer 18两层PCB设计常规设定" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-PCB_design_notes/Altium Designer 18两层PCB设计常规设定" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/04/PCB_design_notes/Altium Designer 18两层PCB设计常规设定/">Altium Designer 18两层PCB设计常规设定</a>
+    <h1 class="article-title" itemprop="name">
+      Altium Designer 18两层PCB设计常规设定
     </h1>
   
 
@@ -182,6 +194,30 @@
 	
 <!-- 目录内容 -->
 
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+	<div id="toc-article" class="toc-article">
+	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+		<strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PCB规则及约束编辑器"><span class="toc-number">1.</span> <span class="toc-text">PCB规则及约束编辑器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Clearance-安全间距"><span class="toc-number">1.1.</span> <span class="toc-text">Clearance(安全间距)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ShortCircuit-短路"><span class="toc-number">1.2.</span> <span class="toc-text">ShortCircuit(短路)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Width-线宽设定"><span class="toc-number">1.3.</span> <span class="toc-text">Width(线宽设定)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Routing-Via-Style-过孔直径"><span class="toc-number">1.4.</span> <span class="toc-text">Routing Via Style(过孔直径)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PlaneConnect-内电层连接方式"><span class="toc-number">1.5.</span> <span class="toc-text">PlaneConnect(内电层连接方式)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PolygonConnect-铜皮连接方式"><span class="toc-number">1.6.</span> <span class="toc-text">PolygonConnect(铜皮连接方式)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HoleSize-孔尺寸"><span class="toc-number">1.7.</span> <span class="toc-text">HoleSize(孔尺寸)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SilkToSilkClearance-丝印到丝印之间距离"><span class="toc-number">1.8.</span> <span class="toc-text">SilkToSilkClearance(丝印到丝印之间距离)</span></a></li></ol></li></ol>
+         </div>
+   <script type="text/javascript">
+	function showToc(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:block");
+		show_toc_btn.setAttribute("style","display:none");
+		};
+	function showBtn(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:none");
+		show_toc_btn.setAttribute("style","display:block");
+		};
+   </script>
+      
 <!-- 目录内容结束 -->
 	
     <div class="article-entry" itemprop="articleBody">
@@ -200,110 +236,31 @@
       
 
       
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">-PCB</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/PCB设计相关//" class="article-tag-list-link color4">-PCB设计相关</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/04/PCB_design_notes/Altium Designer 18两层PCB设计常规设定/">展开全文 >></a>
-        </p>
-      
-	  
-	  
-	  
-
-	  
-      
-	  
-      <div class="clearfix"></div>
-	  
-	  
-	  
-	
-	  
-	  
-	  
-    </div>
-	
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechat_reward1.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-PCB_design_notes/Altium Designer 18常用快捷键大全" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/04/PCB_design_notes/Altium Designer 18常用快捷键大全/">Altium Designer 18常用快捷键大全</a>
-    </h1>
-  
-
-        
-        <a href="/2018/10/04/PCB_design_notes/Altium Designer 18常用快捷键大全/" class="archive-article-date">
-  	<time datetime="2018-10-04T11:25:03.362Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-04</time>
-</a>
-        
-      </header>
-    
-	
-<!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-	
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="原理图"><a href="#原理图" class="headerlink" title="原理图"></a>原理图</h1><hr>
-<h1 id="PCB"><a href="#PCB" class="headerlink" title="PCB"></a>PCB</h1><hr>
-<h2 id="快速定位查找元器件"><a href="#快速定位查找元器件" class="headerlink" title="快速定位查找元器件"></a>快速定位查找元器件</h2><p><div align="center"><strong><font color="#FF0033">J+C</font></strong></div></p>
-
-      
-
       
     </div>
     <div class="article-info article-info-index">
@@ -334,21 +291,74 @@
 
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/04/PCB_design_notes/Altium Designer 18常用快捷键大全/">展开全文 >></a>
-        </p>
-      
 	  
 	  
+	  
+		<span class="archive-article-date">
+			阅读量 <span id="busuanzi_value_page_pv"></span>
+		</span>
 	  
 
 	  
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/10/04/PCB_design_notes/Altium Designer 18两层PCB设计常规设定/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
 	  
       <div class="clearfix"></div>
 	  
 	  
 	  
+	
+      
 	
 	  
 	  
@@ -357,6 +367,18 @@
 	
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2018/10/04/PCB_design_notes/Altium Designer 18常用快捷键大全/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Altium Designer 18常用快捷键大全</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -371,17 +393,42 @@
         </div>
         
         
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PCB规则及约束编辑器"><span class="toc-number">1.</span> <span class="toc-text">PCB规则及约束编辑器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Clearance-安全间距"><span class="toc-number">1.1.</span> <span class="toc-text">Clearance(安全间距)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ShortCircuit-短路"><span class="toc-number">1.2.</span> <span class="toc-text">ShortCircuit(短路)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Width-线宽设定"><span class="toc-number">1.3.</span> <span class="toc-text">Width(线宽设定)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Routing-Via-Style-过孔直径"><span class="toc-number">1.4.</span> <span class="toc-text">Routing Via Style(过孔直径)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PlaneConnect-内电层连接方式"><span class="toc-number">1.5.</span> <span class="toc-text">PlaneConnect(内电层连接方式)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PolygonConnect-铜皮连接方式"><span class="toc-number">1.6.</span> <span class="toc-text">PolygonConnect(铜皮连接方式)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HoleSize-孔尺寸"><span class="toc-number">1.7.</span> <span class="toc-text">HoleSize(孔尺寸)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SilkToSilkClearance-丝印到丝印之间距离"><span class="toc-number">1.8.</span> <span class="toc-text">SilkToSilkClearance(丝印到丝印之间距离)</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
     </div>
 </aside>
 
 
 
+  
+  
+  
 
   
+  <div id="SOHUCS" sid="PCB_design_notes/Altium Designer 18两层PCB设计常规设定" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cytCBkNPd",
+        conf: "c09cb8dbf7ad75b9615fcf9da0dc5331"
+    });
+</script>
+</script>
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
+
+  
+
   
 
 
@@ -412,8 +459,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
