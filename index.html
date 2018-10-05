@@ -196,7 +196,17 @@
 <h2 id="PolygonConnect-铜皮连接方式"><a href="#PolygonConnect-铜皮连接方式" class="headerlink" title="PolygonConnect(铜皮连接方式)"></a>PolygonConnect(铜皮连接方式)</h2><p>改为全连接<br><img src="https://i.imgur.com/NAadYrN.png" alt="PolygonConnect"></p>
 <h2 id="HoleSize-孔尺寸"><a href="#HoleSize-孔尺寸" class="headerlink" title="HoleSize(孔尺寸)"></a>HoleSize(孔尺寸)</h2><p>改为最小1mil，最大120mil<br><img src="https://i.imgur.com/y2LApb2.png" alt="HoleSize"></p>
 <h2 id="SilkToSilkClearance-丝印到丝印之间距离"><a href="#SilkToSilkClearance-丝印到丝印之间距离" class="headerlink" title="SilkToSilkClearance(丝印到丝印之间距离)"></a>SilkToSilkClearance(丝印到丝印之间距离)</h2><p>改为0mil<br><img src="https://i.imgur.com/pTa8eTi.png" alt="Silk"></p>
-
+<h1 id="PCB预布局的一些准备工作"><a href="#PCB预布局的一些准备工作" class="headerlink" title="PCB预布局的一些准备工作"></a>PCB预布局的一些准备工作</h1><hr>
+<p><div align="left"></div></p>
+<h2 id="在区域内排列器件"><a href="#在区域内排列器件" class="headerlink" title="在区域内排列器件"></a>在区域内排列器件</h2><p>为了便于进行布局</p>
+<p><div align="center"><strong><font color="#FF0033">快捷键：I+L</font></strong></div></p>
+<p><div align="left"></div></p>
+<h2 id="隐藏网络飞线等"><a href="#隐藏网络飞线等" class="headerlink" title="隐藏网络飞线等"></a>隐藏网络飞线等</h2><p>为了便于进行布局</p>
+<p><div align="center"><strong><font color="#FF0033">快捷键：N+H+N</font></strong></div></p>
+<p><div align="left"></div></p>
+<h2 id="修改元器件字符大小"><a href="#修改元器件字符大小" class="headerlink" title="修改元器件字符大小"></a>修改元器件字符大小</h2><p>一般字符比例为Width:Height=1:6，简单板子可修改为Width=4mil，Height=25mil<br>操作为点击任意元器件字符，鼠标右键选择查找相似对象，再将String type改为same点击应用的方式进行统一修改</p>
+<h2 id="Class类的创建"><a href="#Class类的创建" class="headerlink" title="Class类的创建"></a>Class类的创建</h2><p>对于相同的网络属性，分别创建类，便于布局布线管理，如创建电源类(PWR)、差分类(DIFFEREN)等，<strong><font color="#FF0033">快捷键：D+C</font></strong></p>
+<h2 id="差分对的设置"><a href="#差分对的设置" class="headerlink" title="差分对的设置"></a>差分对的设置</h2>
       
 
       
@@ -301,6 +311,10 @@
         <h1 id="原理图"><a href="#原理图" class="headerlink" title="原理图"></a>原理图</h1><hr>
 <h1 id="PCB"><a href="#PCB" class="headerlink" title="PCB"></a>PCB</h1><hr>
 <h2 id="快速定位查找元器件"><a href="#快速定位查找元器件" class="headerlink" title="快速定位查找元器件"></a>快速定位查找元器件</h2><p><div align="center"><strong><font color="#FF0033">J+C</font></strong></div></p>
+<p><div align="left"></div></p>
+<h2 id="在区域内排列器件"><a href="#在区域内排列器件" class="headerlink" title="在区域内排列器件"></a>在区域内排列器件</h2><p><div align="center"><strong><font color="#FF0033">I+L</font></strong></div></p>
+<p><div align="left"></div></p>
+<h2 id="隐藏网络飞线等"><a href="#隐藏网络飞线等" class="headerlink" title="隐藏网络飞线等"></a>隐藏网络飞线等</h2><p><div align="center"><strong><font color="#FF0033">N+H+N</font></strong></div></p>
 
       
 
@@ -483,11 +497,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-CCS</a>
+                <a href="javascript:void(0)" class="js-tag color1">-Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color5">-CCS</a>
               </li>
              
               <li class="article-tag-list-item">
