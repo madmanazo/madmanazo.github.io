@@ -18,7 +18,8 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://i.imgur.com/xB5Ibn5.jpg">
 <meta property="og:image" content="https://i.imgur.com/dEB7tnQ.png">
-<meta property="og:updated_time" content="2018-11-05T16:44:12.726Z">
+<meta property="og:image" content="https://i.imgur.com/yZoofDs.png">
+<meta property="og:updated_time" content="2018-11-06T05:02:37.555Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="STM32CubeXX包解读">
 <meta name="twitter:description" content="STM32CubeXX包 一句话总结：提供大量相关芯片驱动代码、例程等，以方便用户快速开发产品  STM32CubeF7为例 用于STM32F7系列的STM32Cube MCU包，带有HAL，底层驱动器和专用中间件 特点 提供一致且完整的嵌入式软件，使用户免于依赖性问题 通过STM32Cube支持以实现在所有STM32系列之间的最大可移植性 为了让用户易于理解，从而便于开发，提供数以百计的例子 使">
@@ -195,7 +196,7 @@
 	<div id="toc-article" class="toc-article">
 	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
 		<strong class="toc-title">文章目录</strong>
-           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#STM32CubeXX包"><span class="toc-number">1.</span> <span class="toc-text">STM32CubeXX包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#STM32CubeF7为例"><span class="toc-number">2.</span> <span class="toc-text">STM32CubeF7为例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#特点"><span class="toc-number">2.1.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#描述"><span class="toc-number">2.2.</span> <span class="toc-text">描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#STM32CubeF7-MCU包"><span class="toc-number">2.3.</span> <span class="toc-text">STM32CubeF7 MCU包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#STM32CubeXX包官网获取链接"><span class="toc-number">2.4.</span> <span class="toc-text">STM32CubeXX包官网获取链接</span></a></li></ol></li></ol>
+           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#STM32CubeXX包"><span class="toc-number">1.</span> <span class="toc-text">STM32CubeXX包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#STM32CubeF7为例"><span class="toc-number">2.</span> <span class="toc-text">STM32CubeF7为例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#特点"><span class="toc-number">2.1.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#描述"><span class="toc-number">2.2.</span> <span class="toc-text">描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#STM32CubeF7-MCU包"><span class="toc-number">2.3.</span> <span class="toc-text">STM32CubeF7 MCU包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#STM32CubeXX包官网获取链接"><span class="toc-number">2.4.</span> <span class="toc-text">STM32CubeXX包官网获取链接</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#STM32CubeF7固件开发包内容详解"><span class="toc-number">3.</span> <span class="toc-text">STM32CubeF7固件开发包内容详解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#htmresc"><span class="toc-number">3.1.</span> <span class="toc-text">_htmresc</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Documentation"><span class="toc-number">3.2.</span> <span class="toc-text">Documentation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Drivers"><span class="toc-number">3.3.</span> <span class="toc-text">Drivers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BSP"><span class="toc-number">3.3.1.</span> <span class="toc-text">BSP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMSIS"><span class="toc-number">3.3.2.</span> <span class="toc-text">CMSIS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#STM32F7xx-HAL-Driver"><span class="toc-number">3.3.3.</span> <span class="toc-text">STM32F7xx_HAL_Driver</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Middlewares"><span class="toc-number">3.4.</span> <span class="toc-text">Middlewares</span></a></li></ol></li></ol>
          </div>
    <script type="text/javascript">
 	function showToc(){
@@ -241,7 +242,16 @@
 <li>完整的USB主机和设备堆栈支持许多类<br><br>实现所有这些中间件组件的一组应用程序项目也是在STM32CubeF7 MCU包中提供</li>
 </ol>
 <h2 id="STM32CubeXX包官网获取链接"><a href="#STM32CubeXX包官网获取链接" class="headerlink" title="STM32CubeXX包官网获取链接"></a>STM32CubeXX包官网获取链接</h2><p><a href="https://www.st.com/content/st_com/en/extended-query.html?querycriteria=productId=LN1897$$associatedTo=FM141" title="ST官网获取链接" target="_blank" rel="noopener">ST官网获取链接</a></p>
-
+<h1 id="STM32CubeF7固件开发包内容详解"><a href="#STM32CubeF7固件开发包内容详解" class="headerlink" title="STM32CubeF7固件开发包内容详解"></a>STM32CubeF7固件开发包内容详解</h1><hr>
+<p>将固件包下载下来并解压之后可以看到里面共六个文件夹(_htmresc、Documentation、Drivers、Middlewares、Projects、Utilities)下面进行逐一介绍</p>
+<h2 id="htmresc"><a href="#htmresc" class="headerlink" title="_htmresc"></a>_htmresc</h2><p>这个文件夹对我们来说没有太多有价值的东西，里面主要是几张图片，其中比较有用的一张图片如下，可以让我们对STM32的开发有个比较基础的认识：<br></p>
+<p><div align="center"><img src="https://i.imgur.com/yZoofDs.png" alt="STM32Cube"><div align="left"></div></div></p>
+<h2 id="Documentation"><a href="#Documentation" class="headerlink" title="Documentation"></a>Documentation</h2><p>里面是一个STM32CubeF7的说明文档</p>
+<h2 id="Drivers"><a href="#Drivers" class="headerlink" title="Drivers"></a>Drivers</h2><p>第一个关键的文件夹，其包含三个子文件夹(BSP、CMSIS、STM32F7xx_HAL_Driver)</p>
+<h3 id="BSP"><a href="#BSP" class="headerlink" title="BSP"></a>BSP</h3><p>BSP(Board Support Package)，即板极支持包，提供直接与硬件打交道的API，BSP文件夹下面有很多子文件夹，主要是ST官方的几种开发板的硬件驱动API文件，如Discovery开发板、Nucleo开发板、EVAL开发板</p>
+<h3 id="CMSIS"><a href="#CMSIS" class="headerlink" title="CMSIS"></a>CMSIS</h3><p>SMSIS(Cortex Microcontroller Software Interface Standard)，即ARM  Cortex™微控制器接口标准，是Cortex-M处理器系列的与供应商无关的硬件抽象层（英文原文为：a vendor-independent hardware abstraction layer for the Cortex-M processor series and defines generic tool interfaces–来自ARM官方定义）；CMSIS文件夹内部的子文件夹比较多，主要包括DSP库(DSP_LIB文件夹)、Cortex-M内核及其设备文件(Include文件夹)及微控制器专用头文件/启动代码/专用系统文件等的文件夹(Device文件夹)和数学函数Lib包等，我们在新建项目工程时会用到里面的相关文件</p>
+<h3 id="STM32F7xx-HAL-Driver"><a href="#STM32F7xx-HAL-Driver" class="headerlink" title="STM32F7xx_HAL_Driver"></a>STM32F7xx_HAL_Driver</h3><p>这是非常重要的一个文件夹，其包含了所有的STM32F7XX系列HAL库头文件和源文件，也就是所有的STM32F7XX底层硬件抽象层API的声明和定义，它使我们跳过了STM32开发的复杂的硬件寄存器相关操作，建立了统一的外设接口函数，使我们的开发更加便利。其子文件夹有两个，其中Inc文件夹存放了.h头文件、Src文件夹存放了.c源文件，一般一一对应</p>
+<h2 id="Middlewares"><a href="#Middlewares" class="headerlink" title="Middlewares"></a>Middlewares</h2>
       
 
       
@@ -409,7 +419,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#STM32CubeXX包"><span class="toc-number">1.</span> <span class="toc-text">STM32CubeXX包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#STM32CubeF7为例"><span class="toc-number">2.</span> <span class="toc-text">STM32CubeF7为例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#特点"><span class="toc-number">2.1.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#描述"><span class="toc-number">2.2.</span> <span class="toc-text">描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#STM32CubeF7-MCU包"><span class="toc-number">2.3.</span> <span class="toc-text">STM32CubeF7 MCU包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#STM32CubeXX包官网获取链接"><span class="toc-number">2.4.</span> <span class="toc-text">STM32CubeXX包官网获取链接</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#STM32CubeXX包"><span class="toc-number">1.</span> <span class="toc-text">STM32CubeXX包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#STM32CubeF7为例"><span class="toc-number">2.</span> <span class="toc-text">STM32CubeF7为例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#特点"><span class="toc-number">2.1.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#描述"><span class="toc-number">2.2.</span> <span class="toc-text">描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#STM32CubeF7-MCU包"><span class="toc-number">2.3.</span> <span class="toc-text">STM32CubeF7 MCU包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#STM32CubeXX包官网获取链接"><span class="toc-number">2.4.</span> <span class="toc-text">STM32CubeXX包官网获取链接</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#STM32CubeF7固件开发包内容详解"><span class="toc-number">3.</span> <span class="toc-text">STM32CubeF7固件开发包内容详解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#htmresc"><span class="toc-number">3.1.</span> <span class="toc-text">_htmresc</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Documentation"><span class="toc-number">3.2.</span> <span class="toc-text">Documentation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Drivers"><span class="toc-number">3.3.</span> <span class="toc-text">Drivers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BSP"><span class="toc-number">3.3.1.</span> <span class="toc-text">BSP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMSIS"><span class="toc-number">3.3.2.</span> <span class="toc-text">CMSIS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#STM32F7xx-HAL-Driver"><span class="toc-number">3.3.3.</span> <span class="toc-text">STM32F7xx_HAL_Driver</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Middlewares"><span class="toc-number">3.4.</span> <span class="toc-text">Middlewares</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -539,19 +549,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">-CCS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-Keil</a>
+                <a href="javascript:void(0)" class="js-tag color1">-Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">-STM32</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-Keil</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -563,11 +573,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-Music</a>
+                <a href="javascript:void(0)" class="js-tag color5">-Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color2">-Music</a>
               </li>
              
               <li class="article-tag-list-item">
