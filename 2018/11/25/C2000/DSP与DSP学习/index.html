@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018/10 | madmanazo</title>
+  <title>DSP与DSP学习 | madmanazo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="madmanazo">
-<meta property="og:url" content="http://yoursite.com/archives/2018/10/index.html">
+  <meta name="description" content="什么是DSP DSP是一个简写，全称的话有两个意思：&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;Digital Signal Processing: 数字信号处理技术&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;Digital Signal Processor: 数字信号处理器 Digital S">
+<meta name="keywords" content="-C2000">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DSP与DSP学习">
+<meta property="og:url" content="http://yoursite.com/2018/11/25/C2000/DSP与DSP学习/index.html">
 <meta property="og:site_name" content="madmanazo">
+<meta property="og:description" content="什么是DSP DSP是一个简写，全称的话有两个意思：&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;Digital Signal Processing: 数字信号处理技术&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;Digital Signal Processor: 数字信号处理器 Digital S">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-11-25T15:27:37.755Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="madmanazo">
+<meta name="twitter:title" content="DSP与DSP学习">
+<meta name="twitter:description" content="什么是DSP DSP是一个简写，全称的话有两个意思：&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;Digital Signal Processing: 数字信号处理技术&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;Digital Signal Processor: 数字信号处理器 Digital S">
   
     <link rel="alternative" href="/atom.xml" title="madmanazo" type="application/atom+xml">
   
@@ -159,267 +164,273 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-C2000/DSP与DSP学习" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      DSP与DSP学习
+    </h1>
+  
+
+        
+        <a href="/2018/11/25/C2000/DSP与DSP学习/" class="archive-article-date">
+  	<time datetime="2018-11-25T14:45:49.649Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-25</time>
+</a>
+        
+      </header>
     
+	
+<!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+	<div id="toc-article" class="toc-article">
+	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+		<strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是DSP"><span class="toc-number">1.</span> <span class="toc-text">什么是DSP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Digital-Signal-Processing"><span class="toc-number">1.1.</span> <span class="toc-text">Digital Signal Processing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Digital-Signal-Processor"><span class="toc-number">1.2.</span> <span class="toc-text">Digital Signal Processor</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DSP学习基础"><span class="toc-number">2.</span> <span class="toc-text">DSP学习基础</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+	function showToc(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:block");
+		show_toc_btn.setAttribute("style","display:none");
+		};
+	function showBtn(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:none");
+		show_toc_btn.setAttribute("style","display:block");
+		};
+   </script>
+      
+<!-- 目录内容结束 -->
+	
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="什么是DSP"><a href="#什么是DSP" class="headerlink" title="什么是DSP"></a>什么是DSP</h1><hr>
+<p>DSP是一个简写，全称的话有两个意思：<br><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<font color="#00BFFF"><strong>Digital Signal Processing</strong></font>: 数字信号处理技术<br><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<font color="#00BFFF"><strong>Digital Signal Processor</strong></font>: 数字信号处理器<br></p>
+<h2 id="Digital-Signal-Processing"><a href="#Digital-Signal-Processing" class="headerlink" title="Digital Signal Processing"></a>Digital Signal Processing</h2><p>数字信号处理技术是对数字信号进行处理的理论和方法，因为自然界大多为模拟信号，对模拟信号处理起来相对复杂，而数字信号处理相对简单一些，其具有可控性强、稳定性高、精度高、抗干扰能力强、自适应能力强等特点，所以多将模拟信号转换成数字形式进行处理</p>
+<h2 id="Digital-Signal-Processor"><a href="#Digital-Signal-Processor" class="headerlink" title="Digital Signal Processor"></a>Digital Signal Processor</h2><p>DSP强调的是数字信号处理的实时性，DSP作为数字信号处理器将模拟信号通过模数转换器转换为数字信号后，用于专用处理器的告诉实时处理。其具有高速、灵活、可编程、低功耗等功能，在控制领域、图像处理、语音处理、视频处理等领域起到越来越大的作用</p>
+<h1 id="DSP学习基础"><a href="#DSP学习基础" class="headerlink" title="DSP学习基础"></a>DSP学习基础</h1><hr>
+<p>以下这些我觉得还是学DSP之前必备的基础知识吧，尽管可能学习之后忘了，但是专业素养还在就好，有了这些基础知识的奠基，学起来必事半功倍<br></p>
+<ul>
+<li><strong>高等数学</strong><br></li>
+<li><strong>概率论</strong><br></li>
+<li><strong>线性代数</strong><br></li>
+<li><strong>C/C++语言</strong><br></li>
+<li><strong>汇编语言</strong><br></li>
+<li><strong>电路</strong><br></li>
+<li><strong>模拟电子技术基础</strong><br></li>
+<li><strong>数字逻辑电路与系统设计基础</strong><br></li>
+<li><strong>信号与系统</strong><br></li>
+<li><strong>数字信号处理技术基础</strong><br></li>
+<li><strong>DSP原理与应用</strong><br></li>
+<li><strong>Linux系统基础</strong><br></li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechat_reward1.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/04/PCB_design_notes/Altium Designer 18两层PCB设计常规设定/" class="archive-article-date">
-  	<time datetime="2018-10-04T11:54:25.454Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/04/PCB_design_notes/Altium Designer 18两层PCB设计常规设定/">Altium Designer 18两层PCB设计常规设定</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">-PCB</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-C2000</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/PCB设计相关//" class="article-tag-list-link color4">-PCB设计相关</a>
+        			<a href="/categories/DSP//" class="article-tag-list-link color5">-DSP</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+	  
+	  
+	  
+		<span class="archive-article-date">
+			阅读量 <span id="busuanzi_value_page_pv"></span>
+		</span>
+	  
+
+	  
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/11/25/C2000/DSP与DSP学习/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+	  
+      <div class="clearfix"></div>
+	  
+	  
+	  
+	
+      
+	
+	  
+	  
+	  
+    </div>
+	
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/04/PCB_design_notes/Altium Designer 18常用快捷键大全/" class="archive-article-date">
-  	<time datetime="2018-10-04T11:25:03.362Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-04</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/11/24/My_Book_List/手把手教你学DSP/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">手把手教你学DSP</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/04/PCB_design_notes/Altium Designer 18常用快捷键大全/">Altium Designer 18常用快捷键大全</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">-PCB</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/PCB设计相关//" class="article-tag-list-link color4">-PCB设计相关</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是DSP"><span class="toc-number">1.</span> <span class="toc-text">什么是DSP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Digital-Signal-Processing"><span class="toc-number">1.1.</span> <span class="toc-text">Digital Signal Processing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Digital-Signal-Processor"><span class="toc-number">1.2.</span> <span class="toc-text">Digital Signal Processor</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DSP学习基础"><span class="toc-number">2.</span> <span class="toc-text">DSP学习基础</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/02/PCB_design_notes/Altium Designer 18系统参数选项介绍及常规设置/" class="archive-article-date">
-  	<time datetime="2018-10-02T07:57:42.431Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/02/PCB_design_notes/Altium Designer 18系统参数选项介绍及常规设置/">Altium Designer 18系统参数选项介绍及常规设置</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">-PCB</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/PCB设计相关//" class="article-tag-list-link color4">-PCB设计相关</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/01/Markdown_grammar/Markdown介绍及语法/" class="archive-article-date">
-  	<time datetime="2018-10-01T15:07:39.091Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/01/Markdown_grammar/Markdown介绍及语法/">Markdown介绍及语法</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">-Markdown</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Markdown//" class="article-tag-list-link color5">-Markdown</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/01/PCB_design_notes/Altium Designer 18全新功能介绍/" class="archive-article-date">
-  	<time datetime="2018-10-01T12:18:42.516Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/01/PCB_design_notes/Altium Designer 18全新功能介绍/">Altium Designer 18全新功能介绍</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">-PCB</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/PCB设计相关//" class="article-tag-list-link color4">-PCB设计相关</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
+  
+  <div id="SOHUCS" sid="C2000/DSP与DSP学习" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cytCBkNPd",
+        conf: "c09cb8dbf7ad75b9615fcf9da0dc5331"
+    });
+</script>
+</script>
+  
+
+  
+
+  
 
 
           </div>
@@ -450,8 +461,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
