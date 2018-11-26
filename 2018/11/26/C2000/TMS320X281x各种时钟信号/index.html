@@ -8,22 +8,30 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>TMS320X281x各种时钟信号 | madmanazo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="TMS320X281x时钟框图 TMS320X281x时钟框图详细的展示了TMS320X281x芯片各时钟来源及其之间的关系： 高速外设时钟HSPCLK、低速外设时钟LSPCLK 配置详解通过上面的时钟框图和PLLCR寄存器位定义表我们可以轻易得出TMS320X2812系统时钟配置方法如下： Here is an example of application:   /* 高速时钟预定标器和低速时钟">
+  <meta name="description" content="TMS320X281x时钟框图 TMS320X281x时钟框图详细的展示了TMS320X281x芯片各时钟来源及其之间的关系：  高速外设时钟HSPCLK、低速外设时钟LSPCLK  配置详解通过上面的时钟框图和PLLCR寄存器位定义表我们可以轻易得出TMS320X2812系统时钟配置方法如下： Here is an example of application:   /* 高速时钟预定标器和低速">
 <meta name="keywords" content="-C2000">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TMS320X281x各种时钟信号">
 <meta property="og:url" content="http://yoursite.com/2018/11/26/C2000/TMS320X281x各种时钟信号/index.html">
 <meta property="og:site_name" content="madmanazo">
-<meta property="og:description" content="TMS320X281x时钟框图 TMS320X281x时钟框图详细的展示了TMS320X281x芯片各时钟来源及其之间的关系： 高速外设时钟HSPCLK、低速外设时钟LSPCLK 配置详解通过上面的时钟框图和PLLCR寄存器位定义表我们可以轻易得出TMS320X2812系统时钟配置方法如下： Here is an example of application:   /* 高速时钟预定标器和低速时钟">
+<meta property="og:description" content="TMS320X281x时钟框图 TMS320X281x时钟框图详细的展示了TMS320X281x芯片各时钟来源及其之间的关系：  高速外设时钟HSPCLK、低速外设时钟LSPCLK  配置详解通过上面的时钟框图和PLLCR寄存器位定义表我们可以轻易得出TMS320X2812系统时钟配置方法如下： Here is an example of application:   /* 高速时钟预定标器和低速">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://i.imgur.com/5X9LdWK.png">
 <meta property="og:image" content="https://i.imgur.com/uyFMB6M.png">
 <meta property="og:image" content="https://i.imgur.com/WfWx0Ep.png">
+<meta property="og:image" content="https://latex.codecogs.com/gif.latex?HSPCLK&space;=&space;{&space;SYSCLKOUT&space;\over&space;{HISPCP&space;\times&space;2}&space;}\&space;\&space;\&space;\&space;\&space;\&space;(HISPCP\&space;!=\&space;0)">
+<meta property="og:image" content="https://latex.codecogs.com/gif.latex?HSPCLK&space;=&space;SYSCLKOUT\&space;\&space;\&space;\&space;\&space;\&space;(HISPCP\&space;=\&space;0)">
+<meta property="og:image" content="https://latex.codecogs.com/gif.latex?LSPCLK&space;=&space;{&space;SYSCLKOUT&space;\over&space;{&space;LOSPCP&space;\times&space;2&space;}&space;}\&space;\&space;\&space;\&space;\&space;\&space;(LOSPCP\&space;!=\&space;0)">
+<meta property="og:image" content="https://latex.codecogs.com/gif.latex?HSPCLK&space;=&space;SYSCLKOUT\&space;\&space;\&space;\&space;\&space;\&space;(LOSPCP\&space;=\&space;0)">
 <meta property="og:image" content="https://i.imgur.com/4dFzLqe.png">
-<meta property="og:updated_time" content="2018-11-26T13:21:44.977Z">
+<meta property="og:image" content="https://i.imgur.com/aoJKKCV.png">
+<meta property="og:image" content="https://i.imgur.com/9mGi8Dg.png">
+<meta property="og:image" content="https://i.imgur.com/WEEEoM3.png">
+<meta property="og:image" content="https://latex.codecogs.com/gif.latex?TIMCLK&space;=&space;{&space;HSPCLK&space;\over&space;{(TxPR&space;+&space;1)&space;\times&space;2^{TxCON\_TPS}&space;}&space;}">
+<meta property="og:updated_time" content="2018-11-26T16:02:31.163Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TMS320X281x各种时钟信号">
-<meta name="twitter:description" content="TMS320X281x时钟框图 TMS320X281x时钟框图详细的展示了TMS320X281x芯片各时钟来源及其之间的关系： 高速外设时钟HSPCLK、低速外设时钟LSPCLK 配置详解通过上面的时钟框图和PLLCR寄存器位定义表我们可以轻易得出TMS320X2812系统时钟配置方法如下： Here is an example of application:   /* 高速时钟预定标器和低速时钟">
+<meta name="twitter:description" content="TMS320X281x时钟框图 TMS320X281x时钟框图详细的展示了TMS320X281x芯片各时钟来源及其之间的关系：  高速外设时钟HSPCLK、低速外设时钟LSPCLK  配置详解通过上面的时钟框图和PLLCR寄存器位定义表我们可以轻易得出TMS320X2812系统时钟配置方法如下： Here is an example of application:   /* 高速时钟预定标器和低速">
 <meta name="twitter:image" content="https://i.imgur.com/5X9LdWK.png">
   
     <link rel="alternative" href="/atom.xml" title="madmanazo" type="application/atom+xml">
@@ -197,7 +205,7 @@
 	<div id="toc-article" class="toc-article">
 	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
 		<strong class="toc-title">文章目录</strong>
-           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#TMS320X281x时钟框图"><span class="toc-number">1.</span> <span class="toc-text">TMS320X281x时钟框图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#高速外设时钟HSPCLK、低速外设时钟LSPCLK"><span class="toc-number">1.1.</span> <span class="toc-text">高速外设时钟HSPCLK、低速外设时钟LSPCLK</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置详解"><span class="toc-number">1.1.1.</span> <span class="toc-text">配置详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HSPCLK、LSPCLK配置计算公式"><span class="toc-number">1.1.2.</span> <span class="toc-text">HSPCLK、LSPCLK配置计算公式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CPU定时器时钟"><span class="toc-number">1.2.</span> <span class="toc-text">CPU定时器时钟</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CPU定时器时钟配置计算公式"><span class="toc-number">1.2.1.</span> <span class="toc-text">CPU定时器时钟配置计算公式</span></a></li></ol></li></ol></li></ol>
+           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#TMS320X281x时钟框图"><span class="toc-number">1.</span> <span class="toc-text">TMS320X281x时钟框图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#高速外设时钟HSPCLK、低速外设时钟LSPCLK"><span class="toc-number">1.1.</span> <span class="toc-text">高速外设时钟HSPCLK、低速外设时钟LSPCLK</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置详解"><span class="toc-number">1.1.1.</span> <span class="toc-text">配置详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HSPCLK、LSPCLK配置计算公式"><span class="toc-number">1.1.2.</span> <span class="toc-text">HSPCLK、LSPCLK配置计算公式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CPU定时器时钟"><span class="toc-number">1.2.</span> <span class="toc-text">CPU定时器时钟</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CPU定时器时钟配置计算公式"><span class="toc-number">1.2.1.</span> <span class="toc-text">CPU定时器时钟配置计算公式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通用定时器时钟"><span class="toc-number">1.3.</span> <span class="toc-text">通用定时器时钟</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#通用定时器时钟配置计算公式"><span class="toc-number">1.3.1.</span> <span class="toc-text">通用定时器时钟配置计算公式</span></a></li></ol></li></ol></li></ol>
          </div>
    <script type="text/javascript">
 	function showToc(){
@@ -219,8 +227,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="TMS320X281x时钟框图"><a href="#TMS320X281x时钟框图" class="headerlink" title="TMS320X281x时钟框图"></a>TMS320X281x时钟框图</h1><hr>
-<p>TMS320X281x时钟框图详细的展示了TMS320X281x芯片各时钟来源及其之间的关系：<br><br><img src="https://i.imgur.com/5X9LdWK.png" alt="1"><br></p>
-<h2 id="高速外设时钟HSPCLK、低速外设时钟LSPCLK"><a href="#高速外设时钟HSPCLK、低速外设时钟LSPCLK" class="headerlink" title="高速外设时钟HSPCLK、低速外设时钟LSPCLK"></a>高速外设时钟HSPCLK、低速外设时钟LSPCLK</h2><p><img src="https://i.imgur.com/uyFMB6M.png" alt="2"><br><br><img src="https://i.imgur.com/WfWx0Ep.png" alt="3"><br></p>
+<p>TMS320X281x时钟框图详细的展示了TMS320X281x芯片各时钟来源及其之间的关系：<br></p>
+<p><div align="center"><img src="https://i.imgur.com/5X9LdWK.png" alt="1"><div align="left"><br></div></div></p>
+<h2 id="高速外设时钟HSPCLK、低速外设时钟LSPCLK"><a href="#高速外设时钟HSPCLK、低速外设时钟LSPCLK" class="headerlink" title="高速外设时钟HSPCLK、低速外设时钟LSPCLK"></a>高速外设时钟HSPCLK、低速外设时钟LSPCLK</h2><p><div align="center"><img src="https://i.imgur.com/uyFMB6M.png" alt="2"><div align="left"><br></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/WfWx0Ep.png" alt="3"><div align="left"><br></div></div></p>
 <h3 id="配置详解"><a href="#配置详解" class="headerlink" title="配置详解"></a>配置详解</h3><p>通过上面的时钟框图和PLLCR寄存器位定义表我们可以轻易得出TMS320X2812系统时钟配置方法如下：<br></p>
 <p>Here is an example of application:</p>
 
@@ -231,19 +241,31 @@ SysCtrlRegs.LOSPCP.all = 0x0001;    //LSPCLK = 150MHz / (2 + 2) = 37.5MHz
 </code></pre>
 
 <h3 id="HSPCLK、LSPCLK配置计算公式"><a href="#HSPCLK、LSPCLK配置计算公式" class="headerlink" title="HSPCLK、LSPCLK配置计算公式"></a>HSPCLK、LSPCLK配置计算公式</h3><p>通过上面的方法我们最终可以得出HSPCLK、LSPCLK时钟配置的计算公式如下：<br></p>
-<ul>
-<li><font color="#EE9A00"><strong>HSPCLK = SYSCLKOUT / (HISPCP * 2)</strong></font>&#160;&#160;&#160;&#160;<font color="#EE0000"><strong>(HISPCP != 0)</strong></font><br></li>
-<li><font color="#EE9A00"><strong>HSPCLK = SYSCLKOUT</strong></font>&#160;&#160;&#160;&#160;<font color="#EE0000"><strong>(HISPCP = 0)</strong></font><br></li>
-<li><font color="#EE9A00"><strong>LSPCLK = SYSCLKOUT / (LOSPCP * 2)</strong></font>&#160;&#160;&#160;&#160;<font color="#EE0000"><strong>(LOSPCP != 0)</strong></font><br></li>
-<li><font color="#EE9A00"><strong>HSPCLK = SYSCLKOUT</strong></font>&#160;&#160;&#160;&#160;<font color="#EE0000"><strong>(LOSPCP = 0)</strong></font><br></li>
-</ul>
-<h2 id="CPU定时器时钟"><a href="#CPU定时器时钟" class="headerlink" title="CPU定时器时钟"></a>CPU定时器时钟</h2><p><img src="https://i.imgur.com/4dFzLqe.png" alt="4"></p>
+<p><div align="center"><br><a href="https://www.codecogs.com/eqnedit.php?latex=HSPCLK&space;=&space;{&space;SYSCLKOUT&space;\over&space;{HISPCP&space;\times&space;2}&space;}\&space;\&space;\&space;\&space;\&space;\&space;(HISPCP\&space;!=\&space;0)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?HSPCLK&space;=&space;{&space;SYSCLKOUT&space;\over&space;{HISPCP&space;\times&space;2}&space;}\&space;\&space;\&space;\&space;\&space;\&space;(HISPCP\&space;!=\&space;0)" title="HSPCLK = { SYSCLKOUT \over {HISPCP \times 2} }\ \ \ \ \ \ (HISPCP\ !=\ 0)"></a><br></div></p>
+<div align="left">
+
+<p><div align="center"><br><a href="https://www.codecogs.com/eqnedit.php?latex=HSPCLK&space;=&space;SYSCLKOUT\&space;\&space;\&space;\&space;\&space;\&space;(HISPCP\&space;=\&space;0)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?HSPCLK&space;=&space;SYSCLKOUT\&space;\&space;\&space;\&space;\&space;\&space;(HISPCP\&space;=\&space;0)" title="HSPCLK = SYSCLKOUT\ \ \ \ \ \ (HISPCP\ =\ 0)"></a><br></div></p>
+<div align="left">
+
+<p><div align="center"><br><a href="https://www.codecogs.com/eqnedit.php?latex=LSPCLK&space;=&space;{&space;SYSCLKOUT&space;\over&space;{&space;LOSPCP&space;\times&space;2&space;}&space;}\&space;\&space;\&space;\&space;\&space;\&space;(LOSPCP\&space;!=\&space;0)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?LSPCLK&space;=&space;{&space;SYSCLKOUT&space;\over&space;{&space;LOSPCP&space;\times&space;2&space;}&space;}\&space;\&space;\&space;\&space;\&space;\&space;(LOSPCP\&space;!=\&space;0)" title="LSPCLK = { SYSCLKOUT \over { LOSPCP \times 2 } }\ \ \ \ \ \ (LOSPCP\ !=\ 0)"></a><br></div></p>
+<div align="left">
+
+<p><div align="center"><br><a href="https://www.codecogs.com/eqnedit.php?latex=HSPCLK&space;=&space;SYSCLKOUT\&space;\&space;\&space;\&space;\&space;\&space;(LOSPCP\&space;=\&space;0)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?HSPCLK&space;=&space;SYSCLKOUT\&space;\&space;\&space;\&space;\&space;\&space;(LOSPCP\&space;=\&space;0)" title="HSPCLK = SYSCLKOUT\ \ \ \ \ \ (LOSPCP\ =\ 0)"></a><br></div></p>
+<div align="left">
+
+<h2 id="CPU定时器时钟"><a href="#CPU定时器时钟" class="headerlink" title="CPU定时器时钟"></a>CPU定时器时钟</h2><p><div align="center"><img src="https://i.imgur.com/4dFzLqe.png" alt="4"><div align="left">  </div></div></p>
 <h3 id="CPU定时器时钟配置计算公式"><a href="#CPU定时器时钟配置计算公式" class="headerlink" title="CPU定时器时钟配置计算公式"></a>CPU定时器时钟配置计算公式</h3><p>SYSCLKOUT(MHz)&#160;&#160;&#160;&#160;&#160;&#160;TIMCLK(us)&#160;&#160;&#160;&#160;&#160;T(us)<br></p>
 <ul>
 <li><font color="#EE9A00"><strong>TIMCLK = (TDDRH:TDDR + 1) / (SYSCLKOUT)</strong></font><br></li>
 <li><font color="#EE9A00"><strong>T = (PRDH:PRD + 1) * (TDDRH:TDDR + 1) / (SYSCLKOUT)</strong></font><br></li>
 </ul>
-
+<h2 id="通用定时器时钟"><a href="#通用定时器时钟" class="headerlink" title="通用定时器时钟"></a>通用定时器时钟</h2><p><div align="center"><img src="https://i.imgur.com/aoJKKCV.png" alt="5"><div align="left"><br></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/9mGi8Dg.png" alt="t1"><div align="left"><br></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/WEEEoM3.png" alt="t2"><div align="left"><br></div></div></p>
+<h3 id="通用定时器时钟配置计算公式"><a href="#通用定时器时钟配置计算公式" class="headerlink" title="通用定时器时钟配置计算公式"></a>通用定时器时钟配置计算公式</h3><p>TCLK(MHz)<br></p>
+<p><div align="center"><br><a href="https://www.codecogs.com/eqnedit.php?latex=TIMCLK&space;=&space;{&space;HSPCLK&space;\over&space;{(TxPR&space;&plus;&space;1)&space;\times&space;2^{TxCON\_TPS}&space;}&space;}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?TIMCLK&space;=&space;{&space;HSPCLK&space;\over&space;{(TxPR&space;&plus;&space;1)&space;\times&space;2^{TxCON\_TPS}&space;}&space;}" title="TIMCLK = { HSPCLK \over {(TxPR + 1) \times 2^{TxCON\_TPS} } }"></a></div></p>
+<div align="left">
+</div></div></div></div></div>
       
 
       
@@ -382,6 +404,15 @@ SysCtrlRegs.LOSPCP.all = 0x0001;    //LSPCLK = 150MHz / (2 + 2) = 37.5MHz
   
 <nav id="article-nav">
   
+    <a href="/2018/11/26/Markdown_grammar/MarkdownPad无法显示数学公式解决方法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          MarkdownPad无法显示数学公式解决方法
+        
+      </div>
+    </a>
+  
   
     <a href="/2018/11/26/C2000/TMS320X281x介绍与系统时钟配置/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">TMS320X281x介绍与系统时钟配置</div>
@@ -411,7 +442,7 @@ SysCtrlRegs.LOSPCP.all = 0x0001;    //LSPCLK = 150MHz / (2 + 2) = 37.5MHz
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#TMS320X281x时钟框图"><span class="toc-number">1.</span> <span class="toc-text">TMS320X281x时钟框图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#高速外设时钟HSPCLK、低速外设时钟LSPCLK"><span class="toc-number">1.1.</span> <span class="toc-text">高速外设时钟HSPCLK、低速外设时钟LSPCLK</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置详解"><span class="toc-number">1.1.1.</span> <span class="toc-text">配置详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HSPCLK、LSPCLK配置计算公式"><span class="toc-number">1.1.2.</span> <span class="toc-text">HSPCLK、LSPCLK配置计算公式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CPU定时器时钟"><span class="toc-number">1.2.</span> <span class="toc-text">CPU定时器时钟</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CPU定时器时钟配置计算公式"><span class="toc-number">1.2.1.</span> <span class="toc-text">CPU定时器时钟配置计算公式</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#TMS320X281x时钟框图"><span class="toc-number">1.</span> <span class="toc-text">TMS320X281x时钟框图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#高速外设时钟HSPCLK、低速外设时钟LSPCLK"><span class="toc-number">1.1.</span> <span class="toc-text">高速外设时钟HSPCLK、低速外设时钟LSPCLK</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置详解"><span class="toc-number">1.1.1.</span> <span class="toc-text">配置详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HSPCLK、LSPCLK配置计算公式"><span class="toc-number">1.1.2.</span> <span class="toc-text">HSPCLK、LSPCLK配置计算公式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CPU定时器时钟"><span class="toc-number">1.2.</span> <span class="toc-text">CPU定时器时钟</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CPU定时器时钟配置计算公式"><span class="toc-number">1.2.1.</span> <span class="toc-text">CPU定时器时钟配置计算公式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通用定时器时钟"><span class="toc-number">1.3.</span> <span class="toc-text">通用定时器时钟</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#通用定时器时钟配置计算公式"><span class="toc-number">1.3.1.</span> <span class="toc-text">通用定时器时钟配置计算公式</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -541,6 +572,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">-CCS</a>
               </li>
              
@@ -553,15 +588,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">-翻墙</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">-Github</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color4">-翻墙</a>
               </li>
              
               <li class="article-tag-list-item">
