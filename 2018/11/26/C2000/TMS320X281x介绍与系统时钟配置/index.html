@@ -22,8 +22,9 @@
 <meta property="og:image" content="https://i.imgur.com/qDv7sHw.png">
 <meta property="og:image" content="https://i.imgur.com/qEOdngH.png">
 <meta property="og:image" content="https://i.imgur.com/Jl5mt39.png">
-<meta property="og:image" content="https://latex.codecogs.com/gif.latex?SYSCLKOUT&space;=&space;XCLKIN\&space;\&space;\&space;\&space;\&space;\&space;(PLLCR\_DIV\&space;=\&space;0)">
-<meta property="og:updated_time" content="2018-11-26T16:14:53.903Z">
+<meta property="og:image" content="https://latex.codecogs.com/gif.latex?HSPCLK&space;=&space;{&space;SYSCLKOUT&space;\over&space;{HISPCP&space;\times&space;2}&space;}\&space;\&space;\&space;\&space;\&space;\&space;(HISPCP\&space;!=\&space;0)">
+<meta property="og:image" content="https://latex.codecogs.com/gif.latex?HSPCLK&space;=&space;SYSCLKOUT\&space;\&space;\&space;\&space;\&space;\&space;(HISPCP\&space;=\&space;0)">
+<meta property="og:updated_time" content="2018-11-26T16:18:00.726Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TMS320X281x介绍与系统时钟配置">
 <meta name="twitter:description" content="TMS320X2812的资源、性能 TMS320X2812是TI公司推出的32位定点DSP芯片，采用了先进的哈佛总线架构，其不但具有强大的数字信号处理能力，而且还有较为完善的事件管理器功能和嵌入式控制功能，主频高达150MHz，因此广泛应用于工业控制等领域 TMS320X2812系统时钟配置 片内振荡器电路使用X1/XCLKIN和X2引脚将晶振连接到F281x和C281x器件。 如果不使用晶振，则">
@@ -272,9 +273,12 @@ void Init_System(void)
 }
 </code></pre>
 
-<h3 id="系统时钟配置计算公式"><a href="#系统时钟配置计算公式" class="headerlink" title="系统时钟配置计算公式"></a>系统时钟配置计算公式</h3><p>通过上面的方法我们最终可以得出系统时钟配置的计算公式如下：  </p>
-<p><a href="https://www.codecogs.com/eqnedit.php?latex=SYSCLKOUT&space;=&space;XCLKIN\&space;\&space;\&space;\&space;\&space;\&space;(PLLCR\_DIV\&space;=\&space;0)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?SYSCLKOUT&space;=&space;XCLKIN\&space;\&space;\&space;\&space;\&space;\&space;(PLLCR\_DIV\&space;=\&space;0)" title="SYSCLKOUT = XCLKIN\ \ \ \ \ \ (PLLCR\_DIV\ =\ 0)"></a></p>
+<h3 id="系统时钟配置计算公式"><a href="#系统时钟配置计算公式" class="headerlink" title="系统时钟配置计算公式"></a>系统时钟配置计算公式</h3><p>通过上面的方法我们最终可以得出系统时钟配置的计算公式如下：<br></p>
+<p><div align="center"><br><a href="https://www.codecogs.com/eqnedit.php?latex=HSPCLK&space;=&space;{&space;SYSCLKOUT&space;\over&space;{HISPCP&space;\times&space;2}&space;}\&space;\&space;\&space;\&space;\&space;\&space;(HISPCP\&space;!=\&space;0)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?HSPCLK&space;=&space;{&space;SYSCLKOUT&space;\over&space;{HISPCP&space;\times&space;2}&space;}\&space;\&space;\&space;\&space;\&space;\&space;(HISPCP\&space;!=\&space;0)" title="HSPCLK = { SYSCLKOUT \over {HISPCP \times 2} }\ \ \ \ \ \ (HISPCP\ !=\ 0)"></a><br></div></p>
+<div align="left">
 
+<p><div align="center"><br><a href="https://www.codecogs.com/eqnedit.php?latex=HSPCLK&space;=&space;SYSCLKOUT\&space;\&space;\&space;\&space;\&space;\&space;(HISPCP\&space;=\&space;0)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?HSPCLK&space;=&space;SYSCLKOUT\&space;\&space;\&space;\&space;\&space;\&space;(HISPCP\&space;=\&space;0)" title="HSPCLK = SYSCLKOUT\ \ \ \ \ \ (HISPCP\ =\ 0)"></a><br></div></p>
+<div align="left"></div></div>
       
 
       
@@ -585,11 +589,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-Keil</a>
+                <a href="javascript:void(0)" class="js-tag color1">-Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color1">-Keil</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -597,11 +601,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">-翻墙</a>
+                <a href="javascript:void(0)" class="js-tag color3">-Github</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">-Github</a>
+                <a href="javascript:void(0)" class="js-tag color4">-翻墙</a>
               </li>
              
               <li class="article-tag-list-item">
