@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://i.imgur.com/qDv7sHw.png">
 <meta property="og:image" content="https://i.imgur.com/qEOdngH.png">
 <meta property="og:image" content="https://i.imgur.com/Jl5mt39.png">
-<meta property="og:updated_time" content="2018-11-26T10:16:55.773Z">
+<meta property="og:updated_time" content="2018-11-26T12:00:48.686Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TMS320X281x介绍与系统时钟配置">
 <meta name="twitter:description" content="TMS320X2812的资源、性能 TMS320X2812是TI公司推出的32位定点DSP芯片，采用了先进的哈佛总线架构，其不但具有强大的数字信号处理能力，而且还有较为完善的事件管理器功能和嵌入式控制功能，主频高达150MHz，因此广泛应用于工业控制等领域 TMS320X2812系统时钟配置 片内振荡器电路使用X1/XCLKIN和X2引脚将晶振连接到F281x和C281x器件。 如果不使用晶振，则">
@@ -271,7 +271,7 @@ void Init_System(void)
 }
 </code></pre>
 
-<h3 id="系统时钟配置计算公式"><a href="#系统时钟配置计算公式" class="headerlink" title="系统时钟配置计算公式"></a>系统时钟配置计算公式</h3><p>其实通过上面的方法我们最终可以得出系统时钟配置的计算公式如下：<br></p>
+<h3 id="系统时钟配置计算公式"><a href="#系统时钟配置计算公式" class="headerlink" title="系统时钟配置计算公式"></a>系统时钟配置计算公式</h3><p>通过上面的方法我们最终可以得出系统时钟配置的计算公式如下：<br></p>
 <ul>
 <li><font color="#EE9A00"><strong>SYSCLKOUT = XCLKIN * PLLCR_DIV / 2</strong></font>&#160;&#160;&#160;&#160;<font color="#EE0000"><strong>(PLLCR_DIV != 0)</strong></font><br></li>
 <li><font color="#EE9A00"><strong>SYSCLKOUT = XCLKIN</strong></font>&#160;&#160;&#160;&#160;<font color="#EE0000"><strong>(PLLCR_DIV = 0)</strong></font><br></li>
@@ -414,6 +414,15 @@ void Init_System(void)
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/11/26/C2000/TMS320X281x各种时钟信号/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          TMS320X281x各种时钟信号
+        
+      </div>
+    </a>
   
   
     <a href="/2018/11/25/C2000/DSP与DSP学习/" id="article-nav-older" class="article-nav-link-wrap">
@@ -574,10 +583,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">-CCS</a>
               </li>
              
@@ -590,11 +595,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">-翻墙</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">-Github</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">-翻墙</a>
+                <a href="javascript:void(0)" class="js-tag color1">-Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -610,11 +619,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-Music</a>
+                <a href="javascript:void(0)" class="js-tag color5">-PCB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-PCB</a>
+                <a href="javascript:void(0)" class="js-tag color2">-Music</a>
               </li>
             
             <div class="clearfix"></div>
