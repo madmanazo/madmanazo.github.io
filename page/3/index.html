@@ -161,6 +161,149 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-STM32CubeXX解读" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/05/STM32CubeXX解读/">STM32CubeXX包解读</a>
+    </h1>
+  
+
+        
+        <a href="/2018/11/05/STM32CubeXX解读/" class="archive-article-date">
+  	<time datetime="2018-11-05T14:24:04.821Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-05</time>
+</a>
+        
+      </header>
+    
+	
+<!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+	
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="STM32CubeXX包"><a href="#STM32CubeXX包" class="headerlink" title="STM32CubeXX包"></a><a href="https://v.qq.com/x/page/s0679rxj9tx.html" title="STM32" target="_blank" rel="noopener">STM32</a>CubeXX包</h1><hr>
+<font color="#00E500"><strong>一句话总结：提供大量相关芯片驱动代码、例程等，以方便用户快速开发产品</strong></font>
+
+<h1 id="STM32CubeF7为例"><a href="#STM32CubeF7为例" class="headerlink" title="STM32CubeF7为例"></a>STM32CubeF7为例</h1><hr>
+<p>用于STM32F7系列的STM32Cube MCU包，带有HAL，底层驱动器和专用中间件</p>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
+<li>提供一致且完整的嵌入式软件，使用户免于依赖性问题</li>
+<li>通过STM32Cube支持以实现在所有STM32系列之间的最大可移植性</li>
+<li>为了让用户易于理解，从而便于开发，提供数以百计的例子</li>
+<li>使用CodeSonar®静态分析工具的高质量HAL和低层API驱动程序</li>
+<li>STM32F7专用中间件，包括USB主机和设备，以及TCP/IP</li>
+<li>免费的用户友好的许可条款</li>
+<li>可以被启用的更新机制以通知用户有新版本<br><div align="center"><img src="https://i.imgur.com/xB5Ibn5.jpg" alt="123"><br></div></li>
+</ul>
+<h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>STMCube™是意法半导体最初的一项举措，旨在通过减少开发工作量，时间和成本，使开发人员的生活更轻松。 STM32Cube是STMCube的实现，涵盖整个STM32产品链<br><br>STM32Cube包含STM32CubeMX，这是一个agraphical软件配置工具，允许使用图形向导生成C初始化程序<br><br>它还包括由STM32Cube硬件抽象层（HAL）和低层（LL）API组成的STM32CubeF7 MCU封装，以及一组一致的中间件组件（RTOS，USB，FAT文件系统，图形和TCP/IP）。所有嵌入式软件实用程序都随附在STMicroelectronics主板上运行的全套示例中<br><br>STM32Cube HAL是STM32嵌入式软件层，可确保STM32产品组合的最大可移植性，而LL API构成一个快速，轻量级，面向专家的层，比HAL更接近硬件。HAL和LL API可以同时使用，但有一些限制<br></p>
+<p><div align="center"><img src="https://i.imgur.com/dEB7tnQ.png" alt="2"><div align="left"><br><br>STM32CubeF7在一个封装中集合了在STM32F7微控制器上开发应用程序所需的所有通用嵌入式软件组件。 遵循STM32Cube计划，这组组件不仅具有高度可移植性在STM32F7系列中，还有其他STM32系列。 此外，底层API为STM32CubeF7 HAL提供了可替代、高性能、低占用空间的解决方案，但代价是便携性和简单性<br><br>STM32CubeF7与STM32CubeMX代码生成器所生成的初始化代码完全兼容，该软件包包括一个覆盖微控制器硬件的底层硬件抽象层（HAL），以及在STMicroelectronics板上运行的大量示例<br><br>为方便用户，HAL和LL API在开源BSD许可下可用</div></div></p>
+<h2 id="STM32CubeF7-MCU包"><a href="#STM32CubeF7-MCU包" class="headerlink" title="STM32CubeF7 MCU包"></a>STM32CubeF7 MCU包</h2><p>STM32CubeF7 MCU包在基于Arm®Cortex®-M处理器的STM32 32位微控制器上运行<br><br>该软件包包含一组中间件组件及相应的示例。它们以非常宽松的许可条款提供：<br></p>
+<ol>
+<li>使用FreeRTOS™开源解决方案实现CMSIS-RTOS<br></li>
+<li>基于开源LwIP解决方案的TCP/IP堆栈<br></li>
+<li>FAT文件系统基于支持NAND闪存访问的开源FatFS解决方案<br></li>
+<li>STemWin，一种专业的图形堆栈解决方案，以二进制格式提供，基于ST的合作伙伴解决方案SEGGER emWin<br></li>
+<li>完整的USB主机和设备堆栈支持许多类<br><br>实现所有这些中间件组件的一组应用程序项目也是在STM32CubeF7 MCU包中提供</li>
+</ol>
+<h2 id="STM32CubeXX包获取链接"><a href="#STM32CubeXX包获取链接" class="headerlink" title="STM32CubeXX包获取链接"></a>STM32CubeXX包获取链接</h2><p><div align="center"><img src="https://i.imgur.com/zvEbY5Q.png" alt="STM32CubeXX"><div align="left"></div></div></p>
+<ul>
+<li><a href="https://www.st.com/content/st_com/en/extended-query.html?querycriteria=productId=LN1897$$associatedTo=FM141" title="ST官网获取链接" target="_blank" rel="noopener">ST官网获取链接</a><br></li>
+<li><a href="https://pan.baidu.com/s/1D8RwSX_serF5imtymZo21w" title="STM32Cube" target="_blank" rel="noopener">百度网盘获取链接</a></li>
+</ul>
+<h1 id="STM32CubeF7固件开发包内容详解"><a href="#STM32CubeF7固件开发包内容详解" class="headerlink" title="STM32CubeF7固件开发包内容详解"></a>STM32CubeF7固件开发包内容详解</h1><hr>
+<p>将固件包下载下来并解压之后可以看到里面共六个文件夹(_htmresc、Documentation、Drivers、Middlewares、Projects、Utilities)下面进行逐一介绍</p>
+<h2 id="htmresc"><a href="#htmresc" class="headerlink" title="_htmresc"></a>_htmresc</h2><p>这个文件夹对我们来说没有太多有价值的东西，里面主要是几张图片，其中比较有用的一张图片如下，可以让我们对STM32的开发有个比较基础的认识：<br></p>
+<p><div align="center"><img src="https://i.imgur.com/yZoofDs.png" alt="STM32Cube"><div align="left"></div></div></p>
+<h2 id="Documentation"><a href="#Documentation" class="headerlink" title="Documentation"></a>Documentation</h2><p>里面是一个STM32CubeF7的说明文档</p>
+<h2 id="Drivers"><a href="#Drivers" class="headerlink" title="Drivers"></a>Drivers</h2><p>第一个关键的文件夹，其包含三个子文件夹(BSP、CMSIS、STM32F7xx_HAL_Driver)</p>
+<h3 id="BSP"><a href="#BSP" class="headerlink" title="BSP"></a>BSP</h3><p><strong><a href="https://baike.baidu.com/item/bsp/4572854?fr=aladdin" title="BSP" target="_blank" rel="noopener">BSP(Board Support Package)</a></strong>，即板极支持包，提供直接与硬件打交道的API，BSP文件夹下面有很多子文件夹，主要是ST官方的几种开发板的硬件驱动API文件，如Discovery开发板、Nucleo开发板、EVAL开发板</p>
+<h3 id="CMSIS"><a href="#CMSIS" class="headerlink" title="CMSIS"></a>CMSIS</h3><p><strong><a href="https://baike.baidu.com/item/CMSIS/4082822" title="CMSIS" target="_blank" rel="noopener">CMSIS(Cortex Microcontroller Software Interface Standard)</a></strong>，即ARM  Cortex™微控制器接口标准，是Cortex-M处理器系列的与供应商无关的硬件抽象层（英文原文为：a vendor-independent hardware abstraction layer for the Cortex-M processor series and defines generic tool interfaces–来自ARM官方定义）；CMSIS文件夹内部的子文件夹比较多，主要包括DSP库(DSP_LIB文件夹)、Cortex-M内核及其设备文件(Include文件夹)及微控制器专用头文件/启动代码/专用系统文件等的文件夹(Device文件夹)和数学函数Lib包等，我们在新建项目工程时会用到里面的相关文件</p>
+<h3 id="STM32F7xx-HAL-Driver"><a href="#STM32F7xx-HAL-Driver" class="headerlink" title="STM32F7xx_HAL_Driver"></a>STM32F7xx_HAL_Driver</h3><p>这是非常重要的一个文件夹，其包含了所有的STM32F7XX系列HAL库头文件和源文件，也就是所有的STM32F7XX底层硬件抽象层API的声明和定义，它使我们跳过了STM32开发的复杂的硬件寄存器相关操作，建立了统一的外设接口函数，使我们的开发更加便利。其子文件夹有两个，其中Inc文件夹存放了.h头文件、Src文件夹存放了.c源文件，一般一一对应</p>
+<h2 id="Middlewares"><a href="#Middlewares" class="headerlink" title="Middlewares"></a>Middlewares</h2><p>该文件夹下有两个子文件夹(ST、Third_Party)，其中ST文件夹下面存放的是STM32相关的一些文件(如STemWin、STM32_Audio、USB库等)，Third_Party文件夹是第三方中间件，里面主要包含一些比较好的FreeRTOS实时操作系统支持包，FatFs文件系统支持包，LibJPEG图形解码支持包，LwIP网络协议支持包、mbedTLS安全层解决方案支持包等</p>
+<h2 id="Projects"><a href="#Projects" class="headerlink" title="Projects"></a>Projects</h2><p>存放一些ST官方的Demo板的可以直接编译的一些实例工程，编写代码的时候可以借用参考</p>
+<h2 id="Utilities"><a href="#Utilities" class="headerlink" title="Utilities"></a>Utilities</h2><p>存放一些其他组件，用得不多</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-STM32</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/嵌入式//" class="article-tag-list-link color5">-嵌入式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/05/STM32CubeXX解读/">展开全文 >></a>
+        </p>
+      
+	  
+	  
+	  
+
+	  
+      
+	  
+      <div class="clearfix"></div>
+	  
+	  
+	  
+	
+	  
+	  
+	  
+    </div>
+	
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Keil软件安装教程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -319,142 +462,9 @@
 
 
   
-    <article id="post-My_Music_List/Music List" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/05/My_Music_List/Music List/">Music List</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/05/My_Music_List/Music List/" class="archive-article-date">
-  	<time datetime="2018-11-04T16:42:53.952Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-05</time>
-</a>
-        
-      </header>
-    
-	
-<!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-	
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><hr>
-<p><div align="center"><img src="https://i.imgur.com/VnQ9Zfr.jpg" alt="音乐"><br><br>平时自己听得比较喜欢的一些音乐，持续更新，加班的时候边听边工作挺给力的，有没有小伙伴给我推荐更多好听的或者有意义的音乐，不胜感激</div></p>
-<p><div align="left"></div></p>
-<h1 id="歌单"><a href="#歌单" class="headerlink" title="歌单"></a>歌单</h1><hr>
-<ol>
-<li>Flute (Radio Edit)—Barcode Brothers</li>
-<li>Take My Hand(Sound Up! Remix)—Various Artists</li>
-<li>How You Make Me Feel—Various Artists</li>
-<li>Love Story—Edward Maya/Violet Light</li>
-<li>Champion—Kaleo</li>
-<li>HEY HEY(Dj lgRoMaNcHiK &amp; ELECTROWIZARD REMIX)</li>
-<li>Fire—Elektronomia</li>
-<li>Timeless—Kadenza</li>
-<li>Cry On My Shouder—Deutschland sucht den Superstar/Various Artists</li>
-<li>Higher—Jurrivh</li>
-<li>Wild—Monogem</li>
-<li>星空—文武贝</li>
-<li>Good Life—Epistra</li>
-<li>Stray—Damon Empero</li>
-<li>Endless—Natio/CLAW$</li>
-<li>Back To Yesterday—Philter</li>
-<li>Attention—Charlie Puth</li>
-<li>Skyland—Mich</li>
-<li>Pour Elise—Richard Clayderman</li>
-<li>Conquest of Paradise—Vangelis</li>
-<li>Burning—Maria Arredondo</li>
-<li>Aspire—CelDro-Aspire</li>
-<li>Sunset Avenue—Guido Negraszus-Secret Worlds</li>
-<li>Rags To Rings—Mark Petrie/Danny McCarthy</li>
-<li>Walk Away—LVNDSCAPE/Kaptan</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-Music</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Music//" class="article-tag-list-link color2">-Music</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/05/My_Music_List/Music List/">展开全文 >></a>
-        </p>
-      
-	  
-	  
-	  
-
-	  
-      
-	  
-      <div class="clearfix"></div>
-	  
-	  
-	  
-	
-	  
-	  
-	  
-    </div>
-	
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 
@@ -557,19 +567,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-CCS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">-Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-STM32</a>
+                <a href="javascript:void(0)" class="js-tag color5">-CCS</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">-Keil</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">-STM32</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -581,15 +591,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-Book</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">-C2000</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">-Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-Book</a>
               </li>
              
               <li class="article-tag-list-item">
