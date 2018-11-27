@@ -25,7 +25,7 @@
 <meta property="og:image" content="https://i.imgur.com/exdQkE9.png">
 <meta property="og:image" content="https://i.imgur.com/ve3FWth.png">
 <meta property="og:image" content="https://i.imgur.com/nWMPBfb.gif">
-<meta property="og:updated_time" content="2018-11-27T07:28:28.672Z">
+<meta property="og:updated_time" content="2018-11-27T07:33:02.839Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="STM32串口空闲中断">
 <meta name="twitter:description" content="STM32串口空闲中断 在STM32中，我们经常需要用串口接收数据，除了串口用于代码调试printf基础功能之外，我们更多需要使用串口中断来接收数据，但是如此的话频繁进入串口中断，然后处理，效率还是太低，老板(CPU)也不高兴，于是召集各片内外设召开了技术讨论会 DMA：可以使用我来接收串口数据，比如使用USART1的话利用DMA2就可以  老板：比较关键的一点就是不知道何时数据接收完毕，因为将D">
@@ -228,7 +228,7 @@
 <p><font color="#FF0033">DMA：</font>可以使用我来接收串口数据，比如使用USART1的话利用DMA2就可以<br></p>
 <p><div align="center"><img src="https://i.imgur.com/zGNOF1O.png" alt="0"><div align="left"><br></div></div></p>
 <p><font color="#FF0033">老板：</font>比较关键的一点就是不知道何时数据接收完毕，因为将DMA接收数据长度不固定了，那应该怎么办呢？<br><br>正在大家冥思苦想的时候，STM32的串口站起来了，生气的说到：</p>
-<p><font color="#FF0033">STM32串口：</font>看来你们对我的认识还是不够啊，我还支持串口空闲中断呢，你们只需要对我进行简单的串口空闲中断配置，那么当接受到数据以后，首次进入空闲，我就会产生空闲中断，然后程序就会跳到串口中断服务函数中去<br></p>
+<p><font color="#FF0033">STM32串口：</font>看来你们对我的认识还是不够啊，我还支持串口空闲中断呢，你们只需要对我进行简单的串口空闲中断配置，那么<font color="#FF7F24"><strong>当接受到数据以后，首次进入空闲，我就会产生空闲中断，然后程序就会跳到串口中断服务函数中去</strong></font><br></p>
 <p><div align="center"><img src="https://i.imgur.com/eMRX6nk.png" alt="1"><div align="left"><br></div></div></p>
 <p><div align="center"><img src="https://i.imgur.com/arVOVRV.png" alt="2"><div align="left"><br></div></div></p>
 <p><div align="center"><img src="https://i.imgur.com/nfv2Svl.png" alt="3"><div align="left"><br><br>大伙一听，好像是这么个理儿，老板也很高兴了，确定这种方案之后吩咐大家开始进行STM32串口空闲中断不定长数据接收配置，结果如下：<br></div></div></p>
@@ -727,15 +727,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-Book</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">-Music</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">-PCB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-Book</a>
               </li>
             
             <div class="clearfix"></div>
