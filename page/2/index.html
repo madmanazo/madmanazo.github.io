@@ -161,6 +161,145 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-C2000/TMS320X281x各种时钟信号" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/26/C2000/TMS320X281x各种时钟信号/">TMS320X281x各种时钟信号</a>
+    </h1>
+  
+
+        
+        <a href="/2018/11/26/C2000/TMS320X281x各种时钟信号/" class="archive-article-date">
+  	<time datetime="2018-11-26T11:15:18.974Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-26</time>
+</a>
+        
+      </header>
+    
+	
+<!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+	
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="TMS320X281x时钟框图"><a href="#TMS320X281x时钟框图" class="headerlink" title="TMS320X281x时钟框图"></a>TMS320X281x时钟框图</h1><hr>
+<p>TMS320X281x时钟框图详细的展示了TMS320X281x芯片各时钟来源及其之间的关系：<br></p>
+<p><div align="center"><img src="https://i.imgur.com/5X9LdWK.png" alt="1"><div align="left"><br></div></div></p>
+<h2 id="高速外设时钟HSPCLK、低速外设时钟LSPCLK"><a href="#高速外设时钟HSPCLK、低速外设时钟LSPCLK" class="headerlink" title="高速外设时钟HSPCLK、低速外设时钟LSPCLK"></a>高速外设时钟HSPCLK、低速外设时钟LSPCLK</h2><p><div align="center"><img src="https://i.imgur.com/uyFMB6M.png" alt="2"><div align="left"><br></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/WfWx0Ep.png" alt="3"><div align="left"><br></div></div></p>
+<h3 id="配置详解"><a href="#配置详解" class="headerlink" title="配置详解"></a>配置详解</h3><p>通过上面的时钟框图和PLLCR寄存器位定义表我们可以轻易得出TMS320X2812系统时钟配置方法如下：<br></p>
+<p>Here is an example of application:</p>
+
+<pre><code>
+/* 高速时钟预定标器和低速时钟预定标器，产生高速外设时钟HSPCLK和低速外设时钟LSPCLK */
+SysCtrlRegs.HISPCP.all = 0x0001;    //HSPCLK = 150MHz / 2 = 75MHz
+SysCtrlRegs.LOSPCP.all = 0x0001;    //LSPCLK = 150MHz / (2 + 2) = 37.5MHz
+</code></pre>
+
+<h3 id="HSPCLK、LSPCLK配置计算公式"><a href="#HSPCLK、LSPCLK配置计算公式" class="headerlink" title="HSPCLK、LSPCLK配置计算公式"></a>HSPCLK、LSPCLK配置计算公式</h3><p>通过上面的方法我们最终可以得出HSPCLK、LSPCLK时钟配置的计算公式如下：<br></p>
+<p><div align="center"><br><a href="https://www.codecogs.com/eqnedit.php?latex=HSPCLK&space;=&space;{&space;SYSCLKOUT&space;\over&space;{HISPCP&space;\times&space;2}&space;}\&space;\&space;\&space;\&space;\&space;\&space;(HISPCP\&space;!=\&space;0)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?HSPCLK&space;=&space;{&space;SYSCLKOUT&space;\over&space;{HISPCP&space;\times&space;2}&space;}\&space;\&space;\&space;\&space;\&space;\&space;(HISPCP\&space;!=\&space;0)" title="HSPCLK = { SYSCLKOUT \over {HISPCP \times 2} }\ \ \ \ \ \ (HISPCP\ !=\ 0)"></a><br></div></p>
+<div align="left">
+
+<p><div align="center"><br><a href="https://www.codecogs.com/eqnedit.php?latex=HSPCLK&space;=&space;SYSCLKOUT\&space;\&space;\&space;\&space;\&space;\&space;(HISPCP\&space;=\&space;0)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?HSPCLK&space;=&space;SYSCLKOUT\&space;\&space;\&space;\&space;\&space;\&space;(HISPCP\&space;=\&space;0)" title="HSPCLK = SYSCLKOUT\ \ \ \ \ \ (HISPCP\ =\ 0)"></a><br></div></p>
+<div align="left">
+
+<p><div align="center"><br><a href="https://www.codecogs.com/eqnedit.php?latex=LSPCLK&space;=&space;{&space;SYSCLKOUT&space;\over&space;{&space;LOSPCP&space;\times&space;2&space;}&space;}\&space;\&space;\&space;\&space;\&space;\&space;(LOSPCP\&space;!=\&space;0)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?LSPCLK&space;=&space;{&space;SYSCLKOUT&space;\over&space;{&space;LOSPCP&space;\times&space;2&space;}&space;}\&space;\&space;\&space;\&space;\&space;\&space;(LOSPCP\&space;!=\&space;0)" title="LSPCLK = { SYSCLKOUT \over { LOSPCP \times 2 } }\ \ \ \ \ \ (LOSPCP\ !=\ 0)"></a><br></div></p>
+<div align="left">
+
+<p><div align="center"><br><a href="https://www.codecogs.com/eqnedit.php?latex=HSPCLK&space;=&space;SYSCLKOUT\&space;\&space;\&space;\&space;\&space;\&space;(LOSPCP\&space;=\&space;0)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?HSPCLK&space;=&space;SYSCLKOUT\&space;\&space;\&space;\&space;\&space;\&space;(LOSPCP\&space;=\&space;0)" title="HSPCLK = SYSCLKOUT\ \ \ \ \ \ (LOSPCP\ =\ 0)"></a><br></div></p>
+<div align="left">
+
+<h2 id="CPU定时器时钟"><a href="#CPU定时器时钟" class="headerlink" title="CPU定时器时钟"></a>CPU定时器时钟</h2><p><div align="center"><img src="https://i.imgur.com/4dFzLqe.png" alt="4"><div align="left">  </div></div></p>
+<h3 id="CPU定时器时钟配置计算公式"><a href="#CPU定时器时钟配置计算公式" class="headerlink" title="CPU定时器时钟配置计算公式"></a>CPU定时器时钟配置计算公式</h3><p>SYSCLKOUT(MHz)&#160;&#160;&#160;&#160;&#160;&#160;TIMCLK(us)&#160;&#160;&#160;&#160;&#160;T(us)<br></p>
+<p><img src="https://i.imgur.com/0AaLm8i.png" alt="tt"><br></p>
+<p><img src="https://i.imgur.com/lb92MYT.png" alt="tclk"><br></p>
+<h2 id="通用定时器时钟"><a href="#通用定时器时钟" class="headerlink" title="通用定时器时钟"></a>通用定时器时钟</h2><p><div align="center"><img src="https://i.imgur.com/aoJKKCV.png" alt="5"><div align="left"><br></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/9mGi8Dg.png" alt="t1"><div align="left"><br></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/WEEEoM3.png" alt="t2"><div align="left"><br></div></div></p>
+<h3 id="通用定时器时钟配置计算公式"><a href="#通用定时器时钟配置计算公式" class="headerlink" title="通用定时器时钟配置计算公式"></a>通用定时器时钟配置计算公式</h3><p>TCLK(MHz)<br></p>
+<p><div align="center"><br><a href="https://www.codecogs.com/eqnedit.php?latex=TIMCLK&space;=&space;{&space;HSPCLK&space;\over&space;{(TxPR&space;&plus;&space;1)&space;\times&space;2^{TxCON\_TPS}&space;}&space;}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?TIMCLK&space;=&space;{&space;HSPCLK&space;\over&space;{(TxPR&space;&plus;&space;1)&space;\times&space;2^{TxCON\_TPS}&space;}&space;}" title="TIMCLK = { HSPCLK \over {(TxPR + 1) \times 2^{TxCON\_TPS} } }"></a></div></p>
+<div align="left">
+</div></div></div></div></div>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-C2000</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/DSP//" class="article-tag-list-link color5">-DSP</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/26/C2000/TMS320X281x各种时钟信号/">展开全文 >></a>
+        </p>
+      
+	  
+	  
+	  
+
+	  
+      
+	  
+      <div class="clearfix"></div>
+	  
+	  
+	  
+	
+	  
+	  
+	  
+    </div>
+	
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-C2000/TMS320X281x介绍与系统时钟配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -273,128 +412,6 @@ void Init_System(void)
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/11/26/C2000/TMS320X281x介绍与系统时钟配置/">展开全文 >></a>
-        </p>
-      
-	  
-	  
-	  
-
-	  
-      
-	  
-      <div class="clearfix"></div>
-	  
-	  
-	  
-	
-	  
-	  
-	  
-    </div>
-	
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-C2000/DSP与DSP学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/25/C2000/DSP与DSP学习/">DSP与DSP学习</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/25/C2000/DSP与DSP学习/" class="archive-article-date">
-  	<time datetime="2018-11-25T14:45:49.649Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-25</time>
-</a>
-        
-      </header>
-    
-	
-<!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-	
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="什么是DSP"><a href="#什么是DSP" class="headerlink" title="什么是DSP"></a>什么是DSP</h1><hr>
-<p>DSP是一个简写，全称的话有两个意思：<br><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<font color="#00BFFF"><strong>Digital Signal Processing</strong></font>: 数字信号处理技术<br><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<font color="#00BFFF"><strong>Digital Signal Processor</strong></font>: 数字信号处理器<br></p>
-<h2 id="Digital-Signal-Processing"><a href="#Digital-Signal-Processing" class="headerlink" title="Digital Signal Processing"></a>Digital Signal Processing</h2><p>数字信号处理技术是对数字信号进行处理的理论和方法，因为自然界大多为模拟信号，对模拟信号处理起来相对复杂，而数字信号处理相对简单一些，其具有可控性强、稳定性高、精度高、抗干扰能力强、自适应能力强等特点，所以多将模拟信号转换成数字形式进行处理</p>
-<h2 id="Digital-Signal-Processor"><a href="#Digital-Signal-Processor" class="headerlink" title="Digital Signal Processor"></a>Digital Signal Processor</h2><p>DSP强调的是数字信号处理的实时性，DSP作为数字信号处理器将模拟信号通过模数转换器转换为数字信号后，用于专用处理器的告诉实时处理。其具有高速、灵活、可编程、低功耗等功能，在控制领域、图像处理、语音处理、视频处理等领域起到越来越大的作用</p>
-<h1 id="DSP学习基础"><a href="#DSP学习基础" class="headerlink" title="DSP学习基础"></a>DSP学习基础</h1><hr>
-<p>以下这些我觉得还是学DSP之前必备的基础知识吧，尽管可能学习之后忘了，但是专业素养还在就好，有了这些基础知识的奠基，学起来必事半功倍<br></p>
-<ul>
-<li><strong>高等数学</strong><br></li>
-<li><strong>概率论</strong><br></li>
-<li><strong>线性代数</strong><br></li>
-<li><strong>C/C++语言</strong><br></li>
-<li><strong>汇编语言</strong><br></li>
-<li><strong>电路</strong><br></li>
-<li><strong>模拟电子技术基础</strong><br></li>
-<li><strong>数字逻辑电路与系统设计基础</strong><br></li>
-<li><strong>信号与系统</strong><br></li>
-<li><strong>数字信号处理技术基础</strong><br></li>
-<li><strong>DSP原理与应用</strong><br></li>
-<li><strong>Linux系统基础</strong><br></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-C2000</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/DSP//" class="article-tag-list-link color5">-DSP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/25/C2000/DSP与DSP学习/">展开全文 >></a>
         </p>
       
 	  

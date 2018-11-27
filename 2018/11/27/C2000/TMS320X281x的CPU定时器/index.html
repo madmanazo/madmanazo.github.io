@@ -6,15 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Category: -DSP | madmanazo</title>
+  <title>TMS320X281x的CPU定时器 | madmanazo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="madmanazo">
-<meta property="og:url" content="http://yoursite.com/categories/DSP/index.html">
+  <meta name="description" content="什么是定时器 定时器是什么其实从字面意思就能理解，它是一种专用类型的时钟，用于测量特定的时间间隔，从而达到准确控制时间的目的，如古时所用的沙漏、水漏，到现在的闹钟等都属于定时器 CPU定时器 TMS320X281x系列DSP最多有三个32位的CPU定时器(TIMER0/1/2)，其中CPU-TIMER2是保留给实时操作系统(如DSP-BIOS)使用的，如果应用程序不使用DSP-BIOS，则用户可以">
+<meta name="keywords" content="-C2000">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TMS320X281x的CPU定时器">
+<meta property="og:url" content="http://yoursite.com/2018/11/27/C2000/TMS320X281x的CPU定时器/index.html">
 <meta property="og:site_name" content="madmanazo">
+<meta property="og:description" content="什么是定时器 定时器是什么其实从字面意思就能理解，它是一种专用类型的时钟，用于测量特定的时间间隔，从而达到准确控制时间的目的，如古时所用的沙漏、水漏，到现在的闹钟等都属于定时器 CPU定时器 TMS320X281x系列DSP最多有三个32位的CPU定时器(TIMER0/1/2)，其中CPU-TIMER2是保留给实时操作系统(如DSP-BIOS)使用的，如果应用程序不使用DSP-BIOS，则用户可以">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/gLwp6FV.png">
+<meta property="og:image" content="https://i.imgur.com/i0sS5Ee.png">
+<meta property="og:image" content="https://i.imgur.com/JoGCfZ4.png">
+<meta property="og:image" content="https://i.imgur.com/StKlqbE.png">
+<meta property="og:image" content="https://i.imgur.com/i7xsTat.png">
+<meta property="og:updated_time" content="2018-11-27T06:14:39.656Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="madmanazo">
+<meta name="twitter:title" content="TMS320X281x的CPU定时器">
+<meta name="twitter:description" content="什么是定时器 定时器是什么其实从字面意思就能理解，它是一种专用类型的时钟，用于测量特定的时间间隔，从而达到准确控制时间的目的，如古时所用的沙漏、水漏，到现在的闹钟等都属于定时器 CPU定时器 TMS320X281x系列DSP最多有三个32位的CPU定时器(TIMER0/1/2)，其中CPU-TIMER2是保留给实时操作系统(如DSP-BIOS)使用的，如果应用程序不使用DSP-BIOS，则用户可以">
+<meta name="twitter:image" content="https://i.imgur.com/gLwp6FV.png">
   
     <link rel="alternative" href="/atom.xml" title="madmanazo" type="application/atom+xml">
   
@@ -159,36 +170,192 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-C2000/TMS320X281x的CPU定时器" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      TMS320X281x的CPU定时器
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/27/C2000/TMS320X281x的CPU定时器/" class="archive-article-date">
+
+        
+        <a href="/2018/11/27/C2000/TMS320X281x的CPU定时器/" class="archive-article-date">
   	<time datetime="2018-11-27T04:55:35.519Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-27</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/27/C2000/TMS320X281x的CPU定时器/">TMS320X281x的CPU定时器</a>
-    </h1>
-  
+        
+      </header>
+    
+	
+<!-- 目录内容 -->
 
-        <div class="article-info info-on-right">
-          
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+	<div id="toc-article" class="toc-article">
+	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+		<strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是定时器"><span class="toc-number">1.</span> <span class="toc-text">什么是定时器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CPU定时器"><span class="toc-number">2.</span> <span class="toc-text">CPU定时器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ConfigCpuTimer-amp-Cputimer0-SYSCLKOUT-Y-106-配置函数详解"><span class="toc-number">3.</span> <span class="toc-text">ConfigCpuTimer(&amp;Cputimer0,SYSCLKOUT,Y * 106)配置函数详解</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+	function showToc(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:block");
+		show_toc_btn.setAttribute("style","display:none");
+		};
+	function showBtn(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:none");
+		show_toc_btn.setAttribute("style","display:block");
+		};
+   </script>
+      
+<!-- 目录内容结束 -->
+	
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="什么是定时器"><a href="#什么是定时器" class="headerlink" title="什么是定时器"></a>什么是<a href="https://en.m.wikipedia.org/wiki/Timer" title="定时器" target="_blank" rel="noopener">定时器</a></h1><hr>
+<p>定时器是什么其实从字面意思就能理解，它是一种专用类型的时钟，用于测量特定的时间间隔，从而达到准确控制时间的目的，如古时所用的沙漏、水漏，到现在的闹钟等都属于定时器</p>
+<h1 id="CPU定时器"><a href="#CPU定时器" class="headerlink" title="CPU定时器"></a>CPU定时器</h1><hr>
+<p>TMS320X281x系列DSP最多有三个32位的CPU定时器(TIMER0/1/2)，其中CPU-TIMER2是保留给实时操作系统(如DSP-BIOS)使用的，如果应用程序不使用DSP-BIOS，则用户可以使用CPU-TIMER2，CPU-TIMER0/1可用于用户应用程序<br></p>
+<p><div align="center"><img src="https://i.imgur.com/gLwp6FV.png" alt="cput"><div align="left"><br></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/i0sS5Ee.png" alt="cput1"><div align="left"><br></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/JoGCfZ4.png" alt="cput2"><div align="left"><br></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/StKlqbE.png" alt="cput3"><div align="left"><br></div></div></p>
+<p>CPU定时器的配置和使用是非常简单的，CPU定时器的一般操作如下：32位计数器寄存器TIMH：TIM装入周期寄存器PRDH：PRD中的值。计数器寄存器以28x的SYSCLKOUT速率递减。 当计数器达到0时，定时器中断输出信号产生中断脉冲<br></p>
+<p>Ti官方配置例子如下:</p>
+
+<pre><code>
+#include "DSP281x_Device.h"     // Headerfile Include File
+#include "DSP281x_Examples.h"   // Examples Include File
+
+struct CPUTIMER_VARS CpuTimer0;
+
+// When using DSP BIOS & other RTOS, comment out CPU Timer 2 code.
+struct CPUTIMER_VARS CpuTimer1;
+struct CPUTIMER_VARS CpuTimer2;
+
+//---------------------------------------------------------------------------
+// InitCpuTimers:
+//---------------------------------------------------------------------------
+// This function initializes all three CPU timers to a known state.
+//
+void InitCpuTimers(void)
+{
+    // CPU Timer 0
+    // Initialize address pointers to respective timer registers:
+    CpuTimer0.RegsAddr = &CpuTimer0Regs;
+    // Initialize timer period to maximum:
+    CpuTimer0Regs.PRD.all  = 0xFFFFFFFF;
+    // Initialize pre-scale counter to divide by 1 (SYSCLKOUT):
+    CpuTimer0Regs.TPR.all  = 0;
+    CpuTimer0Regs.TPRH.all = 0;
+    // Make sure timer is stopped:
+    CpuTimer0Regs.TCR.bit.TSS = 1;
+    // Reload all counter register with period value:
+    CpuTimer0Regs.TCR.bit.TRB = 1;
+    // Reset interrupt counters:
+    CpuTimer0.InterruptCount = 0;
+
+
+// CpuTimer2 is reserved for DSP BIOS & other RTOS
+// Do not use this timer if you ever plan on integrating
+// DSP-BIOS or another realtime OS.
+
+    // Initialize address pointers to respective timer registers:
+    CpuTimer1.RegsAddr = &CpuTimer1Regs;
+    CpuTimer2.RegsAddr = &CpuTimer2Regs;
+    // Initialize timer period to maximum:
+    CpuTimer1Regs.PRD.all  = 0xFFFFFFFF;
+    CpuTimer2Regs.PRD.all  = 0xFFFFFFFF;
+    // Make sure timers are stopped:
+    CpuTimer1Regs.TCR.bit.TSS = 1;
+    CpuTimer2Regs.TCR.bit.TSS = 1;
+    // Reload all counter register with period value:
+    CpuTimer1Regs.TCR.bit.TRB = 1;
+    CpuTimer2Regs.TCR.bit.TRB = 1;
+    // Reset interrupt counters:
+    CpuTimer1.InterruptCount = 0;
+    CpuTimer2.InterruptCount = 0;
+
+}
+
+//---------------------------------------------------------------------------
+// ConfigCpuTimer:
+//---------------------------------------------------------------------------
+// This function initializes the selected timer to the period specified
+// by the "Freq" and "Period" parameters. The "Freq" is entered as "MHz"
+// and the period in "uSeconds". The timer is held in the stopped state
+// after configuration.
+//
+void ConfigCpuTimer(struct CPUTIMER_VARS *Timer, float Freq, float Period)
+{
+    Uint32  temp;
+
+    // Initialize timer period:
+    Timer->CPUFreqInMHz = Freq;
+    Timer->PeriodInUSec = Period;
+    temp = (long) (Freq * Period);
+    Timer->RegsAddr->PRD.all = temp;
+
+    // Set pre-scale counter to divide by 1 (SYSCLKOUT):
+    Timer->RegsAddr->TPR.all  = 0;
+    Timer->RegsAddr->TPRH.all  = 0;
+
+    // Initialize timer control register:
+    Timer->RegsAddr->TCR.bit.TSS = 1;      // 1 = Stop timer, 0 = Start/Restart Timer
+    Timer->RegsAddr->TCR.bit.TRB = 1;      // 1 = reload timer
+    Timer->RegsAddr->TCR.bit.SOFT = 1;
+    Timer->RegsAddr->TCR.bit.FREE = 1;     // Timer Free Run
+    Timer->RegsAddr->TCR.bit.TIE = 1;      // 0 = Disable/ 1 = Enable Timer Interrupt
+
+    // Reset interrupt counter:
+    Timer->InterruptCount = 0;
+}
+</code></pre>
+
+<h1 id="ConfigCpuTimer-amp-Cputimer0-SYSCLKOUT-Y-106-配置函数详解"><a href="#ConfigCpuTimer-amp-Cputimer0-SYSCLKOUT-Y-106-配置函数详解" class="headerlink" title="ConfigCpuTimer(&amp;Cputimer0,SYSCLKOUT,Y * 106)配置函数详解"></a>ConfigCpuTimer(&amp;Cputimer0,SYSCLKOUT,Y * 10<sup>6</sup>)配置函数详解</h1><hr>
+<p>参数的话上述程序中都有详细的介绍不多说，主要是定时时间计算问题；根据配置函数的定义，CPU定时器周期寄存器PRD的值为(Freq <em> Period = SYSCLKOUT </em> Y * 10<sup>6</sup>)，CPU定时器的分频器TDDRH:TDDR的值为0，故定时器定时计算公式如下<br><br>SYSCLKOUT(MHz)&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;定时器周期T(s)&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;想要定时Y(s)<br></p>
+<p><div align="center"><img src="https://i.imgur.com/i7xsTat.png" alt="T"><div align="left"><br></div></div></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechat_reward1.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -200,7 +367,7 @@
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -213,164 +380,146 @@
 	</div>
 
 
+      
+	  
+	  
+	  
+		<span class="archive-article-date">
+			阅读量 <span id="busuanzi_value_page_pv"></span>
+		</span>
+	  
+
+	  
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/11/27/C2000/TMS320X281x的CPU定时器/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+	  
+      <div class="clearfix"></div>
+	  
+	  
+	  
+	
+      
+	
+	  
+	  
+	  
+    </div>
+	
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/26/C2000/TMS320X281x各种时钟信号/" class="archive-article-date">
-  	<time datetime="2018-11-26T11:15:18.974Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-26</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/11/26/Markdown_grammar/MarkdownPad无法显示数学公式解决方法/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MarkdownPad无法显示数学公式解决方法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/26/C2000/TMS320X281x各种时钟信号/">TMS320X281x各种时钟信号</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-C2000</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/DSP//" class="article-tag-list-link color5">-DSP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是定时器"><span class="toc-number">1.</span> <span class="toc-text">什么是定时器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CPU定时器"><span class="toc-number">2.</span> <span class="toc-text">CPU定时器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ConfigCpuTimer-amp-Cputimer0-SYSCLKOUT-Y-106-配置函数详解"><span class="toc-number">3.</span> <span class="toc-text">ConfigCpuTimer(&amp;Cputimer0,SYSCLKOUT,Y * 106)配置函数详解</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/26/C2000/TMS320X281x介绍与系统时钟配置/" class="archive-article-date">
-  	<time datetime="2018-11-26T09:19:02.226Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/26/C2000/TMS320X281x介绍与系统时钟配置/">TMS320X281x介绍与系统时钟配置</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-C2000</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/DSP//" class="article-tag-list-link color5">-DSP</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/25/C2000/DSP与DSP学习/" class="archive-article-date">
-  	<time datetime="2018-11-25T14:45:49.649Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-25</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/25/C2000/DSP与DSP学习/">DSP与DSP学习</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-C2000</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/DSP//" class="article-tag-list-link color5">-DSP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
+  <div id="SOHUCS" sid="C2000/TMS320X281x的CPU定时器" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cytCBkNPd",
+        conf: "c09cb8dbf7ad75b9615fcf9da0dc5331"
+    });
+</script>
+</script>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -401,10 +550,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
