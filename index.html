@@ -161,6 +161,136 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-C2000/TMS302X281x的事件管理器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/28/C2000/TMS302X281x的事件管理器/">TMS302X281x的事件管理器</a>
+    </h1>
+  
+
+        
+        <a href="/2018/11/28/C2000/TMS302X281x的事件管理器/" class="archive-article-date">
+  	<time datetime="2018-11-28T06:09:12.435Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-28</time>
+</a>
+        
+      </header>
+    
+	
+<!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+	
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="TMS302X281x的事件管理器"><a href="#TMS302X281x的事件管理器" class="headerlink" title="TMS302X281x的事件管理器"></a>TMS302X281x的事件管理器</h1><hr>
+<p>TMS302X281x的事件管理器为用户提供了众多的功能，使其在电机控制、变频器、逆变器等应用场合中显得特别有用，X281x的事件管理器模块包括通用定时器、全比较/PWM单元、捕获单元以及正交编码脉冲电路<br><br>X281x系列DSP具有两个事件管理器模块EvA和EvB，事件管理器的英文名为Event Manager，简称Ev；这两个事件管理器具有完全相同的功能，只是各个单元的名称因为EvA和EvB而有所区别</p>
+<p><div align="center"><img src="https://i.imgur.com/rCTvoY5.png" alt="EvA/B"><div align="left"></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/Wf8AgPt.png" alt="signal name"><div align="left"></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/JLSRh20.png" alt="function"><div align="left"></div></div></p>
+<h1 id="通用定时器"><a href="#通用定时器" class="headerlink" title="通用定时器"></a>通用定时器</h1><hr>
+<p>每个事件管理器都有两个16位通用定时器；EvA具有通用定时器T1和通用定时器T2，EvB具有通用定时器T3和通用定时器T4；每个通用定时器都可以独立使用，也可以两两配合使用，如T1和T2或者T3和T4可以同步，通用定时器的作用主要有下面三个：<br></p>
+<ol>
+<li>计时</li>
+<li>使用定时器产生PWM波，从而控制电机等</li>
+<li>给事件管理器的其它子模块提供基准时钟，如比较单元，PWM输出</li>
+</ol>
+<p><div align="center"><img src="https://i.imgur.com/57L0pmu.png" alt="timer"><div align="left"></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/eZYsRZS.png" alt="通用定时器"><div align="left"><br>上面这张定时器框图所提供的信息很多，下面以T1为例：<br></div></div></p>
+<ol>
+<li><strong>和T1相关的常用寄存器</strong>：16位的T1周期寄存器T1PR；16位的T1比较寄存器T1CMPR；16位的T1计数寄存器T1CNT；16位的T1控制寄存器T1CON；16位的通用定时器控制寄存器GPTCONA<br></li>
+<li><strong>定时器T1常见的输入信号</strong>：<br><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</li>
+</ol>
+<ul>
+<li>来自CPU的内部时钟HSPCLK，之前进行过详细的讲解与配置<br><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;- 来自外部时钟输入TCLKINA，最大频率为器件自身时钟频率的1/4，如果按照SYSCLKOUT=150MHz配置的话，也就是不能超过37.5MHz<br><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;- 定时器计数方向输入TDIRA，用于定时器工作于何种计数方式<br><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;- 复位信号RESET<br></li>
+</ul>
+<ol start="3">
+<li><strong>定时器T1的输出信号</strong>：<br><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</li>
+</ol>
+<ul>
+<li>定时器的比较输出T1PWM_T1CMP，可以输出PWM波<br><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;- 送给ADC模块的ADC转换启动信号<br><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;- 下溢、上溢、比较和周期匹配信号<br></li>
+</ul>
+<p>T1PR是T1的周期寄存器，用于存放T1设置的定时器周期值；T1CMPR是T1的比较寄存器，用于存放T1设置的比较值，通常这两个寄存器在初始化配置的时候就进行了赋值操作，此后就成了T1的一个参考标准。T1CNT是T1的计数器寄存器，其值随着时钟脉冲不断增加或者减少，每过一个定时器时钟脉冲，T1CNT的值就会增加或者减少1.CPu会实时地将T1CNT和T1CMPR、T1PR的值进行比较从而产生一些事件如T1CNT的值和T1CMPR的值相等时就会产生周期匹配事件，进而产生比较中断或者PWM波等；当T1CNT的值和T1PR的值相等时就会产生周期匹配事件。除了上面这些，还有几个阴影寄存器，其作用可以简单理解为使用户可以在一个定时器周期的任何时刻向T1CMPR和T1PR写入新的值，具体可以查看定时器控制寄存器的TCLD位定义<br></p>
+<h2 id="通用定时器的时钟"><a href="#通用定时器的时钟" class="headerlink" title="通用定时器的时钟"></a>通用定时器的时钟</h2><h2 id="通用定时器的计数模式"><a href="#通用定时器的计数模式" class="headerlink" title="通用定时器的计数模式"></a>通用定时器的计数模式</h2><h2 id="通用定时器的中断事件"><a href="#通用定时器的中断事件" class="headerlink" title="通用定时器的中断事件"></a>通用定时器的中断事件</h2><h2 id="通用定时器的同步"><a href="#通用定时器的同步" class="headerlink" title="通用定时器的同步"></a>通用定时器的同步</h2><h2 id="通用定时器的比较操作和PWM波"><a href="#通用定时器的比较操作和PWM波" class="headerlink" title="通用定时器的比较操作和PWM波"></a>通用定时器的比较操作和PWM波</h2>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-C2000</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/DSP//" class="article-tag-list-link color5">-DSP</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/28/C2000/TMS302X281x的事件管理器/">展开全文 >></a>
+        </p>
+      
+	  
+	  
+	  
+
+	  
+      
+	  
+      <div class="clearfix"></div>
+	  
+	  
+	  
+	
+	  
+	  
+	  
+    </div>
+	
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-C2000/TMS302X281x的中断系统" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -289,285 +419,9 @@
 
 
   
-    <article id="post-STM32串口空闲中断" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/27/STM32串口空闲中断/">STM32串口空闲中断</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/27/STM32串口空闲中断/" class="archive-article-date">
-  	<time datetime="2018-11-27T06:49:36.012Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-27</time>
-</a>
-        
-      </header>
-    
-	
-<!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-	
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="STM32串口空闲中断"><a href="#STM32串口空闲中断" class="headerlink" title="STM32串口空闲中断"></a>STM32串口空闲中断</h1><hr>
-<p>在STM32中，我们经常需要用串口接收数据，除了串口用于代码调试printf基础功能之外，我们更多需要使用串口中断来接收数据，但是如此的话频繁进入串口中断，然后处理，效率还是太低，老板(CPU)也不高兴，于是召集各片内外设召开了技术讨论会<br></p>
-<p><font color="#FF0033">DMA：</font>可以使用我来接收串口数据，比如使用USART1的话利用DMA2就可以<br></p>
-<p><div align="center"><img src="https://i.imgur.com/zGNOF1O.png" alt="0"><div align="left"><br></div></div></p>
-<p><font color="#FF0033">老板：</font>比较关键的一点就是不知道何时数据接收完毕，因为将DMA接收数据长度不固定了，那应该怎么办呢？<br><br>正在大家冥思苦想的时候，STM32的串口站起来了，生气的说到：</p>
-<p><font color="#FF0033">STM32串口：</font>看来你们对我的认识还是不够啊，我还支持串口空闲中断呢，你们只需要对我进行简单的串口空闲中断配置，那么<font color="#FF7F24"><strong>当接受到数据以后，首次进入空闲，我就会产生空闲中断，然后程序就会跳到串口中断服务函数中去</strong></font><br></p>
-<p><div align="center"><img src="https://i.imgur.com/eMRX6nk.png" alt="1"><div align="left"><br></div></div></p>
-<p><div align="center"><img src="https://i.imgur.com/arVOVRV.png" alt="2"><div align="left"><br></div></div></p>
-<p><div align="center"><img src="https://i.imgur.com/nfv2Svl.png" alt="3"><div align="left"><br><br>大伙一听，好像是这么个理儿，老板也很高兴了，确定这种方案之后吩咐大家开始进行STM32串口空闲中断不定长数据接收配置，结果如下：<br></div></div></p>
-<h1 id="空闲中断配置代码"><a href="#空闲中断配置代码" class="headerlink" title="空闲中断配置代码"></a>空闲中断配置代码</h1><p>usart.h:</p>
-
-<pre><code>
-#ifndef __USART_H
-#define __USART_H
-
-#include "stm32f4xx.h"
-#include "stdio.h"
-
-#define USART1_REC_LEN 100
-
-extern u8 USART_RX_BUF[USART1_REC_LEN];
-extern u8 USART1_REC_CNT;
-extern u8 USART1_RX_FLAG;
-
-void USART1_Init(u32 bound);
-
-#endif
-</code></pre>
-
-<p>usart.c:</p>
-
-<pre><code>
-/* Includes ------------------------------------------------------------------*/
-#include "usart.h"
-
-/******************************Code area************************************/
-
-u8 USART_RX_BUF[USART1_REC_LEN];
-u8 USART1_REC_CNT = 0;
-u8 USART1_RX_FLAG = 0;
-
-/*******************************************************************************
-* @Name      : USART1_Init
-* @brief    : USART1初始化配置
-* @Input    : bound: 串口波特率
-* @Output   : None
-* @retval   : None
-*******************************************************************************/
-void USART1_Init(u32 bound)
-{
-    GPIO_InitTypeDef    GPIO_InitStructure;
-    USART_InitTypeDef    USART_InitStructure;
-    DMA_InitTypeDef    DMA_InitStructure;
-
-    RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA | RCC_AHB1Periph_DMA2,ENABLE);    //使能GPIOA时钟 & DMA1时钟
-    RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1,ENABLE);                        //使能USART1时钟
-
-    GPIO_PinAFConfig(GPIOA,GPIO_PinSource9,GPIO_AF_USART1);            //PA9复用为USART1
-    GPIO_PinAFConfig(GPIOA,GPIO_PinSource10,GPIO_AF_USART1);        //PA10复用为USART1
-
-    GPIO_InitStructure.GPIO_Mode=GPIO_Mode_AF;                        //复用功能
-    GPIO_InitStructure.GPIO_OType=GPIO_OType_PP;                    //推挽复用输出
-    GPIO_InitStructure.GPIO_Pin=GPIO_Pin_9 | GPIO_Pin_10;            //选择USART1对应的管脚：PA9->USART1_TX,PA10->USART1_RX
-    GPIO_InitStructure.GPIO_PuPd=GPIO_PuPd_UP;                        //上拉
-    GPIO_InitStructure.GPIO_Speed=GPIO_Speed_100MHz;                //端口速度100MHz
-    GPIO_Init(GPIOA,&GPIO_InitStructure);                            //GPIO端口初始化
-
-    USART_InitStructure.USART_BaudRate=bound;                                      //设置串口波特率：115200
-    USART_InitStructure.USART_HardwareFlowControl=USART_HardwareFlowControl_None; //设置有无硬件流控制：无
-    USART_InitStructure.USART_Mode=USART_Mode_Rx | USART_Mode_Tx;                  //设置模式：接收&发送
-    USART_InitStructure.USART_Parity=USART_Parity_No;                              //设置有无奇偶校验：无
-    USART_InitStructure.USART_StopBits=USART_StopBits_1;                          //设置停止位：1位
-    USART_InitStructure.USART_WordLength=USART_WordLength_8b;                      //设置数据位：8位
-    USART_Init(USART1,&USART_InitStructure);                                      //USART1初始化
-
-    DMA_DeInit(DMA2_Stream2);                                                //将DMA2_Stream2寄存器取消初始化为其默认复位值
-    while(DMA_GetCmdStatus(DMA2_Stream2) != DISABLE);                        //等待DMA可配置 
-    DMA_InitStructure.DMA_BufferSize = USART1_REC_LEN;                        //设置DMA数据传输量
-    DMA_InitStructure.DMA_Channel = DMA_Channel_4;                            //设置DMA数据传输通道
-    DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralToMemory;                    //设置数据传输方向
-    DMA_InitStructure.DMA_FIFOMode = DMA_FIFOMode_Disable;                    //设置是否开启FIFO模式
-    DMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_Full;            //设置FIFO阈值，可以为FIFO的1/4、1/2、3/4、1倍，没有开启FIFO时可不关心
-    DMA_InitStructure.DMA_Memory0BaseAddr = (u32)USART_RX_BUF;                //设置存放DMA传输数据的内存基地址
-    DMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_Single;                //设置存储器突发传输配置，可设置单次突发传输、4个节拍增量、8个节拍增量、16个节拍增量突发传输模式
-    DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;            //设置内存的数据长度是为字节存储、半字存储还是字存储
-    DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;                    //设置传输数据时内存地址是否递增
-    DMA_InitStructure.DMA_Mode = DMA_Mode_Circular;                            //设置DMA模式，可设置普通模式或循环模式，循环模式会让DMA接收一帧数据之后再回到初址
-    DMA_InitStructure.DMA_PeripheralBaseAddr = (u32)(&(USART1->DR));        //设置DMA传输的外设基地址
-    DMA_InitStructure.DMA_PeripheralBurst = DMA_PeripheralBurst_Single;        //设置外设突发传输配置，可设置单次突发传输、4个节拍增量、8个节拍增量、16个节拍增量突发传输模式
-    DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;    //设置外设的数据长度是为字节传输、半字传输还是字传输
-    DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;        //设置传输数据的时候外设的地址是不变还是递增
-    DMA_InitStructure.DMA_Priority = DMA_Priority_High;                        //设置DMA通道的优先级，有低、中、高、超高四种优先级可选
-    DMA_Init(DMA2_Stream2,&DMA_InitStructure);                                //DMA2 for USART1_RX初始化
-
-    DMA_Cmd(DMA2_Stream2,ENABLE);                  //使能DMA传输
-    NVIC_EnableIRQ(USART1_IRQn);                  //使能USART1中断通道
-    USART_Cmd(USART1,ENABLE);                      //USART1使能
-    USART_ITConfig(USART1,USART_IT_IDLE,ENABLE);  //若总线空闲，产生中断
-    USART_DMACmd(USART1,USART_DMAReq_Rx,ENABLE);  //USART1's DMA接收&发送使能
-    USART_ClearFlag(USART1,USART_FLAG_TC);        //清除发送完成标志
-}
-
-/*******************************************************************************
-* @Name      : USART1_IRQHandler
-* @brief    : USART1中断服务函数
-* @Input    : None
-* @Output   : None
-* @retval   : None
-*******************************************************************************/
-void USART1_IRQHandler(void)
-{
-    u8 i;
-
-    if(USART_GetITStatus(USART1, USART_IT_IDLE) != RESET)        //接收中断(接收到的数据必须是0x0D 0x0A结尾)
-    {
-        i = USART1->SR;        //软件序列清零(读入USART_SR寄存器，然后读入USART_DR寄存器)
-        i = USART1->DR;
-        //USART_ReceiveData(USART1);        // Clear IDLE interrupt flag bit(注释掉上面i相关代码换成此句效果一样)
-        //(X) USART_ClearITPendingBit(USART1,USART_IT_IDLE);    //清除发送完成标志(可查看参考手册712页或者USART_ClearITPendingBit函数说明(stm32f4xx_usart.c源文件1437~1441行))
-
-        USART1_REC_CNT = USART1_REC_LEN-DMA_GetCurrDataCounter(DMA2_Stream2);        //算出接本帧数据长度
-
-        /***********帧数据处理函数************/
-        printf ("The Length:%d\r\n",USART1_REC_CNT);
-        /*************************************/
-
-        USART1_RX_FLAG = 1;        //接收数据标志置位
-
-        DMA_Cmd(DMA2_Stream2,DISABLE);                                //失能DMA传输
-        while(DMA_GetCmdStatus(DMA2_Stream2) != DISABLE);            //等待DMA可配置
-        DMA_SetCurrDataCounter(DMA2_Stream2,USART1_REC_LEN);        //重新设置接收数据的个数
-        DMA_Cmd(DMA2_Stream2,ENABLE);                                //使能DMA传输
-        USART_ITConfig(USART1,USART_IT_IDLE,ENABLE);                  //若总线空闲，产生中断
-   }
-}
-
-/*******************************************************************************
-* @Name      : fputc
-* @brief    : 内部调用函数，注意要勾选OPTIONS中的USE Micro LIB选项
-*              由于printf执行是调用fputc函数，所以相当于重新定义printf函数
-*              ，支持printf()发送数据。
-* @Input    : None
-* @Output   : None
-* @retval   : None
-*******************************************************************************/
-int fputc(int ch,FILE *f)
-{
-    USART_SendData(USART1,(u8)ch);
-    while(USART_GetFlagStatus(USART1,USART_FLAG_TXE)==RESET);        //获取串口状态
-    return ch;
-}
-
-/*******************************************************************************
-* @Name      : fgetc
-* @brief    : 内部调用函数，注意要勾选OPTIONS中的USE Micro LIB选项
-*              由于scanf执行是调用fgetc函数，所以相当于重新定义scanf函数
-*              ，支持printf()发送数据。
-* @Input    : None
-* @Output   : None
-* @retval   : None
-*******************************************************************************/
-int fgetc(FILE *f)
-{
-    while(USART_GetFlagStatus(USART1,USART_FLAG_RXNE) == RESET);        //获取串口状态
-    return (USART_ReceiveData(USART1));
-}
-</code></pre>
-
-<p><div align="center"><img src="https://i.imgur.com/JGc3Z0K.gif" alt="4"><div align="left"></div></div></p>
-<p>下载之后使用<a href="http://www.daxia.com/" target="_blank" rel="noopener">SSCOM串口调试器</a>和Keil Debug测试：</p>
-<p><div align="center"><img src="https://i.imgur.com/vaZQGDL.png" alt="5"><div align="left"></div></div></p>
-<p><div align="center"><img src="https://i.imgur.com/exdQkE9.png" alt="6"><div align="left"><br><br>点击Keil调试器Run(F5)之后发送数据结果如下：</div></div></p>
-<p><div align="center"><img src="https://i.imgur.com/ve3FWth.png" alt="7"><div align="left"><br></div></div></p>
-<p><div align="center"><img src="https://i.imgur.com/nWMPBfb.gif" alt="8"><div align="left"><br><br>上面结果只是简单测试，提交给老板之后，<font color="#FF0033"><strong>新的问题</strong></font>：<strong>如果我们发送数据的频率过快，在下一帧数据到来之前本帧数据未来得及处理怎么办呢？</strong><br></div></div></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-STM32</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/嵌入式//" class="article-tag-list-link color5">-嵌入式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/27/STM32串口空闲中断/">展开全文 >></a>
-        </p>
-      
-	  
-	  
-	  
-
-	  
-      
-	  
-      <div class="clearfix"></div>
-	  
-	  
-	  
-	
-	  
-	  
-	  
-    </div>
-	
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -678,19 +532,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-STM32</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">-Keil</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">-翻墙</a>
+                <a href="javascript:void(0)" class="js-tag color2">-STM32</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">-Github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">-翻墙</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -706,11 +560,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-Music</a>
+                <a href="javascript:void(0)" class="js-tag color5">-PCB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-PCB</a>
+                <a href="javascript:void(0)" class="js-tag color2">-Music</a>
               </li>
             
             <div class="clearfix"></div>

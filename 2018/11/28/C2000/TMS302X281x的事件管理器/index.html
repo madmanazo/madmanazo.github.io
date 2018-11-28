@@ -6,15 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | madmanazo</title>
+  <title>TMS302X281x的事件管理器 | madmanazo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="madmanazo">
-<meta property="og:url" content="http://yoursite.com/archives/page/2/index.html">
+  <meta name="description" content="TMS302X281x的事件管理器 TMS302X281x的事件管理器为用户提供了众多的功能，使其在电机控制、变频器、逆变器等应用场合中显得特别有用，X281x的事件管理器模块包括通用定时器、全比较/PWM单元、捕获单元以及正交编码脉冲电路X281x系列DSP具有两个事件管理器模块EvA和EvB，事件管理器的英文名为Event Manager，简称Ev；这两个事件管理器具有完全相同的功能，只是各个">
+<meta name="keywords" content="-C2000">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TMS302X281x的事件管理器">
+<meta property="og:url" content="http://yoursite.com/2018/11/28/C2000/TMS302X281x的事件管理器/index.html">
 <meta property="og:site_name" content="madmanazo">
+<meta property="og:description" content="TMS302X281x的事件管理器 TMS302X281x的事件管理器为用户提供了众多的功能，使其在电机控制、变频器、逆变器等应用场合中显得特别有用，X281x的事件管理器模块包括通用定时器、全比较/PWM单元、捕获单元以及正交编码脉冲电路X281x系列DSP具有两个事件管理器模块EvA和EvB，事件管理器的英文名为Event Manager，简称Ev；这两个事件管理器具有完全相同的功能，只是各个">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/rCTvoY5.png">
+<meta property="og:image" content="https://i.imgur.com/Wf8AgPt.png">
+<meta property="og:image" content="https://i.imgur.com/JLSRh20.png">
+<meta property="og:image" content="https://i.imgur.com/57L0pmu.png">
+<meta property="og:image" content="https://i.imgur.com/eZYsRZS.png">
+<meta property="og:updated_time" content="2018-11-28T07:17:11.950Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="madmanazo">
+<meta name="twitter:title" content="TMS302X281x的事件管理器">
+<meta name="twitter:description" content="TMS302X281x的事件管理器 TMS302X281x的事件管理器为用户提供了众多的功能，使其在电机控制、变频器、逆变器等应用场合中显得特别有用，X281x的事件管理器模块包括通用定时器、全比较/PWM单元、捕获单元以及正交编码脉冲电路X281x系列DSP具有两个事件管理器模块EvA和EvB，事件管理器的英文名为Event Manager，简称Ev；这两个事件管理器具有完全相同的功能，只是各个">
+<meta name="twitter:image" content="https://i.imgur.com/rCTvoY5.png">
   
     <link rel="alternative" href="/atom.xml" title="madmanazo" type="application/atom+xml">
   
@@ -159,515 +170,280 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-C2000/TMS302X281x的事件管理器" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      TMS302X281x的事件管理器
+    </h1>
+  
+
+        
+        <a href="/2018/11/28/C2000/TMS302X281x的事件管理器/" class="archive-article-date">
+  	<time datetime="2018-11-28T06:09:12.435Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-28</time>
+</a>
+        
+      </header>
     
+	
+<!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+	<div id="toc-article" class="toc-article">
+	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+		<strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#TMS302X281x的事件管理器"><span class="toc-number">1.</span> <span class="toc-text">TMS302X281x的事件管理器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#通用定时器"><span class="toc-number">2.</span> <span class="toc-text">通用定时器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#通用定时器的时钟"><span class="toc-number">2.1.</span> <span class="toc-text">通用定时器的时钟</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通用定时器的计数模式"><span class="toc-number">2.2.</span> <span class="toc-text">通用定时器的计数模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通用定时器的中断事件"><span class="toc-number">2.3.</span> <span class="toc-text">通用定时器的中断事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通用定时器的同步"><span class="toc-number">2.4.</span> <span class="toc-text">通用定时器的同步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通用定时器的比较操作和PWM波"><span class="toc-number">2.5.</span> <span class="toc-text">通用定时器的比较操作和PWM波</span></a></li></ol></li></ol>
+         </div>
+   <script type="text/javascript">
+	function showToc(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:block");
+		show_toc_btn.setAttribute("style","display:none");
+		};
+	function showBtn(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:none");
+		show_toc_btn.setAttribute("style","display:block");
+		};
+   </script>
+      
+<!-- 目录内容结束 -->
+	
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="TMS302X281x的事件管理器"><a href="#TMS302X281x的事件管理器" class="headerlink" title="TMS302X281x的事件管理器"></a>TMS302X281x的事件管理器</h1><hr>
+<p>TMS302X281x的事件管理器为用户提供了众多的功能，使其在电机控制、变频器、逆变器等应用场合中显得特别有用，X281x的事件管理器模块包括通用定时器、全比较/PWM单元、捕获单元以及正交编码脉冲电路<br><br>X281x系列DSP具有两个事件管理器模块EvA和EvB，事件管理器的英文名为Event Manager，简称Ev；这两个事件管理器具有完全相同的功能，只是各个单元的名称因为EvA和EvB而有所区别</p>
+<p><div align="center"><img src="https://i.imgur.com/rCTvoY5.png" alt="EvA/B"><div align="left"></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/Wf8AgPt.png" alt="signal name"><div align="left"></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/JLSRh20.png" alt="function"><div align="left"></div></div></p>
+<h1 id="通用定时器"><a href="#通用定时器" class="headerlink" title="通用定时器"></a>通用定时器</h1><hr>
+<p>每个事件管理器都有两个16位通用定时器；EvA具有通用定时器T1和通用定时器T2，EvB具有通用定时器T3和通用定时器T4；每个通用定时器都可以独立使用，也可以两两配合使用，如T1和T2或者T3和T4可以同步，通用定时器的作用主要有下面三个：<br></p>
+<ol>
+<li>计时</li>
+<li>使用定时器产生PWM波，从而控制电机等</li>
+<li>给事件管理器的其它子模块提供基准时钟，如比较单元，PWM输出</li>
+</ol>
+<p><div align="center"><img src="https://i.imgur.com/57L0pmu.png" alt="timer"><div align="left"></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/eZYsRZS.png" alt="通用定时器"><div align="left"><br>上面这张定时器框图所提供的信息很多，下面以T1为例：<br></div></div></p>
+<ol>
+<li><strong>和T1相关的常用寄存器</strong>：16位的T1周期寄存器T1PR；16位的T1比较寄存器T1CMPR；16位的T1计数寄存器T1CNT；16位的T1控制寄存器T1CON；16位的通用定时器控制寄存器GPTCONA<br></li>
+<li><strong>定时器T1常见的输入信号</strong>：<br><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</li>
+</ol>
+<ul>
+<li>来自CPU的内部时钟HSPCLK，之前进行过详细的讲解与配置<br><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;- 来自外部时钟输入TCLKINA，最大频率为器件自身时钟频率的1/4，如果按照SYSCLKOUT=150MHz配置的话，也就是不能超过37.5MHz<br><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;- 定时器计数方向输入TDIRA，用于定时器工作于何种计数方式<br><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;- 复位信号RESET<br></li>
+</ul>
+<ol start="3">
+<li><strong>定时器T1的输出信号</strong>：<br><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</li>
+</ol>
+<ul>
+<li>定时器的比较输出T1PWM_T1CMP，可以输出PWM波<br><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;- 送给ADC模块的ADC转换启动信号<br><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;- 下溢、上溢、比较和周期匹配信号<br></li>
+</ul>
+<p>T1PR是T1的周期寄存器，用于存放T1设置的定时器周期值；T1CMPR是T1的比较寄存器，用于存放T1设置的比较值，通常这两个寄存器在初始化配置的时候就进行了赋值操作，此后就成了T1的一个参考标准。T1CNT是T1的计数器寄存器，其值随着时钟脉冲不断增加或者减少，每过一个定时器时钟脉冲，T1CNT的值就会增加或者减少1.CPu会实时地将T1CNT和T1CMPR、T1PR的值进行比较从而产生一些事件如T1CNT的值和T1CMPR的值相等时就会产生周期匹配事件，进而产生比较中断或者PWM波等；当T1CNT的值和T1PR的值相等时就会产生周期匹配事件。除了上面这些，还有几个阴影寄存器，其作用可以简单理解为使用户可以在一个定时器周期的任何时刻向T1CMPR和T1PR写入新的值，具体可以查看定时器控制寄存器的TCLD位定义<br></p>
+<h2 id="通用定时器的时钟"><a href="#通用定时器的时钟" class="headerlink" title="通用定时器的时钟"></a>通用定时器的时钟</h2><h2 id="通用定时器的计数模式"><a href="#通用定时器的计数模式" class="headerlink" title="通用定时器的计数模式"></a>通用定时器的计数模式</h2><h2 id="通用定时器的中断事件"><a href="#通用定时器的中断事件" class="headerlink" title="通用定时器的中断事件"></a>通用定时器的中断事件</h2><h2 id="通用定时器的同步"><a href="#通用定时器的同步" class="headerlink" title="通用定时器的同步"></a>通用定时器的同步</h2><h2 id="通用定时器的比较操作和PWM波"><a href="#通用定时器的比较操作和PWM波" class="headerlink" title="通用定时器的比较操作和PWM波"></a>通用定时器的比较操作和PWM波</h2>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechat_reward1.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/05/STM32CubeXX解读/" class="archive-article-date">
-  	<time datetime="2018-11-05T14:24:04.821Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/05/STM32CubeXX解读/">STM32CubeXX包解读</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-STM32</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-C2000</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/嵌入式//" class="article-tag-list-link color5">-嵌入式</a>
+        			<a href="/categories/DSP//" class="article-tag-list-link color5">-DSP</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+	  
+	  
+	  
+		<span class="archive-article-date">
+			阅读量 <span id="busuanzi_value_page_pv"></span>
+		</span>
+	  
+
+	  
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/11/28/C2000/TMS302X281x的事件管理器/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+	  
+      <div class="clearfix"></div>
+	  
+	  
+	  
+	
+      
+	
+	  
+	  
+	  
+    </div>
+	
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/05/Keil软件安装教程/" class="archive-article-date">
-  	<time datetime="2018-11-05T02:40:54.949Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-05</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/11/28/C2000/TMS302X281x的中断系统/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">TMS302X281x的中断系统</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/05/Keil软件安装教程/">Keil软件安装教程</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">-Keil</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/软件//" class="article-tag-list-link color4">-软件</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#TMS302X281x的事件管理器"><span class="toc-number">1.</span> <span class="toc-text">TMS302X281x的事件管理器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#通用定时器"><span class="toc-number">2.</span> <span class="toc-text">通用定时器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#通用定时器的时钟"><span class="toc-number">2.1.</span> <span class="toc-text">通用定时器的时钟</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通用定时器的计数模式"><span class="toc-number">2.2.</span> <span class="toc-text">通用定时器的计数模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通用定时器的中断事件"><span class="toc-number">2.3.</span> <span class="toc-text">通用定时器的中断事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通用定时器的同步"><span class="toc-number">2.4.</span> <span class="toc-text">通用定时器的同步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通用定时器的比较操作和PWM波"><span class="toc-number">2.5.</span> <span class="toc-text">通用定时器的比较操作和PWM波</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/05/My_Music_List/Music List/" class="archive-article-date">
-  	<time datetime="2018-11-04T16:42:53.952Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/05/My_Music_List/Music List/">Music List</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-Music</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Music//" class="article-tag-list-link color2">-Music</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/04/My_Book_List/Linear Systems and Signals,Second Edition-B.P.Lathi/" class="archive-article-date">
-  	<time datetime="2018-11-04T15:11:02.194Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/04/My_Book_List/Linear Systems and Signals,Second Edition-B.P.Lathi/">Linear Systems and Signals,Second Edition-B.P.Lathi</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">-Book</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/My-Book-List//" class="article-tag-list-link color4">-My Book List</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/04/PCB_design_notes/Altium Designer 18两层PCB设计常规设定/" class="archive-article-date">
-  	<time datetime="2018-10-04T11:54:25.454Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/04/PCB_design_notes/Altium Designer 18两层PCB设计常规设定/">Altium Designer 18两层PCB设计常规设定</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">-PCB</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/PCB设计相关//" class="article-tag-list-link color4">-PCB设计相关</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/04/PCB_design_notes/Altium Designer 18常用快捷键大全/" class="archive-article-date">
-  	<time datetime="2018-10-04T11:25:03.362Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/04/PCB_design_notes/Altium Designer 18常用快捷键大全/">Altium Designer 18常用快捷键大全</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">-PCB</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/PCB设计相关//" class="article-tag-list-link color4">-PCB设计相关</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/02/PCB_design_notes/Altium Designer 18系统参数选项介绍及常规设置/" class="archive-article-date">
-  	<time datetime="2018-10-02T07:57:42.431Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/02/PCB_design_notes/Altium Designer 18系统参数选项介绍及常规设置/">Altium Designer 18系统参数选项介绍及常规设置</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">-PCB</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/PCB设计相关//" class="article-tag-list-link color4">-PCB设计相关</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/01/Markdown_grammar/Markdown介绍及语法/" class="archive-article-date">
-  	<time datetime="2018-10-01T15:07:39.091Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/01/Markdown_grammar/Markdown介绍及语法/">Markdown介绍及语法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">-Markdown</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Markdown//" class="article-tag-list-link color5">-Markdown</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/01/PCB_design_notes/Altium Designer 18全新功能介绍/" class="archive-article-date">
-  	<time datetime="2018-10-01T12:18:42.516Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/01/PCB_design_notes/Altium Designer 18全新功能介绍/">Altium Designer 18全新功能介绍</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">-PCB</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/PCB设计相关//" class="article-tag-list-link color4">-PCB设计相关</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/30/翻墙软件推荐/" class="archive-article-date">
-  	<time datetime="2018-09-30T14:42:07.961Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/30/翻墙软件推荐/">翻墙软件推荐</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">-翻墙</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/软件//" class="article-tag-list-link color4">-软件</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/3/">Next &raquo;</a>
-    </nav>
+  
+  <div id="SOHUCS" sid="C2000/TMS302X281x的事件管理器" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cytCBkNPd",
+        conf: "c09cb8dbf7ad75b9615fcf9da0dc5331"
+    });
+</script>
+</script>
+  
+
+  
+
   
 
 
@@ -699,8 +475,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
