@@ -6,15 +6,29 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Category: -软件 | madmanazo</title>
+  <title>TMS302X281x的中断系统 | madmanazo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="madmanazo">
-<meta property="og:url" content="http://yoursite.com/categories/软件/index.html">
+  <meta name="description" content="什么是中断 在这之前如果有接触过单片机，那么应该对中断的概念很清楚了，所谓中断，是指计算机在运行过程中，出现某些意外或紧急情况急需处理，CPU能自动停止正在执行的程序转而去执行发生的意外或紧急情况的程序，处理完毕后又返回被暂停的程序继续运行 中断过程  中断源发出中断请求 CPU判断该中断是否可以被响应，也就是是否允许中断和该中断源是否被屏蔽 中断优先级排队，因为可能不止一个中断，所以需要进行中断">
+<meta name="keywords" content="-C2000">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TMS302X281x的中断系统">
+<meta property="og:url" content="http://yoursite.com/2018/11/28/C2000/TMS302X281x的中断系统/index.html">
 <meta property="og:site_name" content="madmanazo">
+<meta property="og:description" content="什么是中断 在这之前如果有接触过单片机，那么应该对中断的概念很清楚了，所谓中断，是指计算机在运行过程中，出现某些意外或紧急情况急需处理，CPU能自动停止正在执行的程序转而去执行发生的意外或紧急情况的程序，处理完毕后又返回被暂停的程序继续运行 中断过程  中断源发出中断请求 CPU判断该中断是否可以被响应，也就是是否允许中断和该中断源是否被屏蔽 中断优先级排队，因为可能不止一个中断，所以需要进行中断">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/ZbYQyTm.png">
+<meta property="og:image" content="https://i.imgur.com/LiJFhbq.png">
+<meta property="og:image" content="https://i.imgur.com/Kq3JJW9.png">
+<meta property="og:image" content="https://i.imgur.com/HyEtCVP.png">
+<meta property="og:image" content="https://i.imgur.com/TmiNq01.png">
+<meta property="og:image" content="https://i.imgur.com/Nir2VTu.png">
+<meta property="og:image" content="https://i.imgur.com/L19aLqM.png">
+<meta property="og:image" content="https://i.imgur.com/8WhsnIX.png">
+<meta property="og:updated_time" content="2018-11-28T03:53:27.031Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="madmanazo">
+<meta name="twitter:title" content="TMS302X281x的中断系统">
+<meta name="twitter:description" content="什么是中断 在这之前如果有接触过单片机，那么应该对中断的概念很清楚了，所谓中断，是指计算机在运行过程中，出现某些意外或紧急情况急需处理，CPU能自动停止正在执行的程序转而去执行发生的意外或紧急情况的程序，处理完毕后又返回被暂停的程序继续运行 中断过程  中断源发出中断请求 CPU判断该中断是否可以被响应，也就是是否允许中断和该中断源是否被屏蔽 中断优先级排队，因为可能不止一个中断，所以需要进行中断">
+<meta name="twitter:image" content="https://i.imgur.com/ZbYQyTm.png">
   
     <link rel="alternative" href="/atom.xml" title="madmanazo" type="application/atom+xml">
   
@@ -159,169 +173,279 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-C2000/TMS302X281x的中断系统" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      TMS302X281x的中断系统
+    </h1>
+  
+
+        
+        <a href="/2018/11/28/C2000/TMS302X281x的中断系统/" class="archive-article-date">
+  	<time datetime="2018-11-28T02:28:58.027Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-28</time>
+</a>
+        
+      </header>
     
+	
+<!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+	<div id="toc-article" class="toc-article">
+	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+		<strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是中断"><span class="toc-number">1.</span> <span class="toc-text">什么是中断</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#中断过程"><span class="toc-number">2.</span> <span class="toc-text">中断过程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TMS320X281x的中断系统"><span class="toc-number">3.</span> <span class="toc-text">TMS320X281x的中断系统</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CPU-TIMER0中断实例"><span class="toc-number">4.</span> <span class="toc-text">CPU-TIMER0中断实例</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+	function showToc(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:block");
+		show_toc_btn.setAttribute("style","display:none");
+		};
+	function showBtn(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:none");
+		show_toc_btn.setAttribute("style","display:block");
+		};
+   </script>
+      
+<!-- 目录内容结束 -->
+	
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="什么是中断"><a href="#什么是中断" class="headerlink" title="什么是中断"></a>什么是中断</h1><hr>
+<p>在这之前如果有接触过单片机，那么应该对中断的概念很清楚了，所谓中断，是指计算机在运行过程中，出现某些意外或紧急情况急需处理，CPU能自动停止正在执行的程序转而去执行发生的意外或紧急情况的程序，处理完毕后又返回被暂停的程序继续运行</p>
+<h1 id="中断过程"><a href="#中断过程" class="headerlink" title="中断过程"></a>中断过程</h1><hr>
+<ol>
+<li>中断源发出中断请求</li>
+<li>CPU判断该中断是否可以被响应，也就是是否允许中断和该中断源是否被屏蔽</li>
+<li>中断优先级排队，因为可能不止一个中断，所以需要进行中断优先级排队，CPU再对各中断优先级进行裁决</li>
+<li>CPU执行完当前指令或者当前指令无法执行完，则立即停止当前程序，保护断电地址和CPU当前状态，转入相应的中断服务程序</li>
+<li>执行中断服务程序</li>
+<li>恢复被保护的状态，执行”中断返回”指令回到被中断的程序或者转入其它程序<br></li>
+</ol>
+<p>一个中断流程的话是很简单的：<br></p>
+<p><div align="center"><img src="https://i.imgur.com/ZbYQyTm.png" alt="单中断处理"><div align="left"><br></div></div></p>
+<p>下面是51单片机的中断流程图有助于我们理解中断流程，51单片机中断系统有两个优先级，5个中断源，可以实现二级中断嵌套</p>
+<p><div align="center"><img src="https://i.imgur.com/LiJFhbq.png" alt="51中断图"><div align="left"><br></div></div></p>
+<p>其它嵌入式芯片的中断流程，诸如STM32、TMS320X281x等，不过是中断更多，其实流程都差不多</p>
+<h1 id="TMS320X281x的中断系统"><a href="#TMS320X281x的中断系统" class="headerlink" title="TMS320X281x的中断系统"></a>TMS320X281x的中断系统</h1><hr>
+<p>下面几张图对TMS320X281x的中断系统进行了生动而详细的展示：</p>
+<p><div align="center"><img src="https://i.imgur.com/Kq3JJW9.png" alt="TMS320281x的中断系统"><div align="left"></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/HyEtCVP.png" alt="中断"><div align="left"><br><br>8个PIE块中断被分组为一个CPU中断。 总共有12个CPU中断组，用每组8个中断等于96个可能的中断。 在F281x和C281x上，其中45个被使用</div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/TmiNq01.png" alt="PIE"><div align="left"></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/Nir2VTu.png" alt="PIE1"><div align="left"></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/L19aLqM.png" alt="extern interrupts"><div align="left"><br><br>总结一下：TMS320X281x的中断系统采用的是三级中断机制，分别为外设级、PIE级和CPU级；对于某一个具体的外设中断请求而言，只要任意一级中断不许可，CPU最终都不会响应该外设请求</div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/8WhsnIX.png" alt="三级中断机制"><div align="left"></div></div></p>
+<h1 id="CPU-TIMER0中断实例"><a href="#CPU-TIMER0中断实例" class="headerlink" title="CPU-TIMER0中断实例"></a>CPU-TIMER0中断实例</h1><hr>
+<p>具体的应用代码可以参考<font color="#FF0033"><strong>Ti官方例程</strong></font>，里面有详细的注释足以让我们学通并且使用，可以去<strong><a href="http://www.ti.com.cn/product/cn/TMS320F2812/toolssoftware" title="TI官方下载" target="_blank" rel="noopener">TI官方下载</a></strong>或者看我的<strong><a href="https://github.com/madmanazo/TMS320F2812_/blob/master/DSP281x_HeaderFiles/v120/DSP281x_examples/cpu_timer/Example_281xCpuTimer.c" title="Github链接" target="_blank" rel="noopener">Github链接</a></strong></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechat_reward1.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/05/Keil软件安装教程/" class="archive-article-date">
-  	<time datetime="2018-11-05T02:40:54.949Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/05/Keil软件安装教程/">Keil软件安装教程</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">-Keil</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-C2000</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/软件//" class="article-tag-list-link color4">-软件</a>
+        			<a href="/categories/DSP//" class="article-tag-list-link color5">-DSP</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+	  
+	  
+	  
+		<span class="archive-article-date">
+			阅读量 <span id="busuanzi_value_page_pv"></span>
+		</span>
+	  
+
+	  
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/11/28/C2000/TMS302X281x的中断系统/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+	  
+      <div class="clearfix"></div>
+	  
+	  
+	  
+	
+      
+	
+	  
+	  
+	  
+    </div>
+	
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/30/翻墙软件推荐/" class="archive-article-date">
-  	<time datetime="2018-09-30T14:42:07.961Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-30</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/11/27/STM32串口空闲中断/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">STM32串口空闲中断</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/30/翻墙软件推荐/">翻墙软件推荐</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">-翻墙</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/软件//" class="article-tag-list-link color4">-软件</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是中断"><span class="toc-number">1.</span> <span class="toc-text">什么是中断</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#中断过程"><span class="toc-number">2.</span> <span class="toc-text">中断过程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TMS320X281x的中断系统"><span class="toc-number">3.</span> <span class="toc-text">TMS320X281x的中断系统</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CPU-TIMER0中断实例"><span class="toc-number">4.</span> <span class="toc-text">CPU-TIMER0中断实例</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/28/CCS软件安装教程/" class="archive-article-date">
-  	<time datetime="2018-09-28T11:39:56.054Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/28/CCS软件安装教程/">CCS软件安装教程</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">-CCS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/软件//" class="article-tag-list-link color4">-软件</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
   
-    </div></section>
   
 
-    
+  
+  <div id="SOHUCS" sid="C2000/TMS302X281x的中断系统" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cytCBkNPd",
+        conf: "c09cb8dbf7ad75b9615fcf9da0dc5331"
+    });
+</script>
+</script>
+  
+
+  
+
+  
 
 
           </div>
@@ -352,10 +476,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
