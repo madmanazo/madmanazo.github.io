@@ -24,7 +24,7 @@
 <meta property="og:image" content="https://i.imgur.com/Nir2VTu.png">
 <meta property="og:image" content="https://i.imgur.com/L19aLqM.png">
 <meta property="og:image" content="https://i.imgur.com/8WhsnIX.png">
-<meta property="og:updated_time" content="2018-11-28T03:53:27.031Z">
+<meta property="og:updated_time" content="2018-11-28T07:36:36.915Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TMS302X281x的中断系统">
 <meta name="twitter:description" content="什么是中断 在这之前如果有接触过单片机，那么应该对中断的概念很清楚了，所谓中断，是指计算机在运行过程中，出现某些意外或紧急情况急需处理，CPU能自动停止正在执行的程序转而去执行发生的意外或紧急情况的程序，处理完毕后又返回被暂停的程序继续运行 中断过程  中断源发出中断请求 CPU判断该中断是否可以被响应，也就是是否允许中断和该中断源是否被屏蔽 中断优先级排队，因为可能不止一个中断，所以需要进行中断">
@@ -247,7 +247,7 @@
 <p><div align="center"><img src="https://i.imgur.com/L19aLqM.png" alt="extern interrupts"><div align="left"><br><br>总结一下：TMS320X281x的中断系统采用的是三级中断机制，分别为外设级、PIE级和CPU级；对于某一个具体的外设中断请求而言，只要任意一级中断不许可，CPU最终都不会响应该外设请求</div></div></p>
 <p><div align="center"><img src="https://i.imgur.com/8WhsnIX.png" alt="三级中断机制"><div align="left"></div></div></p>
 <h1 id="CPU-TIMER0中断实例"><a href="#CPU-TIMER0中断实例" class="headerlink" title="CPU-TIMER0中断实例"></a>CPU-TIMER0中断实例</h1><hr>
-<p>具体的应用代码可以参考<font color="#FF0033"><strong>Ti官方例程</strong></font>，里面有详细的注释足以让我们学通并且使用，可以去<strong><a href="http://www.ti.com.cn/product/cn/TMS320F2812/toolssoftware" title="TI官方下载" target="_blank" rel="noopener">TI官方下载</a></strong>或者看我的<strong><a href="https://github.com/madmanazo/TMS320F2812_/blob/master/DSP281x_HeaderFiles/v120/DSP281x_examples/cpu_timer/Example_281xCpuTimer.c" title="Github链接" target="_blank" rel="noopener">Github链接</a></strong></p>
+<p>具体的应用代码可以参考<font color="#FF0033"><strong>Ti官方例程</strong></font>，里面有详细的注释足以让我们学通并且使用，可以去<strong><a href="http://www.ti.com.cn/general/cn/docs/lit/getliterature.tsp?baseLiteratureNumber=sprc097&amp;fileType=zip" target="_blank" rel="noopener">TI官方下载</a></strong>或者看我的<strong><a href="https://github.com/madmanazo/TMS320F2812_/blob/master/DSP281x_HeaderFiles/v120/DSP281x_examples/cpu_timer/Example_281xCpuTimer.c" title="Github链接" target="_blank" rel="noopener">Github链接</a></strong></p>
 
       
 
@@ -555,11 +555,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-CCS</a>
+                <a href="javascript:void(0)" class="js-tag color5">-OMAPL138</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">-Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">-CCS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -580,6 +584,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">-C2000</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">-WinCP</a>
               </li>
              
               <li class="article-tag-list-item">

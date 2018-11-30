@@ -161,20 +161,20 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-My_Book_List/手把手教你学DSP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-C2000/TMS320X281x介绍与系统时钟配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/24/My_Book_List/手把手教你学DSP/">手把手教你学DSP</a>
+      <a class="article-title" href="/2018/11/26/C2000/TMS320X281x介绍与系统时钟配置/">TMS320X281x介绍与系统时钟配置</a>
     </h1>
   
 
         
-        <a href="/2018/11/24/My_Book_List/手把手教你学DSP/" class="archive-article-date">
-  	<time datetime="2018-11-24T11:07:23.868Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-24</time>
+        <a href="/2018/11/26/C2000/TMS320X281x介绍与系统时钟配置/" class="archive-article-date">
+  	<time datetime="2018-11-26T09:19:02.226Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-26</time>
 </a>
         
       </header>
@@ -186,15 +186,59 @@
 	
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h1><p><strong>书名：手把手教你学DSP</strong><br><br><strong>作者：顾卫钢</strong><br><br><strong>出版社：北京航空航天大学出版社</strong><br><br><strong>ISBN：9787512403710</strong><br></p>
-<p><div align="center"><img src="https://i.imgur.com/oqkHaIa.png" alt="手把手教你学DSP"></div></p>
-<div align="left">
+        <h1 id="TMS320X2812的资源、性能"><a href="#TMS320X2812的资源、性能" class="headerlink" title="TMS320X2812的资源、性能"></a>TMS320X2812的资源、性能</h1><hr>
+<p><strong><a href="http://www.ti.com.cn/product/cn/tms320f2812?keyMatch=TMS320F2812&amp;tisearch=Search-CN-Everything#parametrics" title="TMS320X2812" target="_blank" rel="noopener">TMS320X2812</a></strong>是TI公司推出的32位定点DSP芯片，采用了先进的哈佛总线架构，其不但具有强大的数字信号处理能力，而且还有较为完善的事件管理器功能和嵌入式控制功能，主频高达150MHz，因此广泛应用于工业控制等领域<br><br><img src="https://i.imgur.com/M0wJHIL.png" alt="特性1"><br><br><img src="https://i.imgur.com/Wzves2A.png" alt="特性2"><br><br><img src="https://i.imgur.com/g7qq3Ur.png" alt="功能概述"><br></p>
+<h1 id="TMS320X2812系统时钟配置"><a href="#TMS320X2812系统时钟配置" class="headerlink" title="TMS320X2812系统时钟配置"></a>TMS320X2812系统时钟配置</h1><hr>
+<p>片内振荡器电路使用X1/XCLKIN和X2引脚将晶振连接到F281x和C281x器件。 如果不使用晶振，则可以将外部振荡器直接连接到X1/XCLKIN引脚，并使X2引脚保持未连接状态。 在这种情况下，逻辑高电平不应超过VDD。 通过PLLCR位[3：0]设置时钟比率</p>
+<h2 id="OSC和PLL块"><a href="#OSC和PLL块" class="headerlink" title="OSC和PLL块"></a>OSC和PLL块</h2><p><img src="https://i.imgur.com/qDv7sHw.png" alt="OSC+PLL框图"><br></p>
+<h2 id="PLLCR寄存器"><a href="#PLLCR寄存器" class="headerlink" title="PLLCR寄存器"></a>PLLCR寄存器</h2><p><img src="https://i.imgur.com/qEOdngH.png" alt="PLLCR寄存器"><br><br><img src="https://i.imgur.com/Jl5mt39.png" alt="PLLCR_DIV"><br></p>
+<h2 id="配置详解"><a href="#配置详解" class="headerlink" title="配置详解"></a>配置详解</h2><p>通过上面的时钟框图和PLLCR寄存器位定义表我们可以轻易得出TMS320X2812系统时钟配置方法如下：<br></p>
+<p>Here is an example of application:</p>
 
-<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><hr>
-<p>自己初学DSP时所用的书之一，此书以TMS320X281x系列DSP为主线，采用生动的语言深入浅出的介绍与DSP开发的方方面面，可以说是完全”手把手教学”，从CCS开发平台构建到新建工程······TMS320X281x的各个外设模块的功能和使用方法的详细讲解，并提供相关带有详细注释的源代码，帮助小白快速熟悉并掌握DSP的开发方法和各种相关的开发技巧，并且对初学DSP开发的小白给了一些学习建议</p>
-<h1 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h1><hr>
-<p>附上本书网络扫描版电子书下载链接，<font color="#FF0033">失效可留言</font>，另外如果你资金比较充裕的话请支持原版实体书：<br><strong>百度网盘链接：<a href="https://pan.baidu.com/s/1Kk26LYuMUVa7WH8Yg4mxAA" target="_blank" rel="noopener">https://pan.baidu.com/s/1Kk26LYuMUVa7WH8Yg4mxAA</a></strong><br><strong>提取码：mo7g</strong></p>
-</div>
+<pre><code>
+/**
+  * @brief  对2812的系统控制寄存器进行初始化配置
+  *
+  * @note   None
+  * @retval None
+  */
+void Init_System(void)
+{
+    volatile Uint16 iVol;
+
+    /*
+         * TI的DSP为了提高安全性能，将很多关键寄存器作了保护处理。
+         * 通过状态寄存器1（ST1）的位6设置与复位，来决定是否允许
+         * DSP指令对关键寄存器进行操作。这些关键寄存器包括：器件
+         * 仿真寄存器、FLASH寄存器、CSM寄存器、PIE矢量表、系统控
+         * 制寄存器、GPIOMux寄存器、eCAN寄存器的一部分。DSP由于
+         * 在上电复位之后，状态寄存器基本上都是清零，而这样的状态
+         * 下正是上述特殊寄存器禁止改写的状态。为了能够对这些特殊
+         * 寄存器进行初始化，所以在对上述特殊寄存器进行改写之前，
+         * 一定要执行汇编指令asm（“EALLOW”）或者宏定义EALLOW来设
+         * 置状态寄存器1的C6位，在设置完寄存器之后，一定要注意执
+         * 行汇编指令asm（“EDIS”）或者宏定义EDIS来清除状态寄存器
+         * 1的C6位。*/
+    EALLOW;                    //解锁相关寄存器使之进入可配置状态
+
+    SysCtrlRegs.WDCR = 0x0068;                                //禁止看门狗模块
+    SysCtrlRegs.PLLCR.bit.DIV = 0xA;                        //初始化PLL模块，如果外部晶振为30MHz，则SYSCLKOUT = (OSCCLK ✖ 10) / 2 = 150MHz
+    for(iVol= 0; iVol< ( (131072/2)/12 ); iVol++){};        //短暂延时使得PLL模块能够完成初始化操作
+
+    /* 高速时钟预定标器和低速时钟预定标器，产生高速外设时钟HSPCLK和低速外设时钟LSPCLK */
+    SysCtrlRegs.HISPCP.all = 0x0001;                        //HSPCLK = 150MHz / 2 = 75MHz
+    SysCtrlRegs.LOSPCP.all = 0x0001;                        //LSPCLK = 150MHz / (2 + 2) = 37.5MHz
+
+    /* 对工程中使用到的外设进行时钟使能 */
+/*    SysCtrlRegs.PCLKCR.bit.ADCENCLK = 1;                    //ADC模块时钟使能*/
+    SysCtrlRegs.PCLKCR.all = 0x0;                            //关闭所有外设时钟
+
+    EDIS;                    //结束配置
+}
+</code></pre>
+
+<h3 id="系统时钟配置计算公式"><a href="#系统时钟配置计算公式" class="headerlink" title="系统时钟配置计算公式"></a>系统时钟配置计算公式</h3><p>通过上面的方法我们最终可以得出系统时钟配置的计算公式如下：<br><br><img src="https://i.imgur.com/r9PONgq.png" alt="6"></p>
+
       
 
       
@@ -207,7 +251,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">-Book</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-C2000</a>
         		</li>
       		
 		</ul>
@@ -219,7 +263,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/My-Book-List//" class="article-tag-list-link color4">-My Book List</a>
+        			<a href="/categories/DSP//" class="article-tag-list-link color5">-DSP</a>
         		</li>
       		
 		</ul>
@@ -228,7 +272,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/24/My_Book_List/手把手教你学DSP/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/11/26/C2000/TMS320X281x介绍与系统时钟配置/">展开全文 >></a>
         </p>
       
 	  
@@ -271,20 +315,20 @@
 
 
   
-    <article id="post-用Git将本地项目上传到Github的教程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-C2000/DSP与DSP学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/22/用Git将本地项目上传到Github的教程/">用Git将本地项目上传到Github的教程</a>
+      <a class="article-title" href="/2018/11/25/C2000/DSP与DSP学习/">DSP与DSP学习</a>
     </h1>
   
 
         
-        <a href="/2018/11/22/用Git将本地项目上传到Github的教程/" class="archive-article-date">
-  	<time datetime="2018-11-22T02:33:17.097Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
+        <a href="/2018/11/25/C2000/DSP与DSP学习/" class="archive-article-date">
+  	<time datetime="2018-11-25T14:45:49.649Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-25</time>
 </a>
         
       </header>
@@ -296,28 +340,26 @@
 	
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Github介绍"><a href="#Github介绍" class="headerlink" title="Github介绍"></a>Github介绍</h1><hr>
-<p><a href="https://baike.baidu.com/item/github/10145341?fr=aladdin" title="Github介绍" target="_blank" rel="noopener">Github介绍链接</a>:<br><br>GitHub is a development platform inspired by the way you work. From open source to business, you can host and review code, manage projects, and build software alongside 31 million developers.</p>
-<h1 id="Git介绍"><a href="#Git介绍" class="headerlink" title="Git介绍"></a>Git介绍</h1><hr>
-<p><a href="https://baike.baidu.com/item/GIT/12647237?fr=aladdin" title="Git介绍链接" target="_blank" rel="noopener">Git介绍链接</a>：<br><br>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.<br><br>Git is easy to learn and has a tiny footprint with lightning fast performance. It outclasses SCM tools like Subversion, CVS, Perforce, and ClearCase with features like cheap local branching, convenient staging areas, and multiple workflows.</p>
-<h1 id="Git本地项目到Github教程"><a href="#Git本地项目到Github教程" class="headerlink" title="Git本地项目到Github教程"></a>Git本地项目到Github教程</h1><hr>
-<p>这里只是简单的使用教程</p>
-<h2 id="仓库创建"><a href="#仓库创建" class="headerlink" title="仓库创建"></a>仓库创建</h2><p>首先在Github端创建仓库和本地创建一个版本库，注意Github端创建仓库时不要勾选Initiatize this repository with a README，我们可以本地创建一个README.md文件进行项目工程的介绍<br><br><img src="https://i.imgur.com/xEQMQhT.png" alt="仓库创建"></p>
-<h2 id="本地版本库初始化"><a href="#本地版本库初始化" class="headerlink" title="本地版本库初始化"></a>本地版本库初始化</h2><p>鼠标右键Git bash here到刚刚创建的本地版本库路径下<br><br><img src="https://i.imgur.com/1x4H05f.png" alt="仓库初始化"><br><br>通过git init命令将本地版本库变为Git可管理的仓库，可以看到初始化成功并且路径下面多了一个.git文件夹，它是Git用来跟踪并管理版本库的，如果没有，可能被你电脑隐藏了，可以直接通过Git查看，命令为ls -all<br><br><img src="https://i.imgur.com/cnj3ya3.png" alt="仓库初始化1"><br></p>
-<h2 id="添加项目"><a href="#添加项目" class="headerlink" title="添加项目"></a>添加项目</h2><p>把项目复制到本地版本库，再通过git add .把项目添加到仓库<br><br><img src="https://i.imgur.com/HEs1SXl.png" alt="添加项目"><br><br>可以通过命令git status来查看状态<br><br><img src="https://i.imgur.com/ZKVzkqv.png" alt="状态查看"></p>
-<h2 id="项目提交"><a href="#项目提交" class="headerlink" title="项目提交"></a>项目提交</h2><p>通过git commit -m “注释内容”把项目提交到仓库<br><br><img src="https://i.imgur.com/wui66ua.png" alt="项目提交"><br></p>
-<h2 id="远程仓库和本地版本库关联"><a href="#远程仓库和本地版本库关联" class="headerlink" title="远程仓库和本地版本库关联"></a>远程仓库和本地版本库关联</h2><p>这一步我们应该首先保证已配置好了SSH密钥，同时前面没有创建README.md文件，我们可以在本地版本库目录下通过命令vi README.md创建此文件，会自动进入编辑文件内容界面，可以直接保存(按:号之后输入wq再按回车)退出编辑页面<br><br><img src="https://i.imgur.com/rp1rUdr.png" alt="README"><br></p>
-<p>接下来通过git remote add origin <a href="https://github.com/madmanazo/TMS320F2812_.git将本地版本库和远程仓库进行关联，注意改成你自己的名字和仓库名字就行" target="_blank" rel="noopener">https://github.com/madmanazo/TMS320F2812_.git将本地版本库和远程仓库进行关联，注意改成你自己的名字和仓库名字就行</a><br><br><img src="https://i.imgur.com/fLCwl9Q.png" alt="仓库关联"></p>
-<h2 id="推送提交"><a href="#推送提交" class="headerlink" title="推送提交"></a>推送提交</h2><p>最后通过git push -u origin master将本地仓库推送到远程仓库上<br><br><img src="https://i.imgur.com/bIvK03f.png" alt="推送提交"><br></p>
-<h2 id="结果查看"><a href="#结果查看" class="headerlink" title="结果查看"></a>结果查看</h2><p>到Github查看推送结果如下：<br><img src="https://i.imgur.com/9OKxvIX.png" alt="结果"><br><br>可以看到成功推送，但是README.md并没有推送上去，原因是我们在创建README.md之后并没有git add .将其加到版本库中<br><img src="https://i.imgur.com/lJd44ow.png" alt="README.md"><br>接下来执行git add .命令将其添加到版本库中<br><img src="https://i.imgur.com/ATpKCaA.png" alt="addreadme"><br>再通过git commit -m “注释内容”把项目提交到仓库<br><img src="https://i.imgur.com/J7dl0bt.png" alt="commit"><br>再通过命令git push origin master推送提交一次即可<br><img src="https://i.imgur.com/PiDIEsE.png" alt="提交"><br><br>到Github查看推送结果如下：<br><br><img src="https://i.imgur.com/RCJ5PPI.png" alt="jieguo"></p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><hr>
-<ol>
-<li>在本地新建一个版本库，通过git init命令将其变为Git可管理的仓库</li>
-<li>把项目复制到此文件夹，再通过git add .把项目添加到仓库</li>
-<li>通过git commit -m “注释内容”把项目提交到仓库</li>
-<li>在Github端新建一个远程仓库，通过git remote add origin <a href="https://github.com/guyibang/TEST2.git将本地仓库和远程仓库进行关联，注意应该首先配置号SSH密钥" target="_blank" rel="noopener">https://github.com/guyibang/TEST2.git将本地仓库和远程仓库进行关联，注意应该首先配置号SSH密钥</a></li>
-<li>最后通过git push -u origin master将本地仓库推送到远程仓库上，第一次提交因为远程仓库是空的，所以需要加上-u选项，之后提交不需要再加-u选项</li>
-</ol>
+        <h1 id="什么是DSP"><a href="#什么是DSP" class="headerlink" title="什么是DSP"></a>什么是DSP</h1><hr>
+<p>DSP是一个简写，全称的话有两个意思：<br><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<font color="#00BFFF"><strong>Digital Signal Processing</strong></font>: 数字信号处理技术<br><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<font color="#00BFFF"><strong>Digital Signal Processor</strong></font>: 数字信号处理器<br></p>
+<h2 id="Digital-Signal-Processing"><a href="#Digital-Signal-Processing" class="headerlink" title="Digital Signal Processing"></a>Digital Signal Processing</h2><p>数字信号处理技术是对数字信号进行处理的理论和方法，因为自然界大多为模拟信号，对模拟信号处理起来相对复杂，而数字信号处理相对简单一些，其具有可控性强、稳定性高、精度高、抗干扰能力强、自适应能力强等特点，所以多将模拟信号转换成数字形式进行处理</p>
+<h2 id="Digital-Signal-Processor"><a href="#Digital-Signal-Processor" class="headerlink" title="Digital Signal Processor"></a>Digital Signal Processor</h2><p>DSP强调的是数字信号处理的实时性，DSP作为数字信号处理器将模拟信号通过模数转换器转换为数字信号后，用于专用处理器的告诉实时处理。其具有高速、灵活、可编程、低功耗等功能，在控制领域、图像处理、语音处理、视频处理等领域起到越来越大的作用</p>
+<h1 id="DSP学习基础"><a href="#DSP学习基础" class="headerlink" title="DSP学习基础"></a>DSP学习基础</h1><hr>
+<p>以下这些我觉得还是学DSP之前必备的基础知识吧，尽管可能学习之后忘了，但是专业素养还在就好，有了这些基础知识的奠基，学起来必事半功倍<br></p>
+<ul>
+<li><strong>高等数学</strong><br></li>
+<li><strong>概率论</strong><br></li>
+<li><strong>线性代数</strong><br></li>
+<li><strong>C/C++语言</strong><br></li>
+<li><strong>汇编语言</strong><br></li>
+<li><strong>电路</strong><br></li>
+<li><strong>模拟电子技术基础</strong><br></li>
+<li><strong>数字逻辑电路与系统设计基础</strong><br></li>
+<li><strong>信号与系统</strong><br></li>
+<li><strong>数字信号处理技术基础</strong><br></li>
+<li><strong>DSP原理与应用</strong><br></li>
+<li><strong>Linux系统基础</strong><br></li>
+</ul>
 
       
 
@@ -331,7 +373,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">-Github</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-C2000</a>
         		</li>
       		
 		</ul>
@@ -343,7 +385,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Git//" class="article-tag-list-link color5">-Git</a>
+        			<a href="/categories/DSP//" class="article-tag-list-link color5">-DSP</a>
         		</li>
       		
 		</ul>
@@ -352,7 +394,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/22/用Git将本地项目上传到Github的教程/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/11/25/C2000/DSP与DSP学习/">展开全文 >></a>
         </p>
       
 	  
@@ -397,7 +439,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
     </nav>
   
 
@@ -500,11 +542,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-CCS</a>
+                <a href="javascript:void(0)" class="js-tag color5">-OMAPL138</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">-Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">-CCS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -525,6 +571,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">-C2000</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">-WinCP</a>
               </li>
              
               <li class="article-tag-list-item">

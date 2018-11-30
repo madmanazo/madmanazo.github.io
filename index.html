@@ -161,20 +161,20 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-C2000/TMS302X281x的事件管理器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Linux/WinCP连接Ubuntu" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/28/C2000/TMS302X281x的事件管理器/">TMS302X281x的事件管理器</a>
+      <a class="article-title" href="/2018/11/30/Linux/WinCP连接Ubuntu/">WinCP连接Ubuntu</a>
     </h1>
   
 
         
-        <a href="/2018/11/28/C2000/TMS302X281x的事件管理器/" class="archive-article-date">
-  	<time datetime="2018-11-28T06:09:12.435Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-28</time>
+        <a href="/2018/11/30/Linux/WinCP连接Ubuntu/" class="archive-article-date">
+  	<time datetime="2018-11-30T07:45:08.507Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-30</time>
 </a>
         
       </header>
@@ -186,27 +186,50 @@
 	
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="TMS302X281x的事件管理器"><a href="#TMS302X281x的事件管理器" class="headerlink" title="TMS302X281x的事件管理器"></a>TMS302X281x的事件管理器</h1><hr>
-<p><a href="http://www.ti.com.cn/cn/lit/ug/spru065e/spru065e.pdf" target="_blank" rel="noopener">TMS302X281x的事件管理器</a>为用户提供了众多的功能，使其在电机控制、变频器、逆变器等应用场合中显得特别有用，X281x的事件管理器模块包括通用定时器、全比较/PWM单元、捕获单元以及正交编码脉冲电路<br><br>X281x系列DSP具有两个事件管理器模块EvA和EvB，事件管理器的英文名为Event Manager，简称Ev；这两个事件管理器具有完全相同的功能，只是各个单元的名称因为EvA和EvB而有所区别</p>
-<p><div align="center"><img src="https://i.imgur.com/rCTvoY5.png" alt="EvA/B"><div align="left"></div></div></p>
-<p><div align="center"><img src="https://i.imgur.com/Wf8AgPt.png" alt="signal name"><div align="left"></div></div></p>
-<p><div align="center"><img src="https://i.imgur.com/JLSRh20.png" alt="function"><div align="left"></div></div></p>
-<h1 id="通用定时器"><a href="#通用定时器" class="headerlink" title="通用定时器"></a>通用定时器</h1><hr>
-<p>每个事件管理器都有两个16位通用定时器；EvA具有通用定时器T1和通用定时器T2，EvB具有通用定时器T3和通用定时器T4；每个通用定时器都可以独立使用，也可以两两配合使用，如T1和T2或者T3和T4可以同步，通用定时器的作用主要有下面三个：</p>
-<ol>
-<li>计时</li>
-<li>使用定时器产生PWM波，从而控制电机等</li>
-<li>给事件管理器的其它子模块提供基准时钟，如比较单元，PWM输出</li>
-</ol>
-<p><div align="center"><img src="https://i.imgur.com/57L0pmu.png" alt="timer"><div align="left"></div></div></p>
-<p><div align="center"><img src="https://i.imgur.com/eZYsRZS.png" alt="通用定时器"><div align="left"><br>上面这张定时器框图所提供的信息很多，下面以T1为例：</div></div></p>
-<ol>
-<li><strong>和T1相关的常用寄存器</strong>：16位的T1周期寄存器T1PR；16位的T1比较寄存器T1CMPR；16位的T1计数寄存器T1CNT；16位的T1控制寄存器T1CON；16位的通用定时器控制寄存器GPTCONA<br></li>
-<li><strong>定时器T1常见的输入信号</strong>：来自CPU的内部时钟HSPCLK，之前进行过详细的讲解与配置；来自外部时钟输入TCLKINA，最大频率为器件自身时钟频率的1/4，如果按照SYSCLKOUT=150MHz配置的话，也就是不能超过37.5MHz；定时器计数方向输入TDIRA，用于定时器工作于何种计数方式；复位信号RESET<br></li>
-<li><strong>定时器T1的输出信号</strong>：定时器的比较输出T1PWM_T1CMP，可以输出PWM波；送给ADC模块的ADC转换启动信号；下溢、上溢、比较和周期匹配信号<br></li>
-</ol>
-<p>T1PR是T1的周期寄存器，用于存放T1设置的定时器周期值；T1CMPR是T1的比较寄存器，用于存放T1设置的比较值，通常这两个寄存器在初始化配置的时候就进行了赋值操作，此后就成了T1的一个参考标准。T1CNT是T1的计数器寄存器，其值随着时钟脉冲不断增加或者减少，每过一个定时器时钟脉冲，T1CNT的值就会增加或者减少1.CPu会实时地将T1CNT和T1CMPR、T1PR的值进行比较从而产生一些事件如T1CNT的值和T1CMPR的值相等时就会产生周期匹配事件，进而产生比较中断或者PWM波等；当T1CNT的值和T1PR的值相等时就会产生周期匹配事件。除了上面这些，还有几个阴影寄存器，其作用可以简单理解为使用户可以在一个定时器周期的任何时刻向T1CMPR和T1PR写入新的值，具体可以查看定时器控制寄存器的TCLD位定义<br></p>
-<h2 id="通用定时器的时钟"><a href="#通用定时器的时钟" class="headerlink" title="通用定时器的时钟"></a>通用定时器的时钟</h2><h2 id="通用定时器的计数模式"><a href="#通用定时器的计数模式" class="headerlink" title="通用定时器的计数模式"></a>通用定时器的计数模式</h2><h2 id="通用定时器的中断事件"><a href="#通用定时器的中断事件" class="headerlink" title="通用定时器的中断事件"></a>通用定时器的中断事件</h2><h2 id="通用定时器的同步"><a href="#通用定时器的同步" class="headerlink" title="通用定时器的同步"></a>通用定时器的同步</h2><h2 id="通用定时器的比较操作和PWM波"><a href="#通用定时器的比较操作和PWM波" class="headerlink" title="通用定时器的比较操作和PWM波"></a>通用定时器的比较操作和PWM波</h2>
+        <h1 id="WinCP简介"><a href="#WinCP简介" class="headerlink" title="WinCP简介"></a>WinCP简介</h1><hr>
+<p><strong><a href="https://winscp.net/eng/docs/lang:chs#%E4%BB%80%E4%B9%88%E6%98%AF_winscp" target="_blank" rel="noopener">WinSCP</a></strong>是一个Windows环境下使用的SSH的开源图形化SFTP客户端。同时支持SCP协议。它的主要功能是在本地与远程计算机间安全地复制文件，并且可以直接编辑文件<br></p>
+<h1 id="Ubuntu开启SSH服务"><a href="#Ubuntu开启SSH服务" class="headerlink" title="Ubuntu开启SSH服务"></a>Ubuntu开启SSH服务</h1><hr>
+<p>Ubuntu桌面版本默认没有安装SSH服务，如果要通过SSH连接Ubuntu的话，需要自己手动安装ssh-server。安装之前我们可以判断一下是否Ubuntu没有安装SSH服务：<br></p>
+<pre><code>
+madmanazo@ubuntu:~$ <font color="#EE00EE">ssh localhost ssh</font>
+ssh: <font color="#FF0033">connect to host localhost port 22: Connection refused</font>
+</code></pre>
+
+<p><div align="center"><img src="https://i.imgur.com/1qcx7r0.png" alt="0"><div align="left"></div></div></p>
+<p>如上所示表示ssh-server还没有安装，我们通过apt安装，输入命令后要求输入密码，之后系统自动安装，如下：<br></p>
+<pre><code>
+madmanazo@ubuntu:~$ <font color="#EE00EE">sudo apt-get install openssh-server</font>
+[sudo] password for madmanazo:
+</code></pre>
+
+<p><div align="center"><img src="https://i.imgur.com/YZEgSCK.png" alt="1"><div align="left"></div></div></p>
+<p>安装完成之后，启动SSH服务：<br></p>
+<pre><code>
+madmanazo@ubuntu:~$ <font color="#EE00EE">sudo /etc/init.d/ssh start</font>
+Rather than invoking init scripts through /etc/init.d, use the service(8)
+utility, e.g. service ssh start
+
+Since the script you are attempting to invoke has been converted to an
+Upstart job, you may also use the start(8) utility, e.g. start ssh
+</code></pre>
+
+<p><div align="center"><img src="https://i.imgur.com/niZbC2j.png" alt="2"><div align="left"></div></div></p>
+<p>查看是否成功启动SSH服务，如下表示已成功开启：<br></p>
+<pre><code>
+madmanazo@ubuntu:~$ <font color="#EE00EE">ps -e|grep ssh</font>
+ 1979 ?        00:00:00 ssh-agent
+ 3337 ?        00:00:00 sshd
+</code></pre>
+
+<p><div align="center"><img src="https://i.imgur.com/6bOATDL.png" alt="3"><div align="left"></div></div></p>
+<p>查看Ubuntu的IP地址，后面WinCP连接配置需要用，如果Ubuntu带桌面的话直接在桌面右上角点击网络连接标志选择里面的connection information查看网络连接信息即可，如果Ubuntu不带桌面的话可以使用命令ifconfig查看网络连接信息：<br></p>
+<p><div align="center"><img src="https://i.imgur.com/Uck7jc5.png" alt="4"><div align="left"></div></div></p>
+<h1 id="WinCP连接Ubntu"><a href="#WinCP连接Ubntu" class="headerlink" title="WinCP连接Ubntu"></a>WinCP连接Ubntu</h1><hr>
+<p>打开WinCP新建站点信息，其中主机名为前面我们查看的Ubuntu的IP地址，配置好后点击登录：<br></p>
+<p><div align="center"><img src="https://i.imgur.com/hTUp9AV.png" alt="5"><div align="left"><br>出现下图点击是：<br></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/fS7ULyQ.png" alt="6"><div align="left"><br>接下来便连接成功了，之后可以直接在Windows端对远程Linux系统进行文件的复制编辑等操作：<br></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/oXgl4WB.png" alt="7"><div align="left"></div></div></p>
+
       
 
       
@@ -219,7 +242,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-C2000</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-WinCP</a>
         		</li>
       		
 		</ul>
@@ -231,7 +254,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/DSP//" class="article-tag-list-link color5">-DSP</a>
+        			<a href="/categories/Linux//" class="article-tag-list-link color2">-Linux</a>
         		</li>
       		
 		</ul>
@@ -240,7 +263,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/28/C2000/TMS302X281x的事件管理器/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/11/30/Linux/WinCP连接Ubuntu/">展开全文 >></a>
         </p>
       
 	  
@@ -283,20 +306,20 @@
 
 
   
-    <article id="post-C2000/TMS302X281x的中断系统" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-AiSgen的.ais文件生成方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/28/C2000/TMS302X281x的中断系统/">TMS302X281x的中断系统</a>
+      <a class="article-title" href="/2018/11/28/AiSgen的.ais文件生成方法/">AiSgen的.ais文件生成方法</a>
     </h1>
   
 
         
-        <a href="/2018/11/28/C2000/TMS302X281x的中断系统/" class="archive-article-date">
-  	<time datetime="2018-11-28T02:28:58.027Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-28</time>
+        <a href="/2018/11/28/AiSgen的.ais文件生成方法/" class="archive-article-date">
+  	<time datetime="2018-11-28T15:25:38.051Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-28</time>
 </a>
         
       </header>
@@ -308,32 +331,17 @@
 	
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="什么是中断"><a href="#什么是中断" class="headerlink" title="什么是中断"></a>什么是中断</h1><hr>
-<p>在这之前如果有接触过单片机，那么应该对中断的概念很清楚了，所谓中断，是指计算机在运行过程中，出现某些意外或紧急情况急需处理，CPU能自动停止正在执行的程序转而去执行发生的意外或紧急情况的程序，处理完毕后又返回被暂停的程序继续运行</p>
-<h1 id="中断过程"><a href="#中断过程" class="headerlink" title="中断过程"></a>中断过程</h1><hr>
-<ol>
-<li>中断源发出中断请求</li>
-<li>CPU判断该中断是否可以被响应，也就是是否允许中断和该中断源是否被屏蔽</li>
-<li>中断优先级排队，因为可能不止一个中断，所以需要进行中断优先级排队，CPU再对各中断优先级进行裁决</li>
-<li>CPU执行完当前指令或者当前指令无法执行完，则立即停止当前程序，保护断电地址和CPU当前状态，转入相应的中断服务程序</li>
-<li>执行中断服务程序</li>
-<li>恢复被保护的状态，执行”中断返回”指令回到被中断的程序或者转入其它程序<br></li>
-</ol>
-<p>一个中断流程的话是很简单的：<br></p>
-<p><div align="center"><img src="https://i.imgur.com/ZbYQyTm.png" alt="单中断处理"><div align="left"><br></div></div></p>
-<p>下面是51单片机的中断流程图有助于我们理解中断流程，51单片机中断系统有两个优先级，5个中断源，可以实现二级中断嵌套</p>
-<p><div align="center"><img src="https://i.imgur.com/LiJFhbq.png" alt="51中断图"><div align="left"><br></div></div></p>
-<p>其它嵌入式芯片的中断流程，诸如STM32、TMS320X281x等，不过是中断更多，其实流程都差不多</p>
-<h1 id="TMS320X281x的中断系统"><a href="#TMS320X281x的中断系统" class="headerlink" title="TMS320X281x的中断系统"></a>TMS320X281x的中断系统</h1><hr>
-<p>下面几张图对TMS320X281x的中断系统进行了生动而详细的展示：</p>
-<p><div align="center"><img src="https://i.imgur.com/Kq3JJW9.png" alt="TMS320281x的中断系统"><div align="left"></div></div></p>
-<p><div align="center"><img src="https://i.imgur.com/HyEtCVP.png" alt="中断"><div align="left"><br><br>8个PIE块中断被分组为一个CPU中断。 总共有12个CPU中断组，用每组8个中断等于96个可能的中断。 在F281x和C281x上，其中45个被使用</div></div></p>
-<p><div align="center"><img src="https://i.imgur.com/TmiNq01.png" alt="PIE"><div align="left"></div></div></p>
-<p><div align="center"><img src="https://i.imgur.com/Nir2VTu.png" alt="PIE1"><div align="left"></div></div></p>
-<p><div align="center"><img src="https://i.imgur.com/L19aLqM.png" alt="extern interrupts"><div align="left"><br><br>总结一下：TMS320X281x的中断系统采用的是三级中断机制，分别为外设级、PIE级和CPU级；对于某一个具体的外设中断请求而言，只要任意一级中断不许可，CPU最终都不会响应该外设请求</div></div></p>
-<p><div align="center"><img src="https://i.imgur.com/8WhsnIX.png" alt="三级中断机制"><div align="left"></div></div></p>
-<h1 id="CPU-TIMER0中断实例"><a href="#CPU-TIMER0中断实例" class="headerlink" title="CPU-TIMER0中断实例"></a>CPU-TIMER0中断实例</h1><hr>
-<p>具体的应用代码可以参考<font color="#FF0033"><strong>Ti官方例程</strong></font>，里面有详细的注释足以让我们学通并且使用，可以去<strong><a href="http://www.ti.com.cn/product/cn/TMS320F2812/toolssoftware" title="TI官方下载" target="_blank" rel="noopener">TI官方下载</a></strong>或者看我的<strong><a href="https://github.com/madmanazo/TMS320F2812_/blob/master/DSP281x_HeaderFiles/v120/DSP281x_examples/cpu_timer/Example_281xCpuTimer.c" title="Github链接" target="_blank" rel="noopener">Github链接</a></strong></p>
+        <h1 id="AiSgen介绍"><a href="#AiSgen介绍" class="headerlink" title="AiSgen介绍"></a>AiSgen介绍</h1><hr>
+<p>AiSgen是Ti的一个文件镜像转换工具，因为仿真器只支持ais格式镜像烧写，而CCS软件编译生成的镜像为.out格式文件，所以如果用仿真器烧写程序进行NAND FLASH固化的话必须使用AiSgen软件将.out格式镜像转换为.ais格式镜像</p>
+<h1 id="AiSgen安装"><a href="#AiSgen安装" class="headerlink" title="AiSgen安装"></a>AiSgen安装</h1><hr>
+<p>傻瓜式安装，主要以下几步：</p>
+<p><div align="center"><img src="https://i.imgur.com/5moxJwN.png" alt="1"><div align="left"></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/wu6KqVK.png" alt="2"><div align="left"></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/V70zGQb.png" alt="3"><div align="left"></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/c6i3b83.png" alt="4"><div align="left"></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/zO4NRvO.png" alt="5"><div align="left"></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/5Z4yGmi.png" alt="6"><div align="left"></div></div></p>
+<h1 id="AiSgen使用"><a href="#AiSgen使用" class="headerlink" title="AiSgen使用"></a>AiSgen使用</h1><hr>
 
       
 
@@ -347,7 +355,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-C2000</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">-OMAPL138</a>
         		</li>
       		
 		</ul>
@@ -368,7 +376,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/28/C2000/TMS302X281x的中断系统/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/11/28/AiSgen的.ais文件生成方法/">展开全文 >></a>
         </p>
       
 	  
@@ -413,7 +421,7 @@
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -516,11 +524,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-CCS</a>
+                <a href="javascript:void(0)" class="js-tag color5">-OMAPL138</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">-Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">-CCS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -541,6 +553,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">-C2000</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">-WinCP</a>
               </li>
              
               <li class="article-tag-list-item">
