@@ -6,15 +6,34 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018 | madmanazo</title>
+  <title>最小Linux系统制作 | madmanazo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="madmanazo">
-<meta property="og:url" content="http://yoursite.com/archives/2018/page/2/index.html">
+  <meta name="description" content="BusyBox(瑞士军刀) BusyBox最初是由Bruce Perens在1996年为Debian GNU/Linux安装盘编写的。其目标是在一张软盘上创建一个可引导的GNU/Linux系统，这可以用作安装盘和急救盘。一张软盘可以保存大约1.4-1.7MB的内容，因此这里没有多少空间留给Linux内核以及相关的用户应用程序使用BusyBox是一个集成了三百多个最常用Linux命令和工具的软件。B">
+<meta name="keywords" content="-BusyBox">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最小Linux系统制作">
+<meta property="og:url" content="http://yoursite.com/2018/11/30/Linux/最小Linux系统制作/index.html">
 <meta property="og:site_name" content="madmanazo">
+<meta property="og:description" content="BusyBox(瑞士军刀) BusyBox最初是由Bruce Perens在1996年为Debian GNU/Linux安装盘编写的。其目标是在一张软盘上创建一个可引导的GNU/Linux系统，这可以用作安装盘和急救盘。一张软盘可以保存大约1.4-1.7MB的内容，因此这里没有多少空间留给Linux内核以及相关的用户应用程序使用BusyBox是一个集成了三百多个最常用Linux命令和工具的软件。B">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/Z5tddgb.png">
+<meta property="og:image" content="https://i.imgur.com/F4LWML4.png">
+<meta property="og:image" content="https://i.imgur.com/vn1zbOo.png">
+<meta property="og:image" content="https://i.imgur.com/TRtw39n.png">
+<meta property="og:image" content="https://i.imgur.com/4taMhm2.png">
+<meta property="og:image" content="https://i.imgur.com/ndIaiAR.png">
+<meta property="og:image" content="https://i.imgur.com/XpDUpNL.png">
+<meta property="og:image" content="https://i.imgur.com/klCdUJe.png">
+<meta property="og:image" content="https://i.imgur.com/iU5RUjL.png">
+<meta property="og:image" content="https://i.imgur.com/KY8VZEM.png">
+<meta property="og:image" content="https://i.imgur.com/H6hlQbP.png">
+<meta property="og:image" content="https://i.imgur.com/0SHB80h.png">
+<meta property="og:image" content="https://i.imgur.com/QaWUhKK.png">
+<meta property="og:updated_time" content="2018-11-30T11:55:03.610Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="madmanazo">
+<meta name="twitter:title" content="最小Linux系统制作">
+<meta name="twitter:description" content="BusyBox(瑞士军刀) BusyBox最初是由Bruce Perens在1996年为Debian GNU/Linux安装盘编写的。其目标是在一张软盘上创建一个可引导的GNU/Linux系统，这可以用作安装盘和急救盘。一张软盘可以保存大约1.4-1.7MB的内容，因此这里没有多少空间留给Linux内核以及相关的用户应用程序使用BusyBox是一个集成了三百多个最常用Linux命令和工具的软件。B">
+<meta name="twitter:image" content="https://i.imgur.com/Z5tddgb.png">
   
     <link rel="alternative" href="/atom.xml" title="madmanazo" type="application/atom+xml">
   
@@ -159,515 +178,368 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Linux/最小Linux系统制作" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      最小Linux系统制作
+    </h1>
+  
+
+        
+        <a href="/2018/11/30/Linux/最小Linux系统制作/" class="archive-article-date">
+  	<time datetime="2018-11-30T09:11:54.635Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-30</time>
+</a>
+        
+      </header>
     
+	
+<!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+	<div id="toc-article" class="toc-article">
+	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+		<strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#BusyBox-瑞士军刀"><span class="toc-number">1.</span> <span class="toc-text">BusyBox(瑞士军刀)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#最小Linux系统制作"><span class="toc-number">2.</span> <span class="toc-text">最小Linux系统制作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ARM交叉编译工具链安装"><span class="toc-number">2.1.</span> <span class="toc-text">ARM交叉编译工具链安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BusyBox配置"><span class="toc-number">2.2.</span> <span class="toc-text">BusyBox配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编译和安装BusyBox"><span class="toc-number">2.3.</span> <span class="toc-text">编译和安装BusyBox</span></a></li></ol></li></ol>
+         </div>
+   <script type="text/javascript">
+	function showToc(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:block");
+		show_toc_btn.setAttribute("style","display:none");
+		};
+	function showBtn(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:none");
+		show_toc_btn.setAttribute("style","display:block");
+		};
+   </script>
+      
+<!-- 目录内容结束 -->
+	
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="BusyBox-瑞士军刀"><a href="#BusyBox-瑞士军刀" class="headerlink" title="BusyBox(瑞士军刀)"></a>BusyBox(瑞士军刀)</h1><hr>
+<p>BusyBox最初是由Bruce Perens在1996年为Debian GNU/Linux安装盘编写的。其目标是在一张软盘上创建一个可引导的GNU/Linux系统，这可以用作安装盘和急救盘。一张软盘可以保存大约1.4-1.7MB的内容，因此这里没有多少空间留给Linux内核以及相关的用户应用程序使用<br><br>BusyBox是一个集成了三百多个最常用Linux命令和工具的软件。BusyBox 包含了一些简单的工具，例如ls、cat和echo等等，还包含了一些更大、更复杂的工具，例grep、find、mount以及telnet。有些人将 BusyBox 称为 Linux 工具里的瑞士军刀。简单的说BusyBox就好像是个大工具箱，它集成压缩了 Linux 的许多工具和命令，也包含了 Android 系统的自带的shell<br><br>制作最小Linux系统需要用到此瑞士军刀(<strong><a href="https://busybox.net/" target="_blank" rel="noopener">下载地址</a></strong>)，接下来便是制作步骤</p>
+<h1 id="最小Linux系统制作"><a href="#最小Linux系统制作" class="headerlink" title="最小Linux系统制作"></a>最小Linux系统制作</h1><hr>
+<h2 id="ARM交叉编译工具链安装"><a href="#ARM交叉编译工具链安装" class="headerlink" title="ARM交叉编译工具链安装"></a><a href="https://www.veryarm.com/arm-none-linux-gnueabi-gcc" target="_blank" rel="noopener">ARM交叉编译工具链</a>安装</h2><p>首先在Ubuntu系统目录/home下新建文件夹minilinux，使用WinCP软件将busybox-1.21.1.tar.bz2拷贝到Ubuntu系统上的目录/home/minilinux下，并在当前目录执行解压命令：<br></p>
+<pre><code>
+madmanazo@ubuntu:~/minilinux$ <font color="#EE00EE">tar -xvf arm-2009q3-67-arm-none-linux-gnueabi-i686-pc-linux-gnu.tar.bz2</font>
+</code></pre>
+
+<p>接下来进行环境变量的配置，编辑/etc/bash.bashrc的环境变量配置文件，在最末尾行后行加入<font color="#EE00EE">export PATH=$PATH:/home/madmanazo/minilinux/arm-2009q3/bin/</font>：<br></p>
+<pre><code>
+madmanazo@ubuntu:~/minilinux/arm-2009q3$ <font color="#EE00EE">sudo vi /etc/bash.bashrc</font>
+</code></pre>
+
+<p>最后执行：<br></p>
+<pre><code>
+madmanazo@ubuntu:~/minilinux/busybox-1.22.1$ <font color="#EE00EE">source /etc/bash.bashrc</font>
+</code></pre>
+
+<p>关闭当前终端并重新打开终端进行测试是否成功，找不到文件是因为64位Ubuntu与32位软件不相容，执行以下命令之后再执行第二条命令配置好环境重新再执行一次arm-none-linux-gnueabi-gcc -v命令即可测试：<br></p>
+<pre><code>
+madmanazo@ubuntu:~$ <font color="#EE00EE">arm-none-linux-gnueabi-gcc -v</font>
+bash: /home/madmanazo/minilinux/arm-2009q3/bin/arm-none-linux-gnueabi-gcc: No such file or directory
+madmanazo@ubuntu:~$ <font color="#EE00EE">sudo apt-get install lib32z1 lib32ncurses5 libbz2-1.0:i386 lib32stdc++6</font>
+madmanazo@ubuntu:~$ <font color="#EE00EE">arm-none-linux-gnueabi-gcc -v</font>
+输出一大段很乱的话，会说明你使用的版本等，证明成功了
+</code></pre>
+
+<font color="#FF0000"><strong>注意如果没有ARM交叉编译工具链的安装配置的话，直接执行后面BusyBox配置会报错</strong></font>
+
+<h2 id="BusyBox配置"><a href="#BusyBox配置" class="headerlink" title="BusyBox配置"></a>BusyBox配置</h2><p>首先在Ubuntu系统目录/home下新建文件夹minilinux，使用WinCP软件将busybox-1.21.1.tar.bz2拷贝到Ubuntu系统上的目录/home/minilinux下，并在当前目录执行解压命令：<br></p>
+<pre><code>
+madmanazo@ubuntu:~/minilinux$ <font color="#EE00EE">tar -xvf busybox-1.21.1.tar.bz2</font>
+</code></pre>
+
+<p>切换到解压后的busybox-1.22.1目录下，可以看到解压后的众多文件：<br></p>
+<pre><code>
+madmanazo@ubuntu:~/minilinux$ <font color="#EE00EE">cd busybox-1.22.1/</font>
+madmanazo@ubuntu:~/minilinux/busybox-1.22.1$ <font color="#EE00EE">ls</font>
+applets     console-tools  findutils  loginutils       modutils    selinux
+applets_sh  coreutils      include    mailutils        networking  shell
+arch        debianutils    init       Makefile         printutils  sysklogd
+archival    docs           INSTALL    Makefile.custom  procps      testsuite
+AUTHORS     e2fsprogs      libbb      Makefile.flags   README      TODO
+Config.in   editors        libpwdgrp  Makefile.help    runit       TODO_unicode
+configs     examples       LICENSE    miscutils        scripts     util-linux
+</code></pre>
+
+<p>接下来使用<font color="#EE00EE"><strong>make menuconfig</strong></font>命令配置BusyBox，这里总结到一个小经验就是，直接执行make menuconfig命令的话肯定是会报找不到某些文件的错误的，不信可以直接执行make menuconfig命令测试一下，解决方法如下：<br></p>
+<ul>
+<li>红帽或者FC的安装ncurses-devel<br></li>
+<li>sudo yum install ncurses-devel<br></li>
+<li>Ubuntu的需要安装libncurses5-dev<br></li>
+<li>sudo apt-get install libncurses5-dev<br></li>
+</ul>
+<p>所以我们按如下步骤执行命令即可成功进入make menuconfig配置界面：<br></p>
+<pre><code>
+madmanazo@ubuntu:~/minilinux/busybox-1.22.1$ <font color="#EE00EE">sudo apt-get install libncurses5-dev</font>
+[sudo] password for madmanazo: 
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following package was automatically installed and is no longer required:
+  thunderbird-globalmenu
+Use 'apt-get autoremove' to remove them.
+The following extra packages will be installed:
+  libtinfo-dev
+Suggested packages:
+  ncurses-doc
+The following NEW packages will be installed:
+  libncurses5-dev libtinfo-dev
+0 upgraded, 2 newly installed, 0 to remove and 543 not upgraded.
+Need to get 325 kB of archives.
+After this operation, 1,623 kB of additional disk space will be used.
+Do you want to continue [Y/n]? y
+Get:1 http://us.archive.ubuntu.com/ubuntu/ precise/main libtinfo-dev amd64 5.9-4 [103 kB]
+Get:2 http://us.archive.ubuntu.com/ubuntu/ precise/main libncurses5-dev amd64 5.9-4 [222 kB]
+Fetched 325 kB in 2s (148 kB/s)          
+Selecting previously unselected package libtinfo-dev.
+(Reading database ... 141606 files and directories currently installed.)
+Unpacking libtinfo-dev (from .../libtinfo-dev_5.9-4_amd64.deb) ...
+Selecting previously unselected package libncurses5-dev.
+Unpacking libncurses5-dev (from .../libncurses5-dev_5.9-4_amd64.deb) ...
+Setting up libtinfo-dev (5.9-4) ...
+Setting up libncurses5-dev (5.9-4) ...
+madmanazo@ubuntu:~/minilinux/busybox-1.22.1$ <font color="#EE00EE">make menuconfig</font>
+</code></pre>
+
+<p><div align="center"><img src="https://i.imgur.com/Z5tddgb.png" alt="0"><div align="left"></div></div></p>
+<p>选中Busybox Settings按回车进入Busybox Settings界面：<br></p>
+<p><div align="center"><img src="https://i.imgur.com/F4LWML4.png" alt="1"><div align="left"></div></div></p>
+<p>在Busybox Settings配置选项里面需要修改两个地方，第一个是Build Optiions-&gt; Cross<br>Compiler prefix,它是指定用什么编译器来编译Busybox，选中Build Options如上图，然后<br>按回车，进入到Build Options 配置界面，如下图：<br></p>
+<p><div align="center"><img src="https://i.imgur.com/vn1zbOo.png" alt="2"><div align="left"></div></div></p>
+<p>选中Build Options 配置界面的Cross Compiler prefix 如上图，然后按回车，进入Cross<br>Compiler prefix 配置界面，如下图：<br></p>
+<p><div align="center"><img src="https://i.imgur.com/TRtw39n.png" alt="3"><div align="left"></div></div></p>
+<p>输入使用的交叉编译工具arm-none-linux-gnueabi-，如下图：<br></p>
+<p><div align="center"><img src="https://i.imgur.com/4taMhm2.png" alt="4"><div align="left"></div></div></p>
+<p>按回车返回到Build Options 配置界面，这时可以看到刚才设置的交叉编译工具，如<br>下图：<br></p>
+<p><div align="center"><img src="https://i.imgur.com/ndIaiAR.png" alt="5"><div align="left"></div></div></p>
+<p>然后使用键盘的左右按键选中Exit，回到Busybox Settings 设置界面；选中Installation Options，然后按回车，如下图：<br></p>
+<p><div align="center"><img src="https://i.imgur.com/XpDUpNL.png" alt="6"><div align="left"></div></div></p>
+<p>进入Installation Options 配置界面,如下图：<br></p>
+<p><div align="center"><img src="https://i.imgur.com/klCdUJe.png" alt="7"><div align="left"></div></div></p>
+<p>选中BusyBox installation prefix 如上图所示，然后按回车进入BusyBox installation<br>prefix配置界面（这个界面是设置编译完Busybox，把最终生成的二进制文件安装到哪个目录<br>下面），如下图：<br></p>
+<p><div align="center"><img src="https://i.imgur.com/iU5RUjL.png" alt="8"><div align="left"></div></div></p>
+<p>删除上图里面的./_install，然后输入“../system”（最终生成的二进制文件会安装到当前<br>目录的上一级目录下的system目录里面）,如下图：<br></p>
+<p><div align="center"><img src="https://i.imgur.com/KY8VZEM.png" alt="9"><div align="left"></div></div></p>
+<p>然后按回车，回到Installation Options，如下图：<br></p>
+<p><div align="center"><img src="https://i.imgur.com/H6hlQbP.png" alt="10"><div align="left"></div></div></p>
+<p>最后保存退出即可</p>
+<h2 id="编译和安装BusyBox"><a href="#编译和安装BusyBox" class="headerlink" title="编译和安装BusyBox"></a>编译和安装BusyBox</h2><p>前面配置已经完成，接下来开始编译BusyBox，并得到最后成功的截图如下：<br></p>
+<p><pre><code><br>madmanazo@ubuntu:~/minilinux/busybox-1.22.1$ <font color="#EE00EE">make</font><br></code></pre></p>
+<p><div align="center"><img src="https://i.imgur.com/0SHB80h.png" alt="11"><div align="left"></div></div></p>
+<p>现在编译完成了，接下来我们需要把编译生成的二进制文件安装到刚才我们指定的../system 目录里面，使用命令“make install”安装二进制文件到“../system”目录，并得到最后成功的截图如下：<br></p>
+<p><pre><code><br>madmanazo@ubuntu:~/minilinux/busybox-1.22.1$ <font color="#EE00EE">make install</font><br></code></pre></p>
+<p><div align="center"><img src="https://i.imgur.com/QaWUhKK.png" alt="12"><div align="left"></div></div></p>
+<p>打开“../system”目录，可以查看到最后生成的几个文件：<font color="#7EC0EE"><strong>bin、最后linuxrc、sbin、usr</strong></font></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechat_reward1.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/25/C2000/DSP与DSP学习/" class="archive-article-date">
-  	<time datetime="2018-11-25T14:45:49.649Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/25/C2000/DSP与DSP学习/">DSP与DSP学习</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-C2000</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">-BusyBox</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/DSP//" class="article-tag-list-link color5">-DSP</a>
+        			<a href="/categories/Linux//" class="article-tag-list-link color2">-Linux</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+	  
+	  
+	  
+		<span class="archive-article-date">
+			阅读量 <span id="busuanzi_value_page_pv"></span>
+		</span>
+	  
+
+	  
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/11/30/Linux/最小Linux系统制作/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+	  
+      <div class="clearfix"></div>
+	  
+	  
+	  
+	
+      
+	
+	  
+	  
+	  
+    </div>
+	
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/24/My_Book_List/手把手教你学DSP/" class="archive-article-date">
-  	<time datetime="2018-11-24T11:07:23.868Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-24</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/11/30/Linux/WinCP连接Ubuntu/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">WinCP连接Ubuntu</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/24/My_Book_List/手把手教你学DSP/">手把手教你学DSP</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">-Book</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/My-Book-List//" class="article-tag-list-link color4">-My Book List</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#BusyBox-瑞士军刀"><span class="toc-number">1.</span> <span class="toc-text">BusyBox(瑞士军刀)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#最小Linux系统制作"><span class="toc-number">2.</span> <span class="toc-text">最小Linux系统制作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ARM交叉编译工具链安装"><span class="toc-number">2.1.</span> <span class="toc-text">ARM交叉编译工具链安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BusyBox配置"><span class="toc-number">2.2.</span> <span class="toc-text">BusyBox配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编译和安装BusyBox"><span class="toc-number">2.3.</span> <span class="toc-text">编译和安装BusyBox</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/用Git将本地项目上传到Github的教程/" class="archive-article-date">
-  	<time datetime="2018-11-22T02:33:17.097Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/22/用Git将本地项目上传到Github的教程/">用Git将本地项目上传到Github的教程</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">-Github</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Git//" class="article-tag-list-link color5">-Git</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/05/STM32CubeXX解读/" class="archive-article-date">
-  	<time datetime="2018-11-05T14:24:04.821Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/05/STM32CubeXX解读/">STM32CubeXX包解读</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-STM32</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/嵌入式//" class="article-tag-list-link color5">-嵌入式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/05/Keil软件安装教程/" class="archive-article-date">
-  	<time datetime="2018-11-05T02:40:54.949Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/05/Keil软件安装教程/">Keil软件安装教程</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">-Keil</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/软件//" class="article-tag-list-link color4">-软件</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/05/My_Music_List/Music List/" class="archive-article-date">
-  	<time datetime="2018-11-04T16:42:53.952Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/05/My_Music_List/Music List/">Music List</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-Music</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Music//" class="article-tag-list-link color2">-Music</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/04/My_Book_List/Linear Systems and Signals,Second Edition-B.P.Lathi/" class="archive-article-date">
-  	<time datetime="2018-11-04T15:11:02.194Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/04/My_Book_List/Linear Systems and Signals,Second Edition-B.P.Lathi/">Linear Systems and Signals,Second Edition-B.P.Lathi</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">-Book</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/My-Book-List//" class="article-tag-list-link color4">-My Book List</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/04/PCB_design_notes/Altium Designer 18两层PCB设计常规设定/" class="archive-article-date">
-  	<time datetime="2018-10-04T11:54:25.454Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/04/PCB_design_notes/Altium Designer 18两层PCB设计常规设定/">Altium Designer 18两层PCB设计常规设定</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">-PCB</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/PCB设计相关//" class="article-tag-list-link color4">-PCB设计相关</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/04/PCB_design_notes/Altium Designer 18常用快捷键大全/" class="archive-article-date">
-  	<time datetime="2018-10-04T11:25:03.362Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/04/PCB_design_notes/Altium Designer 18常用快捷键大全/">Altium Designer 18常用快捷键大全</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">-PCB</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/PCB设计相关//" class="article-tag-list-link color4">-PCB设计相关</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/02/PCB_design_notes/Altium Designer 18系统参数选项介绍及常规设置/" class="archive-article-date">
-  	<time datetime="2018-10-02T07:57:42.431Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/02/PCB_design_notes/Altium Designer 18系统参数选项介绍及常规设置/">Altium Designer 18系统参数选项介绍及常规设置</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">-PCB</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/PCB设计相关//" class="article-tag-list-link color4">-PCB设计相关</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2018/">&laquo; Prev</a><a class="page-number" href="/archives/2018/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2018/page/3/">3</a><a class="extend next" rel="next" href="/archives/2018/page/3/">Next &raquo;</a>
-    </nav>
+  
+  <div id="SOHUCS" sid="Linux/最小Linux系统制作" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cytCBkNPd",
+        conf: "c09cb8dbf7ad75b9615fcf9da0dc5331"
+    });
+</script>
+</script>
+  
+
+  
+
   
 
 
@@ -699,8 +571,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

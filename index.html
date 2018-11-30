@@ -161,6 +161,224 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Linux/最小Linux系统制作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/30/Linux/最小Linux系统制作/">最小Linux系统制作</a>
+    </h1>
+  
+
+        
+        <a href="/2018/11/30/Linux/最小Linux系统制作/" class="archive-article-date">
+  	<time datetime="2018-11-30T09:11:54.635Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-30</time>
+</a>
+        
+      </header>
+    
+	
+<!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+	
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="BusyBox-瑞士军刀"><a href="#BusyBox-瑞士军刀" class="headerlink" title="BusyBox(瑞士军刀)"></a>BusyBox(瑞士军刀)</h1><hr>
+<p>BusyBox最初是由Bruce Perens在1996年为Debian GNU/Linux安装盘编写的。其目标是在一张软盘上创建一个可引导的GNU/Linux系统，这可以用作安装盘和急救盘。一张软盘可以保存大约1.4-1.7MB的内容，因此这里没有多少空间留给Linux内核以及相关的用户应用程序使用<br><br>BusyBox是一个集成了三百多个最常用Linux命令和工具的软件。BusyBox 包含了一些简单的工具，例如ls、cat和echo等等，还包含了一些更大、更复杂的工具，例grep、find、mount以及telnet。有些人将 BusyBox 称为 Linux 工具里的瑞士军刀。简单的说BusyBox就好像是个大工具箱，它集成压缩了 Linux 的许多工具和命令，也包含了 Android 系统的自带的shell<br><br>制作最小Linux系统需要用到此瑞士军刀(<strong><a href="https://busybox.net/" target="_blank" rel="noopener">下载地址</a></strong>)，接下来便是制作步骤</p>
+<h1 id="最小Linux系统制作"><a href="#最小Linux系统制作" class="headerlink" title="最小Linux系统制作"></a>最小Linux系统制作</h1><hr>
+<h2 id="ARM交叉编译工具链安装"><a href="#ARM交叉编译工具链安装" class="headerlink" title="ARM交叉编译工具链安装"></a><a href="https://www.veryarm.com/arm-none-linux-gnueabi-gcc" target="_blank" rel="noopener">ARM交叉编译工具链</a>安装</h2><p>首先在Ubuntu系统目录/home下新建文件夹minilinux，使用WinCP软件将busybox-1.21.1.tar.bz2拷贝到Ubuntu系统上的目录/home/minilinux下，并在当前目录执行解压命令：<br></p>
+<pre><code>
+madmanazo@ubuntu:~/minilinux$ <font color="#EE00EE">tar -xvf arm-2009q3-67-arm-none-linux-gnueabi-i686-pc-linux-gnu.tar.bz2</font>
+</code></pre>
+
+<p>接下来进行环境变量的配置，编辑/etc/bash.bashrc的环境变量配置文件，在最末尾行后行加入<font color="#EE00EE">export PATH=$PATH:/home/madmanazo/minilinux/arm-2009q3/bin/</font>：<br></p>
+<pre><code>
+madmanazo@ubuntu:~/minilinux/arm-2009q3$ <font color="#EE00EE">sudo vi /etc/bash.bashrc</font>
+</code></pre>
+
+<p>最后执行：<br></p>
+<pre><code>
+madmanazo@ubuntu:~/minilinux/busybox-1.22.1$ <font color="#EE00EE">source /etc/bash.bashrc</font>
+</code></pre>
+
+<p>关闭当前终端并重新打开终端进行测试是否成功，找不到文件是因为64位Ubuntu与32位软件不相容，执行以下命令之后再执行第二条命令配置好环境重新再执行一次arm-none-linux-gnueabi-gcc -v命令即可测试：<br></p>
+<pre><code>
+madmanazo@ubuntu:~$ <font color="#EE00EE">arm-none-linux-gnueabi-gcc -v</font>
+bash: /home/madmanazo/minilinux/arm-2009q3/bin/arm-none-linux-gnueabi-gcc: No such file or directory
+madmanazo@ubuntu:~$ <font color="#EE00EE">sudo apt-get install lib32z1 lib32ncurses5 libbz2-1.0:i386 lib32stdc++6</font>
+madmanazo@ubuntu:~$ <font color="#EE00EE">arm-none-linux-gnueabi-gcc -v</font>
+输出一大段很乱的话，会说明你使用的版本等，证明成功了
+</code></pre>
+
+<font color="#FF0000"><strong>注意如果没有ARM交叉编译工具链的安装配置的话，直接执行后面BusyBox配置会报错</strong></font>
+
+<h2 id="BusyBox配置"><a href="#BusyBox配置" class="headerlink" title="BusyBox配置"></a>BusyBox配置</h2><p>首先在Ubuntu系统目录/home下新建文件夹minilinux，使用WinCP软件将busybox-1.21.1.tar.bz2拷贝到Ubuntu系统上的目录/home/minilinux下，并在当前目录执行解压命令：<br></p>
+<pre><code>
+madmanazo@ubuntu:~/minilinux$ <font color="#EE00EE">tar -xvf busybox-1.21.1.tar.bz2</font>
+</code></pre>
+
+<p>切换到解压后的busybox-1.22.1目录下，可以看到解压后的众多文件：<br></p>
+<pre><code>
+madmanazo@ubuntu:~/minilinux$ <font color="#EE00EE">cd busybox-1.22.1/</font>
+madmanazo@ubuntu:~/minilinux/busybox-1.22.1$ <font color="#EE00EE">ls</font>
+applets     console-tools  findutils  loginutils       modutils    selinux
+applets_sh  coreutils      include    mailutils        networking  shell
+arch        debianutils    init       Makefile         printutils  sysklogd
+archival    docs           INSTALL    Makefile.custom  procps      testsuite
+AUTHORS     e2fsprogs      libbb      Makefile.flags   README      TODO
+Config.in   editors        libpwdgrp  Makefile.help    runit       TODO_unicode
+configs     examples       LICENSE    miscutils        scripts     util-linux
+</code></pre>
+
+<p>接下来使用<font color="#EE00EE"><strong>make menuconfig</strong></font>命令配置BusyBox，这里总结到一个小经验就是，直接执行make menuconfig命令的话肯定是会报找不到某些文件的错误的，不信可以直接执行make menuconfig命令测试一下，解决方法如下：<br></p>
+<ul>
+<li>红帽或者FC的安装ncurses-devel<br></li>
+<li>sudo yum install ncurses-devel<br></li>
+<li>Ubuntu的需要安装libncurses5-dev<br></li>
+<li>sudo apt-get install libncurses5-dev<br></li>
+</ul>
+<p>所以我们按如下步骤执行命令即可成功进入make menuconfig配置界面：<br></p>
+<pre><code>
+madmanazo@ubuntu:~/minilinux/busybox-1.22.1$ <font color="#EE00EE">sudo apt-get install libncurses5-dev</font>
+[sudo] password for madmanazo: 
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following package was automatically installed and is no longer required:
+  thunderbird-globalmenu
+Use 'apt-get autoremove' to remove them.
+The following extra packages will be installed:
+  libtinfo-dev
+Suggested packages:
+  ncurses-doc
+The following NEW packages will be installed:
+  libncurses5-dev libtinfo-dev
+0 upgraded, 2 newly installed, 0 to remove and 543 not upgraded.
+Need to get 325 kB of archives.
+After this operation, 1,623 kB of additional disk space will be used.
+Do you want to continue [Y/n]? y
+Get:1 http://us.archive.ubuntu.com/ubuntu/ precise/main libtinfo-dev amd64 5.9-4 [103 kB]
+Get:2 http://us.archive.ubuntu.com/ubuntu/ precise/main libncurses5-dev amd64 5.9-4 [222 kB]
+Fetched 325 kB in 2s (148 kB/s)          
+Selecting previously unselected package libtinfo-dev.
+(Reading database ... 141606 files and directories currently installed.)
+Unpacking libtinfo-dev (from .../libtinfo-dev_5.9-4_amd64.deb) ...
+Selecting previously unselected package libncurses5-dev.
+Unpacking libncurses5-dev (from .../libncurses5-dev_5.9-4_amd64.deb) ...
+Setting up libtinfo-dev (5.9-4) ...
+Setting up libncurses5-dev (5.9-4) ...
+madmanazo@ubuntu:~/minilinux/busybox-1.22.1$ <font color="#EE00EE">make menuconfig</font>
+</code></pre>
+
+<p><div align="center"><img src="https://i.imgur.com/Z5tddgb.png" alt="0"><div align="left"></div></div></p>
+<p>选中Busybox Settings按回车进入Busybox Settings界面：<br></p>
+<p><div align="center"><img src="https://i.imgur.com/F4LWML4.png" alt="1"><div align="left"></div></div></p>
+<p>在Busybox Settings配置选项里面需要修改两个地方，第一个是Build Optiions-&gt; Cross<br>Compiler prefix,它是指定用什么编译器来编译Busybox，选中Build Options如上图，然后<br>按回车，进入到Build Options 配置界面，如下图：<br></p>
+<p><div align="center"><img src="https://i.imgur.com/vn1zbOo.png" alt="2"><div align="left"></div></div></p>
+<p>选中Build Options 配置界面的Cross Compiler prefix 如上图，然后按回车，进入Cross<br>Compiler prefix 配置界面，如下图：<br></p>
+<p><div align="center"><img src="https://i.imgur.com/TRtw39n.png" alt="3"><div align="left"></div></div></p>
+<p>输入使用的交叉编译工具arm-none-linux-gnueabi-，如下图：<br></p>
+<p><div align="center"><img src="https://i.imgur.com/4taMhm2.png" alt="4"><div align="left"></div></div></p>
+<p>按回车返回到Build Options 配置界面，这时可以看到刚才设置的交叉编译工具，如<br>下图：<br></p>
+<p><div align="center"><img src="https://i.imgur.com/ndIaiAR.png" alt="5"><div align="left"></div></div></p>
+<p>然后使用键盘的左右按键选中Exit，回到Busybox Settings 设置界面；选中Installation Options，然后按回车，如下图：<br></p>
+<p><div align="center"><img src="https://i.imgur.com/XpDUpNL.png" alt="6"><div align="left"></div></div></p>
+<p>进入Installation Options 配置界面,如下图：<br></p>
+<p><div align="center"><img src="https://i.imgur.com/klCdUJe.png" alt="7"><div align="left"></div></div></p>
+<p>选中BusyBox installation prefix 如上图所示，然后按回车进入BusyBox installation<br>prefix配置界面（这个界面是设置编译完Busybox，把最终生成的二进制文件安装到哪个目录<br>下面），如下图：<br></p>
+<p><div align="center"><img src="https://i.imgur.com/iU5RUjL.png" alt="8"><div align="left"></div></div></p>
+<p>删除上图里面的./_install，然后输入“../system”（最终生成的二进制文件会安装到当前<br>目录的上一级目录下的system目录里面）,如下图：<br></p>
+<p><div align="center"><img src="https://i.imgur.com/KY8VZEM.png" alt="9"><div align="left"></div></div></p>
+<p>然后按回车，回到Installation Options，如下图：<br></p>
+<p><div align="center"><img src="https://i.imgur.com/H6hlQbP.png" alt="10"><div align="left"></div></div></p>
+<p>最后保存退出即可</p>
+<h2 id="编译和安装BusyBox"><a href="#编译和安装BusyBox" class="headerlink" title="编译和安装BusyBox"></a>编译和安装BusyBox</h2><p>前面配置已经完成，接下来开始编译BusyBox，并得到最后成功的截图如下：<br></p>
+<p><pre><code><br>madmanazo@ubuntu:~/minilinux/busybox-1.22.1$ <font color="#EE00EE">make</font><br></code></pre></p>
+<p><div align="center"><img src="https://i.imgur.com/0SHB80h.png" alt="11"><div align="left"></div></div></p>
+<p>现在编译完成了，接下来我们需要把编译生成的二进制文件安装到刚才我们指定的../system 目录里面，使用命令“make install”安装二进制文件到“../system”目录，并得到最后成功的截图如下：<br></p>
+<p><pre><code><br>madmanazo@ubuntu:~/minilinux/busybox-1.22.1$ <font color="#EE00EE">make install</font><br></code></pre></p>
+<p><div align="center"><img src="https://i.imgur.com/QaWUhKK.png" alt="12"><div align="left"></div></div></p>
+<p>打开“../system”目录，可以查看到最后生成的几个文件：<font color="#7EC0EE"><strong>bin、最后linuxrc、sbin、usr</strong></font></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">-BusyBox</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Linux//" class="article-tag-list-link color2">-Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/30/Linux/最小Linux系统制作/">展开全文 >></a>
+        </p>
+      
+	  
+	  
+	  
+
+	  
+      
+	  
+      <div class="clearfix"></div>
+	  
+	  
+	  
+	
+	  
+	  
+	  
+    </div>
+	
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Linux/WinCP连接Ubuntu" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -264,119 +482,6 @@ madmanazo@ubuntu:~$ <font color="#EE00EE">ps -e|grep ssh</font>
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/11/30/Linux/WinCP连接Ubuntu/">展开全文 >></a>
-        </p>
-      
-	  
-	  
-	  
-
-	  
-      
-	  
-      <div class="clearfix"></div>
-	  
-	  
-	  
-	
-	  
-	  
-	  
-    </div>
-	
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-AiSgen的.ais文件生成方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/28/AiSgen的.ais文件生成方法/">AiSgen的.ais文件生成方法</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/28/AiSgen的.ais文件生成方法/" class="archive-article-date">
-  	<time datetime="2018-11-28T15:25:38.051Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-28</time>
-</a>
-        
-      </header>
-    
-	
-<!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-	
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="AiSgen介绍"><a href="#AiSgen介绍" class="headerlink" title="AiSgen介绍"></a>AiSgen介绍</h1><hr>
-<p>AiSgen是Ti的一个文件镜像转换工具，因为仿真器只支持ais格式镜像烧写，而CCS软件编译生成的镜像为.out格式文件，所以如果用仿真器烧写程序进行NAND FLASH固化的话必须使用AiSgen软件将.out格式镜像转换为.ais格式镜像</p>
-<h1 id="AiSgen安装"><a href="#AiSgen安装" class="headerlink" title="AiSgen安装"></a>AiSgen安装</h1><hr>
-<p>傻瓜式安装，主要以下几步：</p>
-<p><div align="center"><img src="https://i.imgur.com/5moxJwN.png" alt="1"><div align="left"></div></div></p>
-<p><div align="center"><img src="https://i.imgur.com/wu6KqVK.png" alt="2"><div align="left"></div></div></p>
-<p><div align="center"><img src="https://i.imgur.com/V70zGQb.png" alt="3"><div align="left"></div></div></p>
-<p><div align="center"><img src="https://i.imgur.com/c6i3b83.png" alt="4"><div align="left"></div></div></p>
-<p><div align="center"><img src="https://i.imgur.com/zO4NRvO.png" alt="5"><div align="left"></div></div></p>
-<p><div align="center"><img src="https://i.imgur.com/5Z4yGmi.png" alt="6"><div align="left"></div></div></p>
-<h1 id="AiSgen使用"><a href="#AiSgen使用" class="headerlink" title="AiSgen使用"></a>AiSgen使用</h1><hr>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">-OMAPL138</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/DSP//" class="article-tag-list-link color5">-DSP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/28/AiSgen的.ais文件生成方法/">展开全文 >></a>
         </p>
       
 	  
@@ -528,11 +633,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color5">-CCS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-CCS</a>
+                <a href="javascript:void(0)" class="js-tag color1">-Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -573,6 +678,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">-PCB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">-BusyBox</a>
               </li>
             
             <div class="clearfix"></div>
