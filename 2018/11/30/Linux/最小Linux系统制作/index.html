@@ -9,7 +9,7 @@
   <title>最小Linux系统制作 | madmanazo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="BusyBox(瑞士军刀) BusyBox最初是由Bruce Perens在1996年为Debian GNU/Linux安装盘编写的。其目标是在一张软盘上创建一个可引导的GNU/Linux系统，这可以用作安装盘和急救盘。一张软盘可以保存大约1.4-1.7MB的内容，因此这里没有多少空间留给Linux内核以及相关的用户应用程序使用BusyBox是一个集成了三百多个最常用Linux命令和工具的软件。B">
-<meta name="keywords" content="-BusyBox">
+<meta name="keywords" content="-4412">
 <meta property="og:type" content="article">
 <meta property="og:title" content="最小Linux系统制作">
 <meta property="og:url" content="http://yoursite.com/2018/11/30/Linux/最小Linux系统制作/index.html">
@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://i.imgur.com/iU5RUjL.png">
 <meta property="og:image" content="https://i.imgur.com/KY8VZEM.png">
 <meta property="og:image" content="https://i.imgur.com/H6hlQbP.png">
-<meta property="og:updated_time" content="2018-12-01T03:15:13.723Z">
+<meta property="og:updated_time" content="2018-12-01T03:29:03.726Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="最小Linux系统制作">
 <meta name="twitter:description" content="BusyBox(瑞士军刀) BusyBox最初是由Bruce Perens在1996年为Debian GNU/Linux安装盘编写的。其目标是在一张软盘上创建一个可引导的GNU/Linux系统，这可以用作安装盘和急救盘。一张软盘可以保存大约1.4-1.7MB的内容，因此这里没有多少空间留给Linux内核以及相关的用户应用程序使用BusyBox是一个集成了三百多个最常用Linux命令和工具的软件。B">
@@ -668,6 +668,40 @@ arm-2009q3                                                      linux_tools.tgz
 arm-2009q3-67-arm-none-linux-gnueabi-i686-pc-linux-gnu.tar.bz2  system
 busybox-1.22.1                                                  system.img
 busybox-1.22.1.tar.bz2
+</code></pre>
+
+<pre><code>
+make_ext4fs -s -l 314572800 -a root -L linux system.img system
+
+-j ：journal size 日志大小
+
+-b：block_size 块大小
+
+-g: blocks per group 一个组有多少个块
+
+-i: inodes 索引节点
+
+-I:inode size 索引大小
+
+-L:  Label标签
+
+-l 分区大小，需要查看分区的大小
+
+       314572800  --300M（ITOP4412大小300M）
+
+-s  就是生成ext4的S模式制作
+
+-a：android mountpoint， 是指这个image用于Linux系统的哪个挂载点 
+
+     （若为-a system即表示为android系统，挂载点即是/system)
+
+     （若为-a root 即表示为kernel, 挂载点即是/kernel)
+
+      使用这个参数，make_ext4fs会根据private/android_filesystem_config.h里定义好的权限来给文件夹里的所有文件重新设置权限，如果你刷机以后发现有文件权限不对，可以手工修改android_filesystem_config.h来添加权限，重新编译make_ext4fs，也可以不使用 “-a system”参数，这样就会使用文件的默认权限）。
+
+system.img FileName，文件名
+
+system： directory 目录
 </code></pre></div></div></div></div>
       
 
@@ -707,7 +741,7 @@ busybox-1.22.1.tar.bz2
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">-BusyBox</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">-4412</a>
         		</li>
       		
 		</ul>
@@ -806,6 +840,15 @@ busybox-1.22.1.tar.bz2
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/12/02/Linux/TFTP服务器搭建与测试/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          TFTP服务器搭建与测试
+        
+      </div>
+    </a>
   
   
     <a href="/2018/11/30/Linux/WinCP连接Ubuntu/" id="article-nav-older" class="article-nav-link-wrap">
@@ -966,7 +1009,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-CCS</a>
+                <a href="javascript:void(0)" class="js-tag color1">-Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -974,15 +1017,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-Keil</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color5">-CCS</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">-STM32</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-Keil</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -994,19 +1037,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-4412</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-TFTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">-C2000</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">-BusyBox</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-WinCP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1014,11 +1053,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-PCB</a>
+                <a href="javascript:void(0)" class="js-tag color2">-Music</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-Music</a>
+                <a href="javascript:void(0)" class="js-tag color5">-Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">-WinCP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">-PCB</a>
               </li>
             
             <div class="clearfix"></div>

@@ -161,20 +161,20 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-C2000/TMS320X281x的CPU定时器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-C2000/TMS302X281x的中断系统" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/27/C2000/TMS320X281x的CPU定时器/">TMS320X281x的CPU定时器</a>
+      <a class="article-title" href="/2018/11/28/C2000/TMS302X281x的中断系统/">TMS302X281x的中断系统</a>
     </h1>
   
 
         
-        <a href="/2018/11/27/C2000/TMS320X281x的CPU定时器/" class="archive-article-date">
-  	<time datetime="2018-11-27T04:55:35.519Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-27</time>
+        <a href="/2018/11/28/C2000/TMS302X281x的中断系统/" class="archive-article-date">
+  	<time datetime="2018-11-28T02:28:58.027Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-28</time>
 </a>
         
       </header>
@@ -186,109 +186,32 @@
 	
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="什么是定时器"><a href="#什么是定时器" class="headerlink" title="什么是定时器"></a>什么是<a href="https://en.m.wikipedia.org/wiki/Timer" title="定时器" target="_blank" rel="noopener">定时器</a></h1><hr>
-<p>定时器是什么其实从字面意思就能理解，它是一种专用类型的时钟，用于测量特定的时间间隔，从而达到准确控制时间的目的，如古时所用的沙漏、水漏，到现在的闹钟等都属于定时器</p>
-<h1 id="CPU定时器"><a href="#CPU定时器" class="headerlink" title="CPU定时器"></a>CPU定时器</h1><hr>
-<p>TMS320X281x系列DSP最多有三个32位的CPU定时器(TIMER0/1/2)，其中CPU-TIMER2是保留给实时操作系统(如DSP-BIOS)使用的，如果应用程序不使用DSP-BIOS，则用户可以使用CPU-TIMER2，CPU-TIMER0/1可用于用户应用程序<br></p>
-<p><div align="center"><img src="https://i.imgur.com/gLwp6FV.png" alt="cput"><div align="left"><br></div></div></p>
-<p><div align="center"><img src="https://i.imgur.com/i0sS5Ee.png" alt="cput1"><div align="left"><br></div></div></p>
-<p><div align="center"><img src="https://i.imgur.com/JoGCfZ4.png" alt="cput2"><div align="left"><br></div></div></p>
-<p><div align="center"><img src="https://i.imgur.com/StKlqbE.png" alt="cput3"><div align="left"><br></div></div></p>
-<p>CPU定时器的配置和使用是非常简单的，CPU定时器的一般操作如下：32位计数器寄存器TIMH：TIM装入周期寄存器PRDH：PRD中的值。计数器寄存器以28x的SYSCLKOUT速率递减。 当计数器达到0时，定时器中断输出信号产生中断脉冲<br></p>
-<p>Ti官方配置例子如下:</p>
-
-<pre><code>
-#include "DSP281x_Device.h"     // Headerfile Include File
-#include "DSP281x_Examples.h"   // Examples Include File
-
-struct CPUTIMER_VARS CpuTimer0;
-
-// When using DSP BIOS & other RTOS, comment out CPU Timer 2 code.
-struct CPUTIMER_VARS CpuTimer1;
-struct CPUTIMER_VARS CpuTimer2;
-
-//---------------------------------------------------------------------------
-// InitCpuTimers:
-//---------------------------------------------------------------------------
-// This function initializes all three CPU timers to a known state.
-//
-void InitCpuTimers(void)
-{
-    // CPU Timer 0
-    // Initialize address pointers to respective timer registers:
-    CpuTimer0.RegsAddr = &CpuTimer0Regs;
-    // Initialize timer period to maximum:
-    CpuTimer0Regs.PRD.all  = 0xFFFFFFFF;
-    // Initialize pre-scale counter to divide by 1 (SYSCLKOUT):
-    CpuTimer0Regs.TPR.all  = 0;
-    CpuTimer0Regs.TPRH.all = 0;
-    // Make sure timer is stopped:
-    CpuTimer0Regs.TCR.bit.TSS = 1;
-    // Reload all counter register with period value:
-    CpuTimer0Regs.TCR.bit.TRB = 1;
-    // Reset interrupt counters:
-    CpuTimer0.InterruptCount = 0;
-
-
-// CpuTimer2 is reserved for DSP BIOS & other RTOS
-// Do not use this timer if you ever plan on integrating
-// DSP-BIOS or another realtime OS.
-
-    // Initialize address pointers to respective timer registers:
-    CpuTimer1.RegsAddr = &CpuTimer1Regs;
-    CpuTimer2.RegsAddr = &CpuTimer2Regs;
-    // Initialize timer period to maximum:
-    CpuTimer1Regs.PRD.all  = 0xFFFFFFFF;
-    CpuTimer2Regs.PRD.all  = 0xFFFFFFFF;
-    // Make sure timers are stopped:
-    CpuTimer1Regs.TCR.bit.TSS = 1;
-    CpuTimer2Regs.TCR.bit.TSS = 1;
-    // Reload all counter register with period value:
-    CpuTimer1Regs.TCR.bit.TRB = 1;
-    CpuTimer2Regs.TCR.bit.TRB = 1;
-    // Reset interrupt counters:
-    CpuTimer1.InterruptCount = 0;
-    CpuTimer2.InterruptCount = 0;
-
-}
-
-//---------------------------------------------------------------------------
-// ConfigCpuTimer:
-//---------------------------------------------------------------------------
-// This function initializes the selected timer to the period specified
-// by the "Freq" and "Period" parameters. The "Freq" is entered as "MHz"
-// and the period in "uSeconds". The timer is held in the stopped state
-// after configuration.
-//
-void ConfigCpuTimer(struct CPUTIMER_VARS *Timer, float Freq, float Period)
-{
-    Uint32  temp;
-
-    // Initialize timer period:
-    Timer->CPUFreqInMHz = Freq;
-    Timer->PeriodInUSec = Period;
-    temp = (long) (Freq * Period);
-    Timer->RegsAddr->PRD.all = temp;
-
-    // Set pre-scale counter to divide by 1 (SYSCLKOUT):
-    Timer->RegsAddr->TPR.all  = 0;
-    Timer->RegsAddr->TPRH.all  = 0;
-
-    // Initialize timer control register:
-    Timer->RegsAddr->TCR.bit.TSS = 1;      // 1 = Stop timer, 0 = Start/Restart Timer
-    Timer->RegsAddr->TCR.bit.TRB = 1;      // 1 = reload timer
-    Timer->RegsAddr->TCR.bit.SOFT = 1;
-    Timer->RegsAddr->TCR.bit.FREE = 1;     // Timer Free Run
-    Timer->RegsAddr->TCR.bit.TIE = 1;      // 0 = Disable/ 1 = Enable Timer Interrupt
-
-    // Reset interrupt counter:
-    Timer->InterruptCount = 0;
-}
-</code></pre>
-
-<h1 id="ConfigCpuTimer-amp-Cputimer0-SYSCLKOUT-Y-106-配置函数详解"><a href="#ConfigCpuTimer-amp-Cputimer0-SYSCLKOUT-Y-106-配置函数详解" class="headerlink" title="ConfigCpuTimer(&amp;Cputimer0,SYSCLKOUT,Y * 106)配置函数详解"></a>ConfigCpuTimer(&amp;Cputimer0,SYSCLKOUT,Y * 10<sup>6</sup>)配置函数详解</h1><hr>
-<p>参数的话上述程序中都有详细的介绍不多说，主要是定时时间计算问题；根据配置函数的定义，CPU定时器周期寄存器PRD的值为(Freq <em> Period = SYSCLKOUT </em> Y * 10<sup>6</sup>)，CPU定时器的分频器TDDRH:TDDR的值为0，故定时器定时计算公式如下<br><br>SYSCLKOUT(MHz)&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;定时器周期T(s)&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;想要定时Y(s)<br></p>
-<p><div align="center"><img src="https://i.imgur.com/i7xsTat.png" alt="T"><div align="left"><br></div></div></p>
+        <h1 id="什么是中断"><a href="#什么是中断" class="headerlink" title="什么是中断"></a>什么是中断</h1><hr>
+<p>在这之前如果有接触过单片机，那么应该对中断的概念很清楚了，所谓中断，是指计算机在运行过程中，出现某些意外或紧急情况急需处理，CPU能自动停止正在执行的程序转而去执行发生的意外或紧急情况的程序，处理完毕后又返回被暂停的程序继续运行</p>
+<h1 id="中断过程"><a href="#中断过程" class="headerlink" title="中断过程"></a>中断过程</h1><hr>
+<ol>
+<li>中断源发出中断请求</li>
+<li>CPU判断该中断是否可以被响应，也就是是否允许中断和该中断源是否被屏蔽</li>
+<li>中断优先级排队，因为可能不止一个中断，所以需要进行中断优先级排队，CPU再对各中断优先级进行裁决</li>
+<li>CPU执行完当前指令或者当前指令无法执行完，则立即停止当前程序，保护断电地址和CPU当前状态，转入相应的中断服务程序</li>
+<li>执行中断服务程序</li>
+<li>恢复被保护的状态，执行”中断返回”指令回到被中断的程序或者转入其它程序<br></li>
+</ol>
+<p>一个中断流程的话是很简单的：<br></p>
+<p><div align="center"><img src="https://i.imgur.com/ZbYQyTm.png" alt="单中断处理"><div align="left"><br></div></div></p>
+<p>下面是51单片机的中断流程图有助于我们理解中断流程，51单片机中断系统有两个优先级，5个中断源，可以实现二级中断嵌套</p>
+<p><div align="center"><img src="https://i.imgur.com/LiJFhbq.png" alt="51中断图"><div align="left"><br></div></div></p>
+<p>其它嵌入式芯片的中断流程，诸如STM32、TMS320X281x等，不过是中断更多，其实流程都差不多</p>
+<h1 id="TMS320X281x的中断系统"><a href="#TMS320X281x的中断系统" class="headerlink" title="TMS320X281x的中断系统"></a>TMS320X281x的中断系统</h1><hr>
+<p>下面几张图对TMS320X281x的中断系统进行了生动而详细的展示：</p>
+<p><div align="center"><img src="https://i.imgur.com/Kq3JJW9.png" alt="TMS320281x的中断系统"><div align="left"></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/HyEtCVP.png" alt="中断"><div align="left"><br><br>8个PIE块中断被分组为一个CPU中断。 总共有12个CPU中断组，用每组8个中断等于96个可能的中断。 在F281x和C281x上，其中45个被使用</div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/TmiNq01.png" alt="PIE"><div align="left"></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/Nir2VTu.png" alt="PIE1"><div align="left"></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/L19aLqM.png" alt="extern interrupts"><div align="left"><br><br>总结一下：TMS320X281x的中断系统采用的是三级中断机制，分别为外设级、PIE级和CPU级；对于某一个具体的外设中断请求而言，只要任意一级中断不许可，CPU最终都不会响应该外设请求</div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/8WhsnIX.png" alt="三级中断机制"><div align="left"></div></div></p>
+<h1 id="CPU-TIMER0中断实例"><a href="#CPU-TIMER0中断实例" class="headerlink" title="CPU-TIMER0中断实例"></a>CPU-TIMER0中断实例</h1><hr>
+<p>具体的应用代码可以参考<font color="#FF0033"><strong>Ti官方例程</strong></font>，里面有详细的注释足以让我们学通并且使用，可以去<strong><a href="http://www.ti.com.cn/general/cn/docs/lit/getliterature.tsp?baseLiteratureNumber=sprc097&amp;fileType=zip" target="_blank" rel="noopener">TI官方下载</a></strong>或者看我的<strong><a href="https://github.com/madmanazo/TMS320F2812_/blob/master/DSP281x_HeaderFiles/v120/DSP281x_examples/cpu_timer/Example_281xCpuTimer.c" title="Github链接" target="_blank" rel="noopener">Github链接</a></strong></p>
 
       
 
@@ -323,7 +246,7 @@ void ConfigCpuTimer(struct CPUTIMER_VARS *Timer, float Freq, float Period)
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/27/C2000/TMS320X281x的CPU定时器/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/11/28/C2000/TMS302X281x的中断系统/">展开全文 >></a>
         </p>
       
 	  
@@ -366,20 +289,20 @@ void ConfigCpuTimer(struct CPUTIMER_VARS *Timer, float Freq, float Period)
 
 
   
-    <article id="post-Markdown_grammar/MarkdownPad无法显示数学公式解决方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-STM32串口空闲中断" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/26/Markdown_grammar/MarkdownPad无法显示数学公式解决方法/">MarkdownPad无法显示数学公式解决方法</a>
+      <a class="article-title" href="/2018/11/27/STM32串口空闲中断/">STM32串口空闲中断</a>
     </h1>
   
 
         
-        <a href="/2018/11/26/Markdown_grammar/MarkdownPad无法显示数学公式解决方法/" class="archive-article-date">
-  	<time datetime="2018-11-26T15:07:20.470Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-26</time>
+        <a href="/2018/11/27/STM32串口空闲中断/" class="archive-article-date">
+  	<time datetime="2018-11-27T06:49:36.012Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-27</time>
 </a>
         
       </header>
@@ -391,14 +314,181 @@ void ConfigCpuTimer(struct CPUTIMER_VARS *Timer, float Freq, float Period)
 	
     <div class="article-entry" itemprop="articleBody">
       
-        <p>前不久突然想对MarkdownPad里面的数学公式进行格式化，使其看起来更直观一些，操作系统为Windows10下，结果试了网上的好多方法都不行，最终找到一个比较简单的方法是使用<strong><a href="https://www.codecogs.com/latex/eqneditor.php" target="_blank" rel="noopener">在线LaTeX编辑器</a></strong>，其不仅可以插入所见即所得公式代码到MarkdownPad，还能保存为图片插入到MarkdownPad中，为了防止出错，我更喜欢以图片的方式插入数学公式到MarkdownPad中</p>
-<p>Here is an example of application:</p>
+        <h1 id="STM32串口空闲中断"><a href="#STM32串口空闲中断" class="headerlink" title="STM32串口空闲中断"></a>STM32串口空闲中断</h1><hr>
+<p>在STM32中，我们经常需要用串口接收数据，除了串口用于代码调试printf基础功能之外，我们更多需要使用串口中断来接收数据，但是如此的话频繁进入串口中断，然后处理，效率还是太低，老板(CPU)也不高兴，于是召集各片内外设召开了技术讨论会<br></p>
+<p><font color="#FF0033">DMA：</font>可以使用我来接收串口数据，比如使用USART1的话利用DMA2就可以<br></p>
+<p><div align="center"><img src="https://i.imgur.com/zGNOF1O.png" alt="0"><div align="left"><br></div></div></p>
+<p><font color="#FF0033">老板：</font>比较关键的一点就是不知道何时数据接收完毕，因为将DMA接收数据长度不固定了，那应该怎么办呢？<br><br>正在大家冥思苦想的时候，STM32的串口站起来了，生气的说到：</p>
+<p><font color="#FF0033">STM32串口：</font>看来你们对我的认识还是不够啊，我还支持串口空闲中断呢，你们只需要对我进行简单的串口空闲中断配置，那么<font color="#FF7F24"><strong>当接受到数据以后，首次进入空闲，我就会产生空闲中断，然后程序就会跳到串口中断服务函数中去</strong></font><br></p>
+<p><div align="center"><img src="https://i.imgur.com/eMRX6nk.png" alt="1"><div align="left"><br></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/arVOVRV.png" alt="2"><div align="left"><br></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/nfv2Svl.png" alt="3"><div align="left"><br><br>大伙一听，好像是这么个理儿，老板也很高兴了，确定这种方案之后吩咐大家开始进行STM32串口空闲中断不定长数据接收配置，结果如下：<br></div></div></p>
+<h1 id="空闲中断配置代码"><a href="#空闲中断配置代码" class="headerlink" title="空闲中断配置代码"></a>空闲中断配置代码</h1><p>usart.h:</p>
 
-<pre><code>x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
+<pre><code>
+#ifndef __USART_H
+#define __USART_H
+
+#include "stm32f4xx.h"
+#include "stdio.h"
+
+#define USART1_REC_LEN 100
+
+extern u8 USART_RX_BUF[USART1_REC_LEN];
+extern u8 USART1_REC_CNT;
+extern u8 USART1_RX_FLAG;
+
+void USART1_Init(u32 bound);
+
+#endif
 </code></pre>
 
-<p><div align="center"> <a href="https://www.codecogs.com/eqnedit.php?latex=x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" title="x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}"></a></div></p>
-<div align="left"></div>
+<p>usart.c:</p>
+
+<pre><code>
+/* Includes ------------------------------------------------------------------*/
+#include "usart.h"
+
+/******************************Code area************************************/
+
+u8 USART_RX_BUF[USART1_REC_LEN];
+u8 USART1_REC_CNT = 0;
+u8 USART1_RX_FLAG = 0;
+
+/*******************************************************************************
+* @Name      : USART1_Init
+* @brief    : USART1初始化配置
+* @Input    : bound: 串口波特率
+* @Output   : None
+* @retval   : None
+*******************************************************************************/
+void USART1_Init(u32 bound)
+{
+    GPIO_InitTypeDef    GPIO_InitStructure;
+    USART_InitTypeDef    USART_InitStructure;
+    DMA_InitTypeDef    DMA_InitStructure;
+
+    RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA | RCC_AHB1Periph_DMA2,ENABLE);    //使能GPIOA时钟 & DMA1时钟
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1,ENABLE);                        //使能USART1时钟
+
+    GPIO_PinAFConfig(GPIOA,GPIO_PinSource9,GPIO_AF_USART1);            //PA9复用为USART1
+    GPIO_PinAFConfig(GPIOA,GPIO_PinSource10,GPIO_AF_USART1);        //PA10复用为USART1
+
+    GPIO_InitStructure.GPIO_Mode=GPIO_Mode_AF;                        //复用功能
+    GPIO_InitStructure.GPIO_OType=GPIO_OType_PP;                    //推挽复用输出
+    GPIO_InitStructure.GPIO_Pin=GPIO_Pin_9 | GPIO_Pin_10;            //选择USART1对应的管脚：PA9->USART1_TX,PA10->USART1_RX
+    GPIO_InitStructure.GPIO_PuPd=GPIO_PuPd_UP;                        //上拉
+    GPIO_InitStructure.GPIO_Speed=GPIO_Speed_100MHz;                //端口速度100MHz
+    GPIO_Init(GPIOA,&GPIO_InitStructure);                            //GPIO端口初始化
+
+    USART_InitStructure.USART_BaudRate=bound;                                      //设置串口波特率：115200
+    USART_InitStructure.USART_HardwareFlowControl=USART_HardwareFlowControl_None; //设置有无硬件流控制：无
+    USART_InitStructure.USART_Mode=USART_Mode_Rx | USART_Mode_Tx;                  //设置模式：接收&发送
+    USART_InitStructure.USART_Parity=USART_Parity_No;                              //设置有无奇偶校验：无
+    USART_InitStructure.USART_StopBits=USART_StopBits_1;                          //设置停止位：1位
+    USART_InitStructure.USART_WordLength=USART_WordLength_8b;                      //设置数据位：8位
+    USART_Init(USART1,&USART_InitStructure);                                      //USART1初始化
+
+    DMA_DeInit(DMA2_Stream2);                                                //将DMA2_Stream2寄存器取消初始化为其默认复位值
+    while(DMA_GetCmdStatus(DMA2_Stream2) != DISABLE);                        //等待DMA可配置 
+    DMA_InitStructure.DMA_BufferSize = USART1_REC_LEN;                        //设置DMA数据传输量
+    DMA_InitStructure.DMA_Channel = DMA_Channel_4;                            //设置DMA数据传输通道
+    DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralToMemory;                    //设置数据传输方向
+    DMA_InitStructure.DMA_FIFOMode = DMA_FIFOMode_Disable;                    //设置是否开启FIFO模式
+    DMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_Full;            //设置FIFO阈值，可以为FIFO的1/4、1/2、3/4、1倍，没有开启FIFO时可不关心
+    DMA_InitStructure.DMA_Memory0BaseAddr = (u32)USART_RX_BUF;                //设置存放DMA传输数据的内存基地址
+    DMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_Single;                //设置存储器突发传输配置，可设置单次突发传输、4个节拍增量、8个节拍增量、16个节拍增量突发传输模式
+    DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;            //设置内存的数据长度是为字节存储、半字存储还是字存储
+    DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;                    //设置传输数据时内存地址是否递增
+    DMA_InitStructure.DMA_Mode = DMA_Mode_Circular;                            //设置DMA模式，可设置普通模式或循环模式，循环模式会让DMA接收一帧数据之后再回到初址
+    DMA_InitStructure.DMA_PeripheralBaseAddr = (u32)(&(USART1->DR));        //设置DMA传输的外设基地址
+    DMA_InitStructure.DMA_PeripheralBurst = DMA_PeripheralBurst_Single;        //设置外设突发传输配置，可设置单次突发传输、4个节拍增量、8个节拍增量、16个节拍增量突发传输模式
+    DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;    //设置外设的数据长度是为字节传输、半字传输还是字传输
+    DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;        //设置传输数据的时候外设的地址是不变还是递增
+    DMA_InitStructure.DMA_Priority = DMA_Priority_High;                        //设置DMA通道的优先级，有低、中、高、超高四种优先级可选
+    DMA_Init(DMA2_Stream2,&DMA_InitStructure);                                //DMA2 for USART1_RX初始化
+
+    DMA_Cmd(DMA2_Stream2,ENABLE);                  //使能DMA传输
+    NVIC_EnableIRQ(USART1_IRQn);                  //使能USART1中断通道
+    USART_Cmd(USART1,ENABLE);                      //USART1使能
+    USART_ITConfig(USART1,USART_IT_IDLE,ENABLE);  //若总线空闲，产生中断
+    USART_DMACmd(USART1,USART_DMAReq_Rx,ENABLE);  //USART1's DMA接收&发送使能
+    USART_ClearFlag(USART1,USART_FLAG_TC);        //清除发送完成标志
+}
+
+/*******************************************************************************
+* @Name      : USART1_IRQHandler
+* @brief    : USART1中断服务函数
+* @Input    : None
+* @Output   : None
+* @retval   : None
+*******************************************************************************/
+void USART1_IRQHandler(void)
+{
+    u8 i;
+
+    if(USART_GetITStatus(USART1, USART_IT_IDLE) != RESET)        //接收中断(接收到的数据必须是0x0D 0x0A结尾)
+    {
+        i = USART1->SR;        //软件序列清零(读入USART_SR寄存器，然后读入USART_DR寄存器)
+        i = USART1->DR;
+        //USART_ReceiveData(USART1);        // Clear IDLE interrupt flag bit(注释掉上面i相关代码换成此句效果一样)
+        //(X) USART_ClearITPendingBit(USART1,USART_IT_IDLE);    //清除发送完成标志(可查看参考手册712页或者USART_ClearITPendingBit函数说明(stm32f4xx_usart.c源文件1437~1441行))
+
+        USART1_REC_CNT = USART1_REC_LEN-DMA_GetCurrDataCounter(DMA2_Stream2);        //算出接本帧数据长度
+
+        /***********帧数据处理函数************/
+        printf ("The Length:%d\r\n",USART1_REC_CNT);
+        /*************************************/
+
+        USART1_RX_FLAG = 1;        //接收数据标志置位
+
+        DMA_Cmd(DMA2_Stream2,DISABLE);                                //失能DMA传输
+        while(DMA_GetCmdStatus(DMA2_Stream2) != DISABLE);            //等待DMA可配置
+        DMA_SetCurrDataCounter(DMA2_Stream2,USART1_REC_LEN);        //重新设置接收数据的个数
+        DMA_Cmd(DMA2_Stream2,ENABLE);                                //使能DMA传输
+        USART_ITConfig(USART1,USART_IT_IDLE,ENABLE);                  //若总线空闲，产生中断
+   }
+}
+
+/*******************************************************************************
+* @Name      : fputc
+* @brief    : 内部调用函数，注意要勾选OPTIONS中的USE Micro LIB选项
+*              由于printf执行是调用fputc函数，所以相当于重新定义printf函数
+*              ，支持printf()发送数据。
+* @Input    : None
+* @Output   : None
+* @retval   : None
+*******************************************************************************/
+int fputc(int ch,FILE *f)
+{
+    USART_SendData(USART1,(u8)ch);
+    while(USART_GetFlagStatus(USART1,USART_FLAG_TXE)==RESET);        //获取串口状态
+    return ch;
+}
+
+/*******************************************************************************
+* @Name      : fgetc
+* @brief    : 内部调用函数，注意要勾选OPTIONS中的USE Micro LIB选项
+*              由于scanf执行是调用fgetc函数，所以相当于重新定义scanf函数
+*              ，支持printf()发送数据。
+* @Input    : None
+* @Output   : None
+* @retval   : None
+*******************************************************************************/
+int fgetc(FILE *f)
+{
+    while(USART_GetFlagStatus(USART1,USART_FLAG_RXNE) == RESET);        //获取串口状态
+    return (USART_ReceiveData(USART1));
+}
+</code></pre>
+
+<p><div align="center"><img src="https://i.imgur.com/JGc3Z0K.gif" alt="4"><div align="left"></div></div></p>
+<p>下载之后使用<a href="http://www.daxia.com/" target="_blank" rel="noopener">SSCOM串口调试器</a>和Keil Debug测试：</p>
+<p><div align="center"><img src="https://i.imgur.com/vaZQGDL.png" alt="5"><div align="left"></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/exdQkE9.png" alt="6"><div align="left"><br><br>点击Keil调试器Run(F5)之后发送数据结果如下：</div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/ve3FWth.png" alt="7"><div align="left"><br></div></div></p>
+<p><div align="center"><img src="https://i.imgur.com/nWMPBfb.gif" alt="8"><div align="left"><br><br>上面结果只是简单测试，提交给老板之后，<font color="#FF0033"><strong>新的问题</strong></font>：<strong>如果我们发送数据的频率过快，在下一帧数据到来之前本帧数据未来得及处理怎么办呢？</strong><br></div></div></p>
+
       
 
       
@@ -411,7 +501,7 @@ void ConfigCpuTimer(struct CPUTIMER_VARS *Timer, float Freq, float Period)
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">-Markdown</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-STM32</a>
         		</li>
       		
 		</ul>
@@ -423,7 +513,7 @@ void ConfigCpuTimer(struct CPUTIMER_VARS *Timer, float Freq, float Period)
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Markdown//" class="article-tag-list-link color5">-Markdown</a>
+        			<a href="/categories/嵌入式//" class="article-tag-list-link color5">-嵌入式</a>
         		</li>
       		
 		</ul>
@@ -432,7 +522,7 @@ void ConfigCpuTimer(struct CPUTIMER_VARS *Timer, float Freq, float Period)
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/26/Markdown_grammar/MarkdownPad无法显示数学公式解决方法/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/11/27/STM32串口空闲中断/">展开全文 >></a>
         </p>
       
 	  
@@ -477,7 +567,7 @@ void ConfigCpuTimer(struct CPUTIMER_VARS *Timer, float Freq, float Period)
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
     </nav>
   
 
@@ -580,7 +670,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-CCS</a>
+                <a href="javascript:void(0)" class="js-tag color1">-Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -588,15 +678,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-Keil</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color5">-CCS</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">-STM32</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-Keil</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -608,19 +698,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-4412</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-TFTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">-C2000</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">-BusyBox</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-WinCP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -628,11 +714,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-PCB</a>
+                <a href="javascript:void(0)" class="js-tag color2">-Music</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-Music</a>
+                <a href="javascript:void(0)" class="js-tag color5">-Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">-WinCP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">-PCB</a>
               </li>
             
             <div class="clearfix"></div>

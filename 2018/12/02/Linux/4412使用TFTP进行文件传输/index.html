@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: -BusyBox | madmanazo</title>
+  <title>4412使用TFTP进行文件传输 | madmanazo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="madmanazo">
-<meta property="og:url" content="http://yoursite.com/tags/BusyBox/index.html">
+  <meta name="description" content="IP地址是指互联网协议地址（英语：Internet Protocol Address，又译为网际协议地址），是IP Address的缩写。IP地址是IP协议提供的一种统一的地址格式，它为互联网上的每一个网络和每一台主机分配一个逻辑地址，以此来屏蔽物理地址的差异 子网掩码 子网掩码(subnet mask)又叫网络掩码、地址掩码、子网络遮罩，它是一种用来指明一个IP地址的哪些位标识的是主机所在的子网">
+<meta name="keywords" content="-4412">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4412使用TFTP进行文件传输">
+<meta property="og:url" content="http://yoursite.com/2018/12/02/Linux/4412使用TFTP进行文件传输/index.html">
 <meta property="og:site_name" content="madmanazo">
+<meta property="og:description" content="IP地址是指互联网协议地址（英语：Internet Protocol Address，又译为网际协议地址），是IP Address的缩写。IP地址是IP协议提供的一种统一的地址格式，它为互联网上的每一个网络和每一台主机分配一个逻辑地址，以此来屏蔽物理地址的差异 子网掩码 子网掩码(subnet mask)又叫网络掩码、地址掩码、子网络遮罩，它是一种用来指明一个IP地址的哪些位标识的是主机所在的子网">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/9WqVBfM.png">
+<meta property="og:updated_time" content="2018-12-02T13:57:55.926Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="madmanazo">
+<meta name="twitter:title" content="4412使用TFTP进行文件传输">
+<meta name="twitter:description" content="IP地址是指互联网协议地址（英语：Internet Protocol Address，又译为网际协议地址），是IP Address的缩写。IP地址是IP协议提供的一种统一的地址格式，它为互联网上的每一个网络和每一台主机分配一个逻辑地址，以此来屏蔽物理地址的差异 子网掩码 子网掩码(subnet mask)又叫网络掩码、地址掩码、子网络遮罩，它是一种用来指明一个IP地址的哪些位标识的是主机所在的子网">
+<meta name="twitter:image" content="https://i.imgur.com/9WqVBfM.png">
   
     <link rel="alternative" href="/atom.xml" title="madmanazo" type="application/atom+xml">
   
@@ -159,48 +166,173 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Linux/4412使用TFTP进行文件传输" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/30/Linux/最小Linux系统制作/" class="archive-article-date">
-  	<time datetime="2018-11-30T09:11:54.635Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/30/Linux/最小Linux系统制作/">最小Linux系统制作</a>
+    <h1 class="article-title" itemprop="name">
+      4412使用TFTP进行文件传输
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/12/02/Linux/4412使用TFTP进行文件传输/" class="archive-article-date">
+  	<time datetime="2018-12-02T12:23:24.725Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-02</time>
+</a>
+        
+      </header>
+    
+	
+<!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+	<div id="toc-article" class="toc-article">
+	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+		<strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#子网掩码"><span class="toc-number">1.</span> <span class="toc-text">子网掩码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#同一网段"><span class="toc-number">2.</span> <span class="toc-text">同一网段</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#计算方法"><span class="toc-number">3.</span> <span class="toc-text">计算方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IP修改"><span class="toc-number">4.</span> <span class="toc-text">IP修改</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#测试"><span class="toc-number">5.</span> <span class="toc-text">测试</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+	function showToc(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:block");
+		show_toc_btn.setAttribute("style","display:none");
+		};
+	function showBtn(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:none");
+		show_toc_btn.setAttribute("style","display:block");
+		};
+   </script>
+      
+<!-- 目录内容结束 -->
+	
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>IP地址是指互联网协议地址（英语：Internet Protocol Address，又译为网际协议地址），是IP Address的缩写。IP地址是IP协议提供的一种统一的地址格式，它为互联网上的每一个网络和每一台主机分配一个逻辑地址，以此来屏蔽物理地址的差异</p>
+<h1 id="子网掩码"><a href="#子网掩码" class="headerlink" title="子网掩码"></a>子网掩码</h1><hr>
+<p>子网掩码(subnet mask)又叫网络掩码、地址掩码、子网络遮罩，它是一种用来指明一个IP地址的哪些位标识的是主机所在的子网，以及哪些位标识的是主机的位掩码。子网掩码不能单独存在，它必须结合IP地址一起使用。子网掩码只有一个作用，就是将某个IP地址划分成网络地址和主机地址两部分<br><br>子网掩码是一个32位地址，用于屏蔽IP地址的一部分以区别网络标识和主机标识，并说明该IP地址是在局域网上，还是在远程网上</p>
+<h1 id="同一网段"><a href="#同一网段" class="headerlink" title="同一网段"></a>同一网段</h1><hr>
+<p>同一网段指的是IP地址和子网掩码相与得到相同的网络地址。想在同一网段，必须做到网络标识相同。各类IP的网络标识算法都是不一样的，需要根据子网掩码的位数来判断<br></p>
+<h1 id="计算方法"><a href="#计算方法" class="headerlink" title="计算方法"></a>计算方法</h1><hr>
+<pre><code>
+madmanazo@ubuntu:/$ <font color="#EE00EE">ifconfig</font>
+eth0      Link encap:Ethernet  HWaddr 00:0c:29:f5:1b:ea  
+          <font color="#FF0000">inet addr:192.168.1.115</font>  Bcast:192.168.1.225  <font color="#FF0000">Mask:255.255.255.0</font>
+          inet6 addr: fe80::20c:29ff:fef5:1bea/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:18780 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:13274 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:1965107 (1.9 MB)  TX bytes:7111381 (7.1 MB)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:3163 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:3163 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:276298 (276.2 KB)  TX bytes:276298 (276.2 KB)
+
+</code></pre>
+
+<pre><code>
+[root@iTOP-4412]# <font color="#EE00EE">cat etc/eth0-setting</font>                                                     
+<font color="#FF0000">IP=192.168.1.230</font>
+<font color="#FF0000">Mask=255.255.255.0</font>
+Gateway=192.168.1.1
+DNS=192.168.1.1
+MAC=08:90:90:90:90:90
+</code></pre>
+
+<p>板子和服务器系统的IP必须在同一网段内，且单纯的两个IP不能直接拿来确认是否在同一网段，必须与子网掩码结合经过计算才能得出结论<br></p>
+<p>计算方法为两个IP分别和相应的子网掩码做与运算，得出的结果相等则表明在同一网段内，举例如下：<br></p>
+<p>Ubuntu系统的IP和子网掩码分别是：192.168.1.115 和255.255.255.0<br><br>开发板的IP地址和子网掩码分别是：192.168.1.230 和255.255.255.0<br></p>
+<p>进行与运算首先要转换为二进制：<br><br>Ubuntu系统：<br><br>IP：11000000 10101000 ‭00000001‬ ‭‭‭01110011‬‬<br>‬<br>MASK：11111111 11111111 11111111 00000000<br><br>Result二进制：11000000 10101000 ‭00000001‬ 00000000<br><br>Result十六进制：192.168.1.0<br></p>
+<p>板子：<br><br>IP：11000000 10101000 00000001 11100110<br>‬<br>MASK：11111111 11111111 11111111 00000000<br><br>Result二进制：11000000 10101000 00000001 00000000<br><br>Result十六进制：192.168.1.0<br></p>
+<p>对比上面两个十六进制结果，可以发现这两个例子中的IP地址并在同一个网段，但是还需要注意路由器所允许的IP区间，故需要根据路由器修改IP地址</p>
+<h1 id="IP修改"><a href="#IP修改" class="headerlink" title="IP修改"></a>IP修改</h1><hr>
+<p>登录自己的路由器管理界面，进入到DHCP服务器下面,如下图所示，选择DHCP服务器，这里会有一个分配局域网中的IP区间。也就是说IP可以设置为192.168.1.100 到192.168.1.199 这个区间：</p>
+<p><div align="center"><img src="https://i.imgur.com/9WqVBfM.png" alt="0"><div align="left"></div></div></p>
+<p>重新计算配置IP地址如下<br><br>Ubuntu系统的IP和子网掩码分别是：192.168.1.115 和255.255.255.0<br><br>开发板的IP地址和子网掩码分别是：192.168.1.120 和255.255.255.0<br><br>Ubuntu系统：<br><br>IP：11000000 10101000 ‭00000001‬ ‭‭‭01110011‬‬<br>‬<br>MASK：11111111 11111111 11111111 00000000<br><br>Result二进制：11000000 10101000 ‭00000001‬ 00000000<br><br>Result十六进制：192.168.106.0<br></p>
+<p>板子：<br><br>IP：11000000 10101000 00000001 ‭‭01111000‬‬<br>‬<br>MASK：11111111 11111111 11111111 00000000<br><br>Result二进制：11000000 10101000 00000001 00000000<br><br>Result十六进制：192.168.106.0<br></p>
+<p>修改板子的网络配置文件eth0-setting的IP地址为192.168.1.120即可</p>
+<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><hr>
+<p>连接板子的网口到路由器上，然后输入ping命令确认板子和TFTP服务器是连通的，通过下面的信息可以确认板子和TFTP服务器是连通的：<br></p>
+<pre><code>
+[root@iTOP-4412]# <font color="#EE00EE">ping 192.168.1.115</font>                                                       
+PING 192.168.1.115 (192.168.1.115): 56 data bytes
+64 bytes from 192.168.1.115: seq=0 ttl=64 time=56.244 ms
+64 bytes from 192.168.1.115: seq=1 ttl=64 time=2.210 ms
+64 bytes from 192.168.1.115: seq=2 ttl=64 time=2.553 ms
+64 bytes from 192.168.1.115: seq=3 ttl=64 time=5.651 ms
+</code></pre>
+
+<p>现在便可以获取TFTP上的文件了：<br></p>
+<pre><code>
+[root@iTOP-4412]# <font color="#EE00EE">tftp -g -l test -r test 192.168.1.115</font>
+[  958.786917] [dm96-TxRound].0 for LEN_ODD tail_room +1, rslt add 1
+[root@iTOP-4412]# <font color="#EE00EE">ls</font>
+bin      etc      linuxrc  proc     sys      tmp      var
+dev      lib      mnt      sbin     test     usr
+[root@iTOP-4412]# cat test
+hello world
+</code></pre>
+
+<p>从上面也就意味着以后下载、调试程序可以直接使用TFTP服务器，比之前用U盘方便很多</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechat_reward1.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">-BusyBox</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">-4412</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -213,17 +345,146 @@
 	</div>
 
 
+      
+	  
+	  
+	  
+		<span class="archive-article-date">
+			阅读量 <span id="busuanzi_value_page_pv"></span>
+		</span>
+	  
+
+	  
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/12/02/Linux/4412使用TFTP进行文件传输/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+	  
+      <div class="clearfix"></div>
+	  
+	  
+	  
+	
+      
+	
+	  
+	  
+	  
+    </div>
+	
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/12/02/Linux/TFTP服务器搭建与测试/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">TFTP服务器搭建与测试</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#子网掩码"><span class="toc-number">1.</span> <span class="toc-text">子网掩码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#同一网段"><span class="toc-number">2.</span> <span class="toc-text">同一网段</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#计算方法"><span class="toc-number">3.</span> <span class="toc-text">计算方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IP修改"><span class="toc-number">4.</span> <span class="toc-text">IP修改</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#测试"><span class="toc-number">5.</span> <span class="toc-text">测试</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+  <div id="SOHUCS" sid="Linux/4412使用TFTP进行文件传输" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cytCBkNPd",
+        conf: "c09cb8dbf7ad75b9615fcf9da0dc5331"
+    });
+</script>
+</script>
+  
+
+  
+
+  
 
 
           </div>
@@ -254,9 +515,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
@@ -324,7 +585,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-CCS</a>
+                <a href="javascript:void(0)" class="js-tag color1">-Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -332,15 +593,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-Keil</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color5">-CCS</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">-STM32</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-Keil</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -352,19 +613,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-4412</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-TFTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">-C2000</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">-BusyBox</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-WinCP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -372,11 +629,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-PCB</a>
+                <a href="javascript:void(0)" class="js-tag color2">-Music</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-Music</a>
+                <a href="javascript:void(0)" class="js-tag color5">-Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">-WinCP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">-PCB</a>
               </li>
             
             <div class="clearfix"></div>
