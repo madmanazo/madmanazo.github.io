@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>madmanazo</title>
+  <title>Linux的进程 | madmanazo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="madmanazo">
-<meta property="og:url" content="http://yoursite.com/page/4/index.html">
+  <meta name="description" content="进程（Process）是计算机中的程序关于某数据集合上的一次运行活动，是系统进行资源分配和调度的基本单位，是操作系统结构的基础。在早期面向进程设计的计算机结构中，进程是程序的基本执行实体；在当代面向线程设计的计算机结构中，进程是线程的容器。程序是指令、数据及其组织形式的描述，进程是程序的实体 进程IP 每一个进程都有一个唯一的标识符，进程ID 简称pid，PID虽然是唯一的，但是其可以重用；当一个">
+<meta name="keywords" content="-Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux的进程">
+<meta property="og:url" content="http://yoursite.com/2018/12/04/Linux/Linux的进程/index.html">
 <meta property="og:site_name" content="madmanazo">
+<meta property="og:description" content="进程（Process）是计算机中的程序关于某数据集合上的一次运行活动，是系统进行资源分配和调度的基本单位，是操作系统结构的基础。在早期面向进程设计的计算机结构中，进程是程序的基本执行实体；在当代面向线程设计的计算机结构中，进程是线程的容器。程序是指令、数据及其组织形式的描述，进程是程序的实体 进程IP 每一个进程都有一个唯一的标识符，进程ID 简称pid，PID虽然是唯一的，但是其可以重用；当一个">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-04T03:55:40.411Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="madmanazo">
+<meta name="twitter:title" content="Linux的进程">
+<meta name="twitter:description" content="进程（Process）是计算机中的程序关于某数据集合上的一次运行活动，是系统进行资源分配和调度的基本单位，是操作系统结构的基础。在早期面向进程设计的计算机结构中，进程是程序的基本执行实体；在当代面向线程设计的计算机结构中，进程是线程的容器。程序是指令、数据及其组织形式的描述，进程是程序的实体 进程IP 每一个进程都有一个唯一的标识符，进程ID 简称pid，PID虽然是唯一的，但是其可以重用；当一个">
   
     <link rel="alternative" href="/atom.xml" title="madmanazo" type="application/atom+xml">
   
@@ -159,22 +164,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-C2000/TMS302X281x的事件管理器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Linux/Linux的进程" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/28/C2000/TMS302X281x的事件管理器/">TMS302X281x的事件管理器</a>
+    <h1 class="article-title" itemprop="name">
+      Linux的进程
     </h1>
   
 
         
-        <a href="/2018/11/28/C2000/TMS302X281x的事件管理器/" class="archive-article-date">
-  	<time datetime="2018-11-28T06:09:12.435Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-28</time>
+        <a href="/2018/12/04/Linux/Linux的进程/" class="archive-article-date">
+  	<time datetime="2018-12-04T01:00:15.091Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-04</time>
 </a>
         
       </header>
@@ -182,33 +185,145 @@
 	
 <!-- 目录内容 -->
 
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+	<div id="toc-article" class="toc-article">
+	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+		<strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#进程IP"><span class="toc-number">1.</span> <span class="toc-text">进程IP</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#获取进程函数"><span class="toc-number">2.</span> <span class="toc-text">获取进程函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#exec函数族"><span class="toc-number">3.</span> <span class="toc-text">exec函数族</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#fork创建新进程"><span class="toc-number">4.</span> <span class="toc-text">fork创建新进程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#进程终止exit"><span class="toc-number">5.</span> <span class="toc-text">进程终止exit</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+	function showToc(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:block");
+		show_toc_btn.setAttribute("style","display:none");
+		};
+	function showBtn(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:none");
+		show_toc_btn.setAttribute("style","display:block");
+		};
+   </script>
+      
 <!-- 目录内容结束 -->
 	
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="TMS302X281x的事件管理器"><a href="#TMS302X281x的事件管理器" class="headerlink" title="TMS302X281x的事件管理器"></a>TMS302X281x的事件管理器</h1><hr>
-<p><a href="http://www.ti.com.cn/cn/lit/ug/spru065e/spru065e.pdf" target="_blank" rel="noopener">TMS302X281x的事件管理器</a>为用户提供了众多的功能，使其在电机控制、变频器、逆变器等应用场合中显得特别有用，X281x的事件管理器模块包括通用定时器、全比较/PWM单元、捕获单元以及正交编码脉冲电路<br><br>X281x系列DSP具有两个事件管理器模块EvA和EvB，事件管理器的英文名为Event Manager，简称Ev；这两个事件管理器具有完全相同的功能，只是各个单元的名称因为EvA和EvB而有所区别</p>
-<p><div align="center"><img src="https://i.imgur.com/rCTvoY5.png" alt="EvA/B"><div align="left"></div></div></p>
-<p><div align="center"><img src="https://i.imgur.com/Wf8AgPt.png" alt="signal name"><div align="left"></div></div></p>
-<p><div align="center"><img src="https://i.imgur.com/JLSRh20.png" alt="function"><div align="left"></div></div></p>
-<h1 id="通用定时器"><a href="#通用定时器" class="headerlink" title="通用定时器"></a>通用定时器</h1><hr>
-<p>每个事件管理器都有两个16位通用定时器；EvA具有通用定时器T1和通用定时器T2，EvB具有通用定时器T3和通用定时器T4；每个通用定时器都可以独立使用，也可以两两配合使用，如T1和T2或者T3和T4可以同步，通用定时器的作用主要有下面三个：</p>
-<ol>
-<li>计时</li>
-<li>使用定时器产生PWM波，从而控制电机等</li>
-<li>给事件管理器的其它子模块提供基准时钟，如比较单元，PWM输出</li>
-</ol>
-<p><div align="center"><img src="https://i.imgur.com/57L0pmu.png" alt="timer"><div align="left"></div></div></p>
-<p><div align="center"><img src="https://i.imgur.com/eZYsRZS.png" alt="通用定时器"><div align="left"><br>上面这张定时器框图所提供的信息很多，下面以T1为例：</div></div></p>
-<ol>
-<li><strong>和T1相关的常用寄存器</strong>：16位的T1周期寄存器T1PR；16位的T1比较寄存器T1CMPR；16位的T1计数寄存器T1CNT；16位的T1控制寄存器T1CON；16位的通用定时器控制寄存器GPTCONA<br></li>
-<li><strong>定时器T1常见的输入信号</strong>：来自CPU的内部时钟HSPCLK，之前进行过详细的讲解与配置；来自外部时钟输入TCLKINA，最大频率为器件自身时钟频率的1/4，如果按照SYSCLKOUT=150MHz配置的话，也就是不能超过37.5MHz；定时器计数方向输入TDIRA，用于定时器工作于何种计数方式；复位信号RESET<br></li>
-<li><strong>定时器T1的输出信号</strong>：定时器的比较输出T1PWM_T1CMP，可以输出PWM波；送给ADC模块的ADC转换启动信号；下溢、上溢、比较和周期匹配信号<br></li>
-</ol>
-<p>T1PR是T1的周期寄存器，用于存放T1设置的定时器周期值；T1CMPR是T1的比较寄存器，用于存放T1设置的比较值，通常这两个寄存器在初始化配置的时候就进行了赋值操作，此后就成了T1的一个参考标准。T1CNT是T1的计数器寄存器，其值随着时钟脉冲不断增加或者减少，每过一个定时器时钟脉冲，T1CNT的值就会增加或者减少1.CPu会实时地将T1CNT和T1CMPR、T1PR的值进行比较从而产生一些事件如T1CNT的值和T1CMPR的值相等时就会产生周期匹配事件，进而产生比较中断或者PWM波等；当T1CNT的值和T1PR的值相等时就会产生周期匹配事件。除了上面这些，还有几个阴影寄存器，其作用可以简单理解为使用户可以在一个定时器周期的任何时刻向T1CMPR和T1PR写入新的值，具体可以查看定时器控制寄存器的TCLD位定义<br></p>
-<h2 id="通用定时器的时钟"><a href="#通用定时器的时钟" class="headerlink" title="通用定时器的时钟"></a>通用定时器的时钟</h2><h2 id="通用定时器的计数模式"><a href="#通用定时器的计数模式" class="headerlink" title="通用定时器的计数模式"></a>通用定时器的计数模式</h2><h2 id="通用定时器的中断事件"><a href="#通用定时器的中断事件" class="headerlink" title="通用定时器的中断事件"></a>通用定时器的中断事件</h2><h2 id="通用定时器的同步"><a href="#通用定时器的同步" class="headerlink" title="通用定时器的同步"></a>通用定时器的同步</h2><h2 id="通用定时器的比较操作和PWM波"><a href="#通用定时器的比较操作和PWM波" class="headerlink" title="通用定时器的比较操作和PWM波"></a>通用定时器的比较操作和PWM波</h2>
+        <p><a href="https://baike.baidu.com/item/%E8%BF%9B%E7%A8%8B/382503?fr=aladdin" target="_blank" rel="noopener">进程</a>（Process）是计算机中的程序关于某数据集合上的一次运行活动，是系统进行资源分配和调度的基本单位，是操作系统结构的基础。在早期面向进程设计的计算机结构中，进程是程序的基本执行实体；在当代面向线程设计的计算机结构中，进程是线程的容器。程序是指令、数据及其组织形式的描述，进程是程序的实体</p>
+<h1 id="进程IP"><a href="#进程IP" class="headerlink" title="进程IP"></a>进程IP</h1><hr>
+<p>每一个进程都有一个唯一的标识符，进程ID 简称pid，PID虽然是唯一的，但是其可以重用；当一个进程终止后，其它进程就可以使用它的pid了，内核运行的第一个进程是1，pid为1的进程称为init进程，它是一个普通的用户进程，但是以超级用户特权运行；pid为2的进程是页守护进程，负责支持虚拟存储系统的分页操作<br></p>
+<p>进程id一般默认最大值为32768，不过也是可以修改的，一般不需修改；如果当前进程是1000，那么下一个分配的进程是1001，它是严格线性分配的，直到pid到了最大值，才重新分配已经用过的进程id，当然这些进程都是已经死亡的进程<br></p>
+<p>除了init进程，其它进程都是由其它进程创建的，创建新进程的过程叫父进程，新进程叫子进程</p>
+<h1 id="获取进程函数"><a href="#获取进程函数" class="headerlink" title="获取进程函数"></a>获取进程函数</h1><hr>
+<p>获得父进程和子进程的函数分别是getpid和getppid，可以man查看其用法</p>
+<h1 id="exec函数族"><a href="#exec函数族" class="headerlink" title="exec函数族"></a>exec函数族</h1><hr>
+<p>在Linux中，exec函数族是把程序直接载入内存，而不是在一个程序中运行多个进程；exec函数调用成功后，会在内存里执行一个新的程序，在Linux中要运行多任务需要使用exec函数族和fork进程</p>
+<pre><code>
+madmanazo@ubuntu:~$ <font color="#EE00EE">man 3 exec</font>
+SYNOPSIS
+       #include <unistd.h>
+
+       extern char **environ;
+
+       int execl(const char *path, const char *arg, ...);
+       int execlp(const char *file, const char *arg, ...);
+       int execle(const char *path, const char *arg,
+                  ..., char * const envp[]);
+       int execv(const char *path, char *const argv[]);
+       int execvp(const char *file, char *const argv[]);
+       int execvpe(const char *file, char *const argv[],
+                  char *const envp[]);
+</unistd.h></code></pre>
+
+<h1 id="fork创建新进程"><a href="#fork创建新进程" class="headerlink" title="fork创建新进程"></a>fork创建新进程</h1><hr>
+<p>在linux中可以使用fork创建和当前进程一样的进程，新的进程叫子进程，原来的进程叫父进程</p>
+<pre><code>
+NAME
+       fork - create a child process
+
+SYNOPSIS
+       #include <unistd.h>
+
+       pid_t fork(void);
+
+DESCRIPTION
+       fork()  creates  a new process by duplicating the calling process.  The
+       new process, referred to as the child, is an  exact  duplicate  of  the
+       calling  process,  referred  to as the parent, except for the following
+       points:
+
+       *  The child has its own unique process ID, and this PID does not match
+          the ID of any existing process group (setpgid(2)).
+
+       *  The  child's  parent  process ID is the same as the parent's process
+          ID.
+
+       *  The child does not inherit  its  parent's  memory  locks  (mlock(2),
+          mlockall(2)).
+
+       *  Process  resource  utilizations (getrusage(2)) and CPU time counters
+          (times(2)) are reset to zero in the child.
+
+       *  The child's set of pending  signals  is  initially  empty  (sigpend‐
+          ing(2)).
+
+       *  The  child  does  not  inherit semaphore adjustments from its parent
+          (semop(2)).
+
+       *  The child does not inherit record locks from its parent (fcntl(2)).
+
+       *  The child does not inherit timers  from  its  parent  (setitimer(2),
+          alarm(2), timer_create(2)).
+
+       *  The  child  does not inherit outstanding asynchronous I/O operations
+          from its parent (aio_read(3), aio_write(3)), nor does it inherit any
+          asynchronous I/O contexts from its parent (see io_setup(2)).
+</unistd.h></code></pre>
+
+<ul>
+<li>系统函数fork调用成功，会创建一个新的进程<br></li>
+<li>子进程的pid和父进程不一样，是新分配的<br></li>
+<li>子进程的ppid会设置为父进程的pid，也就是说子进程和父进程各自的父进程不一样<br></li>
+<li>子进程中的资源统计信息会清零<br></li>
+<li>挂起的信号会被清除，也不会被继承<br></li>
+<li>所有文件锁也不会被子进程继承</li>
+<li>fork函数执行成功，子进程pid返回给父进程，0返回给子进程；出现错误-1，其它返回给父进程。执行失败的唯一情况是内存不够或者id号用尽</li>
+</ul>
+<h1 id="进程终止exit"><a href="#进程终止exit" class="headerlink" title="进程终止exit"></a>进程终止exit</h1><hr>
+<p>在main函数的结尾会使用return或者exit 结束程序。当使用exit 的时候，就是使用的进程终止函数exit</p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechat_reward1.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -219,7 +334,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-C2000</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-Linux</a>
         		</li>
       		
 		</ul>
@@ -231,7 +346,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/DSP//" class="article-tag-list-link color5">-DSP</a>
+        			<a href="/categories/Linux//" class="article-tag-list-link color2">-Linux</a>
         		</li>
       		
 		</ul>
@@ -239,21 +354,74 @@
 
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/28/C2000/TMS302X281x的事件管理器/">展开全文 >></a>
-        </p>
-      
 	  
 	  
+	  
+		<span class="archive-article-date">
+			阅读量 <span id="busuanzi_value_page_pv"></span>
+		</span>
 	  
 
 	  
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/12/04/Linux/Linux的进程/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
 	  
       <div class="clearfix"></div>
 	  
 	  
 	  
+	
+      
 	
 	  
 	  
@@ -262,6 +430,18 @@
 	
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2018/12/02/Linux/4412使用TFTP进行文件传输/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">4412使用TFTP进行文件传输</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -276,145 +456,42 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-C2000/TMS302X281x的中断系统" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/28/C2000/TMS302X281x的中断系统/">TMS302X281x的中断系统</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/28/C2000/TMS302X281x的中断系统/" class="archive-article-date">
-  	<time datetime="2018-11-28T02:28:58.027Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-28</time>
-</a>
-        
-      </header>
-    
-	
-<!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-	
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="什么是中断"><a href="#什么是中断" class="headerlink" title="什么是中断"></a>什么是中断</h1><hr>
-<p>在这之前如果有接触过单片机，那么应该对中断的概念很清楚了，所谓中断，是指计算机在运行过程中，出现某些意外或紧急情况急需处理，CPU能自动停止正在执行的程序转而去执行发生的意外或紧急情况的程序，处理完毕后又返回被暂停的程序继续运行</p>
-<h1 id="中断过程"><a href="#中断过程" class="headerlink" title="中断过程"></a>中断过程</h1><hr>
-<ol>
-<li>中断源发出中断请求</li>
-<li>CPU判断该中断是否可以被响应，也就是是否允许中断和该中断源是否被屏蔽</li>
-<li>中断优先级排队，因为可能不止一个中断，所以需要进行中断优先级排队，CPU再对各中断优先级进行裁决</li>
-<li>CPU执行完当前指令或者当前指令无法执行完，则立即停止当前程序，保护断电地址和CPU当前状态，转入相应的中断服务程序</li>
-<li>执行中断服务程序</li>
-<li>恢复被保护的状态，执行”中断返回”指令回到被中断的程序或者转入其它程序<br></li>
-</ol>
-<p>一个中断流程的话是很简单的：<br></p>
-<p><div align="center"><img src="https://i.imgur.com/ZbYQyTm.png" alt="单中断处理"><div align="left"><br></div></div></p>
-<p>下面是51单片机的中断流程图有助于我们理解中断流程，51单片机中断系统有两个优先级，5个中断源，可以实现二级中断嵌套</p>
-<p><div align="center"><img src="https://i.imgur.com/LiJFhbq.png" alt="51中断图"><div align="left"><br></div></div></p>
-<p>其它嵌入式芯片的中断流程，诸如STM32、TMS320X281x等，不过是中断更多，其实流程都差不多</p>
-<h1 id="TMS320X281x的中断系统"><a href="#TMS320X281x的中断系统" class="headerlink" title="TMS320X281x的中断系统"></a>TMS320X281x的中断系统</h1><hr>
-<p>下面几张图对TMS320X281x的中断系统进行了生动而详细的展示：</p>
-<p><div align="center"><img src="https://i.imgur.com/Kq3JJW9.png" alt="TMS320281x的中断系统"><div align="left"></div></div></p>
-<p><div align="center"><img src="https://i.imgur.com/HyEtCVP.png" alt="中断"><div align="left"><br><br>8个PIE块中断被分组为一个CPU中断。 总共有12个CPU中断组，用每组8个中断等于96个可能的中断。 在F281x和C281x上，其中45个被使用</div></div></p>
-<p><div align="center"><img src="https://i.imgur.com/TmiNq01.png" alt="PIE"><div align="left"></div></div></p>
-<p><div align="center"><img src="https://i.imgur.com/Nir2VTu.png" alt="PIE1"><div align="left"></div></div></p>
-<p><div align="center"><img src="https://i.imgur.com/L19aLqM.png" alt="extern interrupts"><div align="left"><br><br>总结一下：TMS320X281x的中断系统采用的是三级中断机制，分别为外设级、PIE级和CPU级；对于某一个具体的外设中断请求而言，只要任意一级中断不许可，CPU最终都不会响应该外设请求</div></div></p>
-<p><div align="center"><img src="https://i.imgur.com/8WhsnIX.png" alt="三级中断机制"><div align="left"></div></div></p>
-<h1 id="CPU-TIMER0中断实例"><a href="#CPU-TIMER0中断实例" class="headerlink" title="CPU-TIMER0中断实例"></a>CPU-TIMER0中断实例</h1><hr>
-<p>具体的应用代码可以参考<font color="#FF0033"><strong>Ti官方例程</strong></font>，里面有详细的注释足以让我们学通并且使用，可以去<strong><a href="http://www.ti.com.cn/general/cn/docs/lit/getliterature.tsp?baseLiteratureNumber=sprc097&amp;fileType=zip" target="_blank" rel="noopener">TI官方下载</a></strong>或者看我的<strong><a href="https://github.com/madmanazo/TMS320F2812_/blob/master/DSP281x_HeaderFiles/v120/DSP281x_examples/cpu_timer/Example_281xCpuTimer.c" title="Github链接" target="_blank" rel="noopener">Github链接</a></strong></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-C2000</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/DSP//" class="article-tag-list-link color5">-DSP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/28/C2000/TMS302X281x的中断系统/">展开全文 >></a>
-        </p>
-      
-	  
-	  
-	  
-
-	  
-      
-	  
-      <div class="clearfix"></div>
-	  
-	  
-	  
-	
-	  
-	  
-	  
-    </div>
-	
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#进程IP"><span class="toc-number">1.</span> <span class="toc-text">进程IP</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#获取进程函数"><span class="toc-number">2.</span> <span class="toc-text">获取进程函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#exec函数族"><span class="toc-number">3.</span> <span class="toc-text">exec函数族</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#fork创建新进程"><span class="toc-number">4.</span> <span class="toc-text">fork创建新进程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#进程终止exit"><span class="toc-number">5.</span> <span class="toc-text">进程终止exit</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
+  
+  
+  
 
   
+  <div id="SOHUCS" sid="Linux/Linux的进程" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cytCBkNPd",
+        conf: "c09cb8dbf7ad75b9615fcf9da0dc5331"
+    });
+</script>
+</script>
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
-    </nav>
+
+  
+
   
 
 
@@ -445,8 +522,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
