@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="madmanazo">
 <meta property="og:description" content="进程（Process）是计算机中的程序关于某数据集合上的一次运行活动，是系统进行资源分配和调度的基本单位，是操作系统结构的基础。在早期面向进程设计的计算机结构中，进程是程序的基本执行实体；在当代面向线程设计的计算机结构中，进程是线程的容器。程序是指令、数据及其组织形式的描述，进程是程序的实体 进程IP 每一个进程都有一个唯一的标识符，进程ID 简称pid，PID虽然是唯一的，但是其可以重用；当一个">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-04T03:55:40.411Z">
+<meta property="og:updated_time" content="2018-12-04T17:13:11.211Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux的进程">
 <meta name="twitter:description" content="进程（Process）是计算机中的程序关于某数据集合上的一次运行活动，是系统进行资源分配和调度的基本单位，是操作系统结构的基础。在早期面向进程设计的计算机结构中，进程是程序的基本执行实体；在当代面向线程设计的计算机结构中，进程是线程的容器。程序是指令、数据及其组织形式的描述，进程是程序的实体 进程IP 每一个进程都有一个唯一的标识符，进程ID 简称pid，PID虽然是唯一的，但是其可以重用；当一个">
@@ -291,7 +291,7 @@ DESCRIPTION
 <li>子进程中的资源统计信息会清零<br></li>
 <li>挂起的信号会被清除，也不会被继承<br></li>
 <li>所有文件锁也不会被子进程继承</li>
-<li>fork函数执行成功，子进程pid返回给父进程，0返回给子进程；出现错误-1，其它返回给父进程。执行失败的唯一情况是内存不够或者id号用尽</li>
+<li>fork函数执行一次返回两个值：执行失败返回-1表示没有创建新的进程，最初的进程仍然在运行；执行成功会在子进程中返回0，在父进程中返回子进程的PID；这是因为父进程可能存在很多子进程，必须通过这个返回的子进程ID来跟踪子进程，而子进程只有一个父进程，它的ID可以通过getppid获得。fork()执行失败的唯一情况是内存不够或者id号用尽</li>
 </ul>
 <h1 id="进程终止exit"><a href="#进程终止exit" class="headerlink" title="进程终止exit"></a>进程终止exit</h1><hr>
 <p>在main函数的结尾会使用return或者exit 结束程序。当使用exit 的时候，就是使用的进程终止函数exit</p>
@@ -433,6 +433,15 @@ DESCRIPTION
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/12/04/Linux/Linux进程间通信/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Linux进程间通信
+        
+      </div>
+    </a>
   
   
     <a href="/2018/12/02/Linux/4412使用TFTP进行文件传输/" id="article-nav-older" class="article-nav-link-wrap">
@@ -593,11 +602,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-CCS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-OMAPL138</a>
+                <a href="javascript:void(0)" class="js-tag color1">-Keil</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -605,11 +610,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-Keil</a>
+                <a href="javascript:void(0)" class="js-tag color2">-STM32</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-STM32</a>
+                <a href="javascript:void(0)" class="js-tag color5">-CCS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -618,6 +623,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">-翻墙</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">-OMAPL138</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-TFTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -633,10 +646,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-TFTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">-C2000</a>
               </li>
              
@@ -645,15 +654,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">-Music</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">-Book</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">-PCB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-Music</a>
               </li>
             
             <div class="clearfix"></div>

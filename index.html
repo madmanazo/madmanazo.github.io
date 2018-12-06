@@ -161,6 +161,362 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Linux/Linux进程间通信" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/04/Linux/Linux进程间通信/">Linux进程间通信</a>
+    </h1>
+  
+
+        
+        <a href="/2018/12/04/Linux/Linux进程间通信/" class="archive-article-date">
+  	<time datetime="2018-12-04T14:05:04.867Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-04</time>
+</a>
+        
+      </header>
+    
+	
+<!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+	
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>无名管道是Linux中管道通信的一种原始方法；优点类似硬件中的串口，不过其具有一定的局限性：<br></p>
+<ul>
+<li>无名管道属于半双工的通信方式<br></li>
+<li>只有具有“亲缘关系”的进程才能使用这种通信方式，也就是父进程和子进程之间<br></li>
+<li>管道可以看成是一种特殊的文件，对于它的读写可以使用普通的read()，write()等文件IO操作函数接口，但是它不属于任何文件系统，并且只存在于内存中<br></li>
+<li>通常使用时，首先创建一个管道，然后调用fork函数创建一个子进程，该子进程会继承父进程所创建的管道<br></li>
+<li>只有在管道的读端存在时，向管道写入数据才有意义，否则向管道写入的数据的进程将收到内核发送过来的SIGPEPE信号<br></li>
+<li>向管道写入数据时，linux不保证写入的原子性，管道缓冲区只要有空间，写进程就会试图向管道写入数据，如果管道缓冲区已满，那么写操作将会一直阻塞</li>
+</ul>
+<p>无名管道通信首先需要使用pipe函数创建管道之后，两个进程之间才能通信<br></p>
+<pre><code>
+#include <stdio.h>
+#include <sys types.h="">
+#include <unistd.h>
+#include <stdlib.h>
+
+//进程读函数
+void read_data(int *);
+//进程写函数
+void write_data(int *);
+
+int main(int argc,char *argv[])
+{
+    int pipes[2],rc;
+    pid_t pid;
+
+    rc = pipe(pipes);    //创建管道
+    if(rc == -1){
+        perror("\npipes\n");
+        exit(1);    //异常退出
+    }
+
+    pid = fork();    //创建进程
+
+    switch(pid){
+        case -1:
+            perror("\nfork\n");
+            exit(1);
+        case 0:
+            read_data(pipes);    //相同的pipes
+        default:
+            write_data(pipes);    //相同的pipes
+    }
+}
+
+void read_data(int pipes[])
+{
+    int c,rc;
+    //由于此函数只负责读，因此将写描述符关闭
+    close(pipes[1]);
+
+    //阻塞，等待从管道读取数据
+    while((rc = read(pipes[0],&c,1)) > 0){
+        putchar(c);
+    }
+    exit(0);    //正常退出
+}
+
+//进程写函数
+void write_data(int pipes[])
+{
+    int c,rc;
+
+    //关闭读描述符
+    close(pipes[0]);
+
+    while((c = getchar()) > 0){
+        rc = write(pipes[1],&c,1);    //写入管道
+        if(rc == -1){
+            perror("parent: write");
+            close(pipes[1]);
+            exit(1);    //异常退出
+        }
+    }
+
+    close(pipes[1]);
+    exit(0);
+}
+</stdlib.h></unistd.h></sys></stdio.h></code></pre>
+
+<h1 id="有名管道fifo"><a href="#有名管道fifo" class="headerlink" title="有名管道fifo"></a>有名管道fifo</h1><hr>
+<p>无名管道只能用于有亲缘关系的进程之间的通信，有名管道可以实现无亲缘关系的通信<br><br>有名管道FIFO给文件系统提供一个路径，这个路径和管道关联，只要知道这个管道路径就可以进行文件访问，FIFO是指先进先出，也就是先写入的数据先读出来</p>
+<p></p><p>creatc.c:</p><p></p>
+<pre><code>
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys types.h="">
+#include <sys stat.h="">
+#include <fcntl.h>
+
+void filecopy(FILE *,char *);
+
+int main(void)
+{
+    FILE *fp1;
+    long int i = 100000;
+    char buf[] = "I want to study Linux!\n";
+    char *file1 = "data.txt";
+
+    printf("begin!\n");
+
+    //打开文件路径，如果文件不存在，立刻创建文件
+    if((fp1 = fopen(file1,"a+")) == NULL ){
+            printf("can't open %s\n",file1);
+    }
+    while(i--)        //执行100000次复制buf内容到file1文件中
+    filecopy(fp1,buf);
+
+    fclose(fp1);    //关闭文件
+
+    printf("over!\n");
+
+    return 0;
+}
+
+void filecopy(FILE *ifp,char *buf)
+{
+    char c;
+    int i,j;
+    j = 0;
+    i = strlen(buf)-1;
+    while(i--){
+        putc(buf[j],ifp);
+        j++;
+    }
+    putc('\n',ifp);
+}
+</fcntl.h></sys></sys></string.h></unistd.h></stdio.h></code></pre>
+
+<p></p><p>writepipe.c:</p><p></p>
+<pre><code>
+#include <unistd.h>  
+#include <stdlib.h>  
+#include <fcntl.h>  
+#include <limits.h>  
+#include <sys types.h="">  
+#include <sys stat.h="">  
+#include <stdio.h>  
+#include <string.h>  
+
+int main()  
+{  
+    const char *fifo_name = "my_fifo";
+    char *file1 = "data.txt";    
+    int pipe_fd = -1;  
+    int data_fd = -1;  
+    int res = 0;  
+    const int open_mode = O_WRONLY;  
+    int bytes_sent = 0;  
+    char buffer[PIPE_BUF + 1];  
+
+    if(access(fifo_name, F_OK) == -1)  
+    {  
+        //管道文件不存在  
+        //创建命名管道  
+        res = mkfifo(fifo_name, 0777);  
+        if(res != 0)  
+        {  
+            fprintf(stderr, "Could not create fifo %s\n", fifo_name);  
+            exit(EXIT_FAILURE);  
+        }  
+    }  
+
+    printf("Process %d opening FIFO O_WRONLY\n", getpid());  
+    //以只写阻塞方式打开FIFO文件，以只读方式打开数据文件  
+    pipe_fd = open(fifo_name, open_mode);  
+    data_fd = open(file1, O_RDONLY);  
+    printf("Process %d result %d\n", getpid(), pipe_fd);  
+
+    if(pipe_fd != -1)  
+    {  
+        int bytes_read = 0;  
+        //向数据文件读取数据  
+        bytes_read = read(data_fd, buffer, PIPE_BUF);  
+        buffer[bytes_read] = '\0';  
+        while(bytes_read > 0)  
+        {  
+            //向FIFO文件写数据  
+            res = write(pipe_fd, buffer, bytes_read);  
+            if(res == -1)  
+            {  
+                fprintf(stderr, "Write error on pipe\n");  
+                exit(EXIT_FAILURE);  
+            }  
+            //累加写的字节数，并继续读取数据  
+            bytes_sent += res;  
+            bytes_read = read(data_fd, buffer, PIPE_BUF);  
+            buffer[bytes_read] = '\0';  
+        }  
+        close(pipe_fd);  
+        close(data_fd);  
+    }  
+    else  
+        exit(EXIT_FAILURE);  
+
+    printf("Process %d finished\n", getpid());  
+    exit(EXIT_SUCCESS);  
+} 
+</string.h></stdio.h></sys></sys></limits.h></fcntl.h></stdlib.h></unistd.h></code></pre>
+
+<p></p><p>readpipe.c:</p><p></p>
+<pre><code>
+#include <unistd.h>  
+#include <stdlib.h>  
+#include <stdio.h>  
+#include <fcntl.h>  
+#include <sys types.h="">  
+#include <sys stat.h="">  
+#include <limits.h>  
+#include <string.h>  
+
+int main()  
+{  
+    const char *fifo_name = "my_fifo";  
+    int pipe_fd = -1;  
+    int data_fd = -1;  
+    int res = 0;  
+    int open_mode = O_RDONLY;  
+    char buffer[PIPE_BUF + 1];  
+    int bytes_read = 0;  
+    int bytes_write = 0;  
+    //清空缓冲数组  
+    memset(buffer, '\0', sizeof(buffer));  
+
+    printf("Process %d opening FIFO O_RDONLY\n", getpid());  
+    //以只读阻塞方式打开管道文件，注意与writepipe.c文件中的FIFO同名  
+    pipe_fd = open(fifo_name, open_mode);  
+    //以只写方式创建保存数据的文件  
+    data_fd = open("DataFormFIFO.txt", O_WRONLY|O_CREAT, 0644);  
+    printf("Process %d result %d\n",getpid(), pipe_fd);  
+
+    if(pipe_fd != -1)  
+    {  
+        do  
+        {  
+            //读取FIFO中的数据，并把它保存在文件DataFormFIFO.txt文件中  
+            res = read(pipe_fd, buffer, PIPE_BUF);  
+            bytes_write = write(data_fd, buffer, res);  
+            bytes_read += res;  
+        }while(res > 0);  
+        close(pipe_fd);  
+        close(data_fd);  
+    }  
+    else  
+        exit(EXIT_FAILURE);  
+
+    printf("Process %d finished, %d bytes read\n", getpid(), bytes_read);  
+    exit(EXIT_SUCCESS);  
+} 
+</string.h></limits.h></sys></sys></fcntl.h></stdio.h></stdlib.h></unistd.h></code></pre>
+
+<h1 id="消息队列msg"><a href="#消息队列msg" class="headerlink" title="消息队列msg"></a>消息队列msg</h1><hr>
+<p>消息队列就是一个消息的链表。可以把消息看作一个记录，具有特定的格式以及特定的优先级。对消息队列有写权限的进程可以向其中按照一定的规则添加新消息；对消息队列有读权限的进程则可以从消息队列中读走消息<br><br>消息队列主要有两个函数msgrcv和msgsnd，一个接收一个发送，可通过man进行查看<br></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Linux//" class="article-tag-list-link color2">-Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/12/04/Linux/Linux进程间通信/">展开全文 >></a>
+        </p>
+      
+	  
+	  
+	  
+
+	  
+      
+	  
+      <div class="clearfix"></div>
+	  
+	  
+	  
+	
+	  
+	  
+	  
+    </div>
+	
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Linux/Linux的进程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -264,7 +620,7 @@ DESCRIPTION
 <li>子进程中的资源统计信息会清零<br></li>
 <li>挂起的信号会被清除，也不会被继承<br></li>
 <li>所有文件锁也不会被子进程继承</li>
-<li>fork函数执行成功，子进程pid返回给父进程，0返回给子进程；出现错误-1，其它返回给父进程。执行失败的唯一情况是内存不够或者id号用尽</li>
+<li>fork函数执行一次返回两个值：执行失败返回-1表示没有创建新的进程，最初的进程仍然在运行；执行成功会在子进程中返回0，在父进程中返回子进程的PID；这是因为父进程可能存在很多子进程，必须通过这个返回的子进程ID来跟踪子进程，而子进程只有一个父进程，它的ID可以通过getppid获得。fork()执行失败的唯一情况是内存不够或者id号用尽</li>
 </ul>
 <h1 id="进程终止exit"><a href="#进程终止exit" class="headerlink" title="进程终止exit"></a>进程终止exit</h1><hr>
 <p>在main函数的结尾会使用return或者exit 结束程序。当使用exit 的时候，就是使用的进程终止函数exit</p>
@@ -303,180 +659,6 @@ DESCRIPTION
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/12/04/Linux/Linux的进程/">展开全文 >></a>
-        </p>
-      
-	  
-	  
-	  
-
-	  
-      
-	  
-      <div class="clearfix"></div>
-	  
-	  
-	  
-	
-	  
-	  
-	  
-    </div>
-	
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Linux/4412使用TFTP进行文件传输" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/02/Linux/4412使用TFTP进行文件传输/">4412使用TFTP进行文件传输</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/02/Linux/4412使用TFTP进行文件传输/" class="archive-article-date">
-  	<time datetime="2018-12-02T12:23:24.725Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-02</time>
-</a>
-        
-      </header>
-    
-	
-<!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-	
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>IP地址是指互联网协议地址（英语：Internet Protocol Address，又译为网际协议地址），是IP Address的缩写。IP地址是IP协议提供的一种统一的地址格式，它为互联网上的每一个网络和每一台主机分配一个逻辑地址，以此来屏蔽物理地址的差异</p>
-<h1 id="子网掩码"><a href="#子网掩码" class="headerlink" title="子网掩码"></a>子网掩码</h1><hr>
-<p>子网掩码(subnet mask)又叫网络掩码、地址掩码、子网络遮罩，它是一种用来指明一个IP地址的哪些位标识的是主机所在的子网，以及哪些位标识的是主机的位掩码。子网掩码不能单独存在，它必须结合IP地址一起使用。子网掩码只有一个作用，就是将某个IP地址划分成网络地址和主机地址两部分<br><br>子网掩码是一个32位地址，用于屏蔽IP地址的一部分以区别网络标识和主机标识，并说明该IP地址是在局域网上，还是在远程网上</p>
-<h1 id="同一网段"><a href="#同一网段" class="headerlink" title="同一网段"></a>同一网段</h1><hr>
-<p>同一网段指的是IP地址和子网掩码相与得到相同的网络地址。想在同一网段，必须做到网络标识相同。各类IP的网络标识算法都是不一样的，需要根据子网掩码的位数来判断<br></p>
-<h1 id="计算方法"><a href="#计算方法" class="headerlink" title="计算方法"></a>计算方法</h1><hr>
-<pre><code>
-madmanazo@ubuntu:/$ <font color="#EE00EE">ifconfig</font>
-eth0      Link encap:Ethernet  HWaddr 00:0c:29:f5:1b:ea  
-          <font color="#FF0000">inet addr:192.168.1.115</font>  Bcast:192.168.1.225  <font color="#FF0000">Mask:255.255.255.0</font>
-          inet6 addr: fe80::20c:29ff:fef5:1bea/64 Scope:Link
-          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
-          RX packets:18780 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:13274 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:1000 
-          RX bytes:1965107 (1.9 MB)  TX bytes:7111381 (7.1 MB)
-
-lo        Link encap:Local Loopback  
-          inet addr:127.0.0.1  Mask:255.0.0.0
-          inet6 addr: ::1/128 Scope:Host
-          UP LOOPBACK RUNNING  MTU:16436  Metric:1
-          RX packets:3163 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:3163 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:0 
-          RX bytes:276298 (276.2 KB)  TX bytes:276298 (276.2 KB)
-
-</code></pre>
-
-<pre><code>
-[root@iTOP-4412]# <font color="#EE00EE">cat etc/eth0-setting</font>                                                     
-<font color="#FF0000">IP=192.168.1.230</font>
-<font color="#FF0000">Mask=255.255.255.0</font>
-Gateway=192.168.1.1
-DNS=192.168.1.1
-MAC=08:90:90:90:90:90
-</code></pre>
-
-<p>板子和服务器系统的IP必须在同一网段内，且单纯的两个IP不能直接拿来确认是否在同一网段，必须与子网掩码结合经过计算才能得出结论<br></p>
-<p>计算方法为两个IP分别和相应的子网掩码做与运算，得出的结果相等则表明在同一网段内，举例如下：<br></p>
-<p>Ubuntu系统的IP和子网掩码分别是：192.168.1.115 和255.255.255.0<br><br>开发板的IP地址和子网掩码分别是：192.168.1.230 和255.255.255.0<br></p>
-<p>进行与运算首先要转换为二进制：<br><br>Ubuntu系统：<br><br>IP：11000000 10101000 ‭00000001‬ ‭‭‭01110011‬‬<br>‬<br>MASK：11111111 11111111 11111111 00000000<br><br>Result二进制：11000000 10101000 ‭00000001‬ 00000000<br><br>Result十六进制：192.168.1.0<br></p>
-<p>板子：<br><br>IP：11000000 10101000 00000001 11100110<br>‬<br>MASK：11111111 11111111 11111111 00000000<br><br>Result二进制：11000000 10101000 00000001 00000000<br><br>Result十六进制：192.168.1.0<br></p>
-<p>对比上面两个十六进制结果，可以发现这两个例子中的IP地址并在同一个网段，但是还需要注意路由器所允许的IP区间，故需要根据路由器修改IP地址</p>
-<h1 id="IP修改"><a href="#IP修改" class="headerlink" title="IP修改"></a>IP修改</h1><hr>
-<p>登录自己的路由器管理界面，进入到DHCP服务器下面,如下图所示，选择DHCP服务器，这里会有一个分配局域网中的IP区间。也就是说IP可以设置为192.168.1.100 到192.168.1.199 这个区间：</p>
-<p><div align="center"><img src="https://i.imgur.com/9WqVBfM.png" alt="0"><div align="left"></div></div></p>
-<p>重新计算配置IP地址如下<br><br>Ubuntu系统的IP和子网掩码分别是：192.168.1.115 和255.255.255.0<br><br>开发板的IP地址和子网掩码分别是：192.168.1.120 和255.255.255.0<br><br>Ubuntu系统：<br><br>IP：11000000 10101000 ‭00000001‬ ‭‭‭01110011‬‬<br>‬<br>MASK：11111111 11111111 11111111 00000000<br><br>Result二进制：11000000 10101000 ‭00000001‬ 00000000<br><br>Result十六进制：192.168.106.0<br></p>
-<p>板子：<br><br>IP：11000000 10101000 00000001 ‭‭01111000‬‬<br>‬<br>MASK：11111111 11111111 11111111 00000000<br><br>Result二进制：11000000 10101000 00000001 00000000<br><br>Result十六进制：192.168.106.0<br></p>
-<p>修改板子的网络配置文件eth0-setting的IP地址为192.168.1.120即可</p>
-<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><hr>
-<p>连接板子的网口到路由器上，然后输入ping命令确认板子和TFTP服务器是连通的，通过下面的信息可以确认板子和TFTP服务器是连通的：<br></p>
-<pre><code>
-[root@iTOP-4412]# <font color="#EE00EE">ping 192.168.1.115</font>                                                       
-PING 192.168.1.115 (192.168.1.115): 56 data bytes
-64 bytes from 192.168.1.115: seq=0 ttl=64 time=56.244 ms
-64 bytes from 192.168.1.115: seq=1 ttl=64 time=2.210 ms
-64 bytes from 192.168.1.115: seq=2 ttl=64 time=2.553 ms
-64 bytes from 192.168.1.115: seq=3 ttl=64 time=5.651 ms
-</code></pre>
-
-<p>现在便可以获取TFTP上的文件了：<br></p>
-<pre><code>
-[root@iTOP-4412]# <font color="#EE00EE">tftp -g -l test -r test 192.168.1.115</font>
-[  958.786917] [dm96-TxRound].0 for LEN_ODD tail_room +1, rslt add 1
-[root@iTOP-4412]# <font color="#EE00EE">ls</font>
-bin      etc      linuxrc  proc     sys      tmp      var
-dev      lib      mnt      sbin     test     usr
-[root@iTOP-4412]# cat test
-hello world
-</code></pre>
-
-<p>从上面也就意味着以后下载、调试程序可以直接使用TFTP服务器，比之前用U盘方便很多</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">-4412</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Linux//" class="article-tag-list-link color2">-Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/02/Linux/4412使用TFTP进行文件传输/">展开全文 >></a>
         </p>
       
 	  
@@ -624,11 +806,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-CCS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-OMAPL138</a>
+                <a href="javascript:void(0)" class="js-tag color1">-Keil</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -636,11 +814,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-Keil</a>
+                <a href="javascript:void(0)" class="js-tag color2">-STM32</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-STM32</a>
+                <a href="javascript:void(0)" class="js-tag color5">-CCS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -649,6 +827,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">-翻墙</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">-OMAPL138</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-TFTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -664,10 +850,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-TFTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">-C2000</a>
               </li>
              
@@ -676,15 +858,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">-Music</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">-Book</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">-PCB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-Music</a>
               </li>
             
             <div class="clearfix"></div>

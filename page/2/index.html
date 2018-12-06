@@ -161,6 +161,180 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Linux/4412使用TFTP进行文件传输" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/02/Linux/4412使用TFTP进行文件传输/">4412使用TFTP进行文件传输</a>
+    </h1>
+  
+
+        
+        <a href="/2018/12/02/Linux/4412使用TFTP进行文件传输/" class="archive-article-date">
+  	<time datetime="2018-12-02T12:23:24.725Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-02</time>
+</a>
+        
+      </header>
+    
+	
+<!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+	
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>IP地址是指互联网协议地址（英语：Internet Protocol Address，又译为网际协议地址），是IP Address的缩写。IP地址是IP协议提供的一种统一的地址格式，它为互联网上的每一个网络和每一台主机分配一个逻辑地址，以此来屏蔽物理地址的差异</p>
+<h1 id="子网掩码"><a href="#子网掩码" class="headerlink" title="子网掩码"></a>子网掩码</h1><hr>
+<p>子网掩码(subnet mask)又叫网络掩码、地址掩码、子网络遮罩，它是一种用来指明一个IP地址的哪些位标识的是主机所在的子网，以及哪些位标识的是主机的位掩码。子网掩码不能单独存在，它必须结合IP地址一起使用。子网掩码只有一个作用，就是将某个IP地址划分成网络地址和主机地址两部分<br><br>子网掩码是一个32位地址，用于屏蔽IP地址的一部分以区别网络标识和主机标识，并说明该IP地址是在局域网上，还是在远程网上</p>
+<h1 id="同一网段"><a href="#同一网段" class="headerlink" title="同一网段"></a>同一网段</h1><hr>
+<p>同一网段指的是IP地址和子网掩码相与得到相同的网络地址。想在同一网段，必须做到网络标识相同。各类IP的网络标识算法都是不一样的，需要根据子网掩码的位数来判断<br></p>
+<h1 id="计算方法"><a href="#计算方法" class="headerlink" title="计算方法"></a>计算方法</h1><hr>
+<pre><code>
+madmanazo@ubuntu:/$ <font color="#EE00EE">ifconfig</font>
+eth0      Link encap:Ethernet  HWaddr 00:0c:29:f5:1b:ea  
+          <font color="#FF0000">inet addr:192.168.1.115</font>  Bcast:192.168.1.225  <font color="#FF0000">Mask:255.255.255.0</font>
+          inet6 addr: fe80::20c:29ff:fef5:1bea/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:18780 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:13274 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:1965107 (1.9 MB)  TX bytes:7111381 (7.1 MB)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:3163 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:3163 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:276298 (276.2 KB)  TX bytes:276298 (276.2 KB)
+
+</code></pre>
+
+<pre><code>
+[root@iTOP-4412]# <font color="#EE00EE">cat etc/eth0-setting</font>                                                     
+<font color="#FF0000">IP=192.168.1.230</font>
+<font color="#FF0000">Mask=255.255.255.0</font>
+Gateway=192.168.1.1
+DNS=192.168.1.1
+MAC=08:90:90:90:90:90
+</code></pre>
+
+<p>板子和服务器系统的IP必须在同一网段内，且单纯的两个IP不能直接拿来确认是否在同一网段，必须与子网掩码结合经过计算才能得出结论<br></p>
+<p>计算方法为两个IP分别和相应的子网掩码做与运算，得出的结果相等则表明在同一网段内，举例如下：<br></p>
+<p>Ubuntu系统的IP和子网掩码分别是：192.168.1.115 和255.255.255.0<br><br>开发板的IP地址和子网掩码分别是：192.168.1.230 和255.255.255.0<br></p>
+<p>进行与运算首先要转换为二进制：<br><br>Ubuntu系统：<br><br>IP：11000000 10101000 ‭00000001‬ ‭‭‭01110011‬‬<br>‬<br>MASK：11111111 11111111 11111111 00000000<br><br>Result二进制：11000000 10101000 ‭00000001‬ 00000000<br><br>Result十六进制：192.168.1.0<br></p>
+<p>板子：<br><br>IP：11000000 10101000 00000001 11100110<br>‬<br>MASK：11111111 11111111 11111111 00000000<br><br>Result二进制：11000000 10101000 00000001 00000000<br><br>Result十六进制：192.168.1.0<br></p>
+<p>对比上面两个十六进制结果，可以发现这两个例子中的IP地址并在同一个网段，但是还需要注意路由器所允许的IP区间，故需要根据路由器修改IP地址</p>
+<h1 id="IP修改"><a href="#IP修改" class="headerlink" title="IP修改"></a>IP修改</h1><hr>
+<p>登录自己的路由器管理界面，进入到DHCP服务器下面,如下图所示，选择DHCP服务器，这里会有一个分配局域网中的IP区间。也就是说IP可以设置为192.168.1.100 到192.168.1.199 这个区间：</p>
+<p><div align="center"><img src="https://i.imgur.com/9WqVBfM.png" alt="0"><div align="left"></div></div></p>
+<p>重新计算配置IP地址如下<br><br>Ubuntu系统的IP和子网掩码分别是：192.168.1.115 和255.255.255.0<br><br>开发板的IP地址和子网掩码分别是：192.168.1.120 和255.255.255.0<br><br>Ubuntu系统：<br><br>IP：11000000 10101000 ‭00000001‬ ‭‭‭01110011‬‬<br>‬<br>MASK：11111111 11111111 11111111 00000000<br><br>Result二进制：11000000 10101000 ‭00000001‬ 00000000<br><br>Result十六进制：192.168.106.0<br></p>
+<p>板子：<br><br>IP：11000000 10101000 00000001 ‭‭01111000‬‬<br>‬<br>MASK：11111111 11111111 11111111 00000000<br><br>Result二进制：11000000 10101000 00000001 00000000<br><br>Result十六进制：192.168.106.0<br></p>
+<p>修改板子的网络配置文件eth0-setting的IP地址为192.168.1.120即可</p>
+<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><hr>
+<p>连接板子的网口到路由器上，然后输入ping命令确认板子和TFTP服务器是连通的，通过下面的信息可以确认板子和TFTP服务器是连通的：<br></p>
+<pre><code>
+[root@iTOP-4412]# <font color="#EE00EE">ping 192.168.1.115</font>                                                       
+PING 192.168.1.115 (192.168.1.115): 56 data bytes
+64 bytes from 192.168.1.115: seq=0 ttl=64 time=56.244 ms
+64 bytes from 192.168.1.115: seq=1 ttl=64 time=2.210 ms
+64 bytes from 192.168.1.115: seq=2 ttl=64 time=2.553 ms
+64 bytes from 192.168.1.115: seq=3 ttl=64 time=5.651 ms
+</code></pre>
+
+<p>现在便可以获取TFTP上的文件了：<br></p>
+<pre><code>
+[root@iTOP-4412]# <font color="#EE00EE">tftp -g -l test -r test 192.168.1.115</font>
+[  958.786917] [dm96-TxRound].0 for LEN_ODD tail_room +1, rslt add 1
+[root@iTOP-4412]# <font color="#EE00EE">ls</font>
+bin      etc      linuxrc  proc     sys      tmp      var
+dev      lib      mnt      sbin     test     usr
+[root@iTOP-4412]# cat test
+hello world
+</code></pre>
+
+<p>从上面也就意味着以后下载、调试程序可以直接使用TFTP服务器，比之前用U盘方便很多</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">-4412</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Linux//" class="article-tag-list-link color2">-Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/12/02/Linux/4412使用TFTP进行文件传输/">展开全文 >></a>
+        </p>
+      
+	  
+	  
+	  
+
+	  
+      
+	  
+      <div class="clearfix"></div>
+	  
+	  
+	  
+	
+	  
+	  
+	  
+    </div>
+	
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Linux/TFTP服务器搭建与测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -344,585 +518,6 @@ hello world
 
 
   
-    <article id="post-Linux/最小Linux系统制作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/30/Linux/最小Linux系统制作/">最小Linux系统制作</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/30/Linux/最小Linux系统制作/" class="archive-article-date">
-  	<time datetime="2018-11-30T09:11:54.635Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-30</time>
-</a>
-        
-      </header>
-    
-	
-<!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-	
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="BusyBox-瑞士军刀"><a href="#BusyBox-瑞士军刀" class="headerlink" title="BusyBox(瑞士军刀)"></a>BusyBox(瑞士军刀)</h1><hr>
-<p>BusyBox最初是由Bruce Perens在1996年为Debian GNU/Linux安装盘编写的。其目标是在一张软盘上创建一个可引导的GNU/Linux系统，这可以用作安装盘和急救盘。一张软盘可以保存大约1.4-1.7MB的内容，因此这里没有多少空间留给Linux内核以及相关的用户应用程序使用<br><br>BusyBox是一个集成了三百多个最常用Linux命令和工具的软件。BusyBox 包含了一些简单的工具，例如ls、cat和echo等等，还包含了一些更大、更复杂的工具，例grep、find、mount以及telnet。有些人将 BusyBox 称为 Linux 工具里的瑞士军刀。简单的说BusyBox就好像是个大工具箱，它集成压缩了 Linux 的许多工具和命令，也包含了 Android 系统的自带的shell<br><br>制作最小Linux系统需要用到此瑞士军刀(<strong><a href="https://busybox.net/" target="_blank" rel="noopener">下载地址</a></strong>)，接下来便是制作步骤</p>
-<h1 id="最小Linux系统制作"><a href="#最小Linux系统制作" class="headerlink" title="最小Linux系统制作"></a>最小Linux系统制作</h1><hr>
-<h2 id="ARM交叉编译工具链安装"><a href="#ARM交叉编译工具链安装" class="headerlink" title="ARM交叉编译工具链安装"></a><a href="https://www.veryarm.com/arm-none-linux-gnueabi-gcc" target="_blank" rel="noopener">ARM交叉编译工具链</a>安装</h2><p>首先在Ubuntu系统目录/home下新建文件夹minilinux，使用WinCP软件将busybox-1.21.1.tar.bz2拷贝到Ubuntu系统上的目录/home/minilinux下，并在当前目录执行解压命令：<br></p>
-<pre><code>
-madmanazo@ubuntu:~/minilinux$ <font color="#EE00EE">tar -xvf arm-2009q3-67-arm-none-linux-gnueabi-i686-pc-linux-gnu.tar.bz2</font>
-</code></pre>
-
-<p>接下来进行环境变量的配置，编辑/etc/bash.bashrc的环境变量配置文件，在最末尾行后行加入<font color="#EE00EE">export PATH=$PATH:/home/madmanazo/minilinux/arm-2009q3/bin/</font>：<br></p>
-<pre><code>
-madmanazo@ubuntu:~/minilinux/arm-2009q3$ <font color="#EE00EE">sudo vi /etc/bash.bashrc</font>
-</code></pre>
-
-<p>最后执行：<br></p>
-<pre><code>
-madmanazo@ubuntu:~/minilinux/busybox-1.22.1$ <font color="#EE00EE">source /etc/bash.bashrc</font>
-</code></pre>
-
-<p>关闭当前终端并重新打开终端进行测试是否成功，找不到文件是因为64位Ubuntu与32位软件不相容，执行以下命令之后再执行第二条命令配置好环境重新再执行一次arm-none-linux-gnueabi-gcc -v命令即可测试：<br></p>
-<pre><code>
-madmanazo@ubuntu:~$ <font color="#EE00EE">arm-none-linux-gnueabi-gcc -v</font>
-bash: /home/madmanazo/minilinux/arm-2009q3/bin/arm-none-linux-gnueabi-gcc: No such file or directory
-madmanazo@ubuntu:~$ <font color="#EE00EE">sudo apt-get install lib32z1 lib32ncurses5 libbz2-1.0:i386 lib32stdc++6</font>
-madmanazo@ubuntu:~$ <font color="#EE00EE">arm-none-linux-gnueabi-gcc -v</font>
-输出一大段很乱的话，会说明你使用的版本等，证明成功了
-</code></pre>
-
-<font color="#FF0000"><strong>注意如果没有ARM交叉编译工具链的安装配置的话，直接执行后面BusyBox配置会报错</strong></font>
-
-<h2 id="BusyBox配置"><a href="#BusyBox配置" class="headerlink" title="BusyBox配置"></a>BusyBox配置</h2><p>首先在Ubuntu系统目录/home下新建文件夹minilinux，使用WinCP软件将busybox-1.21.1.tar.bz2拷贝到Ubuntu系统上的目录/home/minilinux下，并在当前目录执行解压命令：<br></p>
-<pre><code>
-madmanazo@ubuntu:~/minilinux$ <font color="#EE00EE">tar -xvf busybox-1.21.1.tar.bz2</font>
-</code></pre>
-
-<p>切换到解压后的busybox-1.22.1目录下，可以看到解压后的众多文件：<br></p>
-<pre><code>
-madmanazo@ubuntu:~/minilinux$ <font color="#EE00EE">cd busybox-1.22.1/</font>
-madmanazo@ubuntu:~/minilinux/busybox-1.22.1$ <font color="#EE00EE">ls</font>
-applets     console-tools  findutils  loginutils       modutils    selinux
-applets_sh  coreutils      include    mailutils        networking  shell
-arch        debianutils    init       Makefile         printutils  sysklogd
-archival    docs           INSTALL    Makefile.custom  procps      testsuite
-AUTHORS     e2fsprogs      libbb      Makefile.flags   README      TODO
-Config.in   editors        libpwdgrp  Makefile.help    runit       TODO_unicode
-configs     examples       LICENSE    miscutils        scripts     util-linux
-</code></pre>
-
-<p>接下来使用<font color="#EE00EE"><strong>make menuconfig</strong></font>命令配置BusyBox，这里总结到一个小经验就是，直接执行make menuconfig命令的话肯定是会报找不到某些文件的错误的，不信可以直接执行make menuconfig命令测试一下，解决方法如下：<br></p>
-<ul>
-<li>红帽或者FC的安装ncurses-devel<br></li>
-<li>sudo yum install ncurses-devel<br></li>
-<li>Ubuntu的需要安装libncurses5-dev<br></li>
-<li>sudo apt-get install libncurses5-dev<br></li>
-</ul>
-<p>所以我们按如下步骤执行命令即可成功进入make menuconfig配置界面：<br></p>
-<pre><code>
-madmanazo@ubuntu:~/minilinux/busybox-1.22.1$ <font color="#EE00EE">sudo apt-get install libncurses5-dev</font>
-[sudo] password for madmanazo: 
-Reading package lists... Done
-Building dependency tree       
-Reading state information... Done
-The following package was automatically installed and is no longer required:
-  thunderbird-globalmenu
-Use 'apt-get autoremove' to remove them.
-The following extra packages will be installed:
-  libtinfo-dev
-Suggested packages:
-  ncurses-doc
-The following NEW packages will be installed:
-  libncurses5-dev libtinfo-dev
-0 upgraded, 2 newly installed, 0 to remove and 543 not upgraded.
-Need to get 325 kB of archives.
-After this operation, 1,623 kB of additional disk space will be used.
-Do you want to continue [Y/n]? y
-Get:1 http://us.archive.ubuntu.com/ubuntu/ precise/main libtinfo-dev amd64 5.9-4 [103 kB]
-Get:2 http://us.archive.ubuntu.com/ubuntu/ precise/main libncurses5-dev amd64 5.9-4 [222 kB]
-Fetched 325 kB in 2s (148 kB/s)          
-Selecting previously unselected package libtinfo-dev.
-(Reading database ... 141606 files and directories currently installed.)
-Unpacking libtinfo-dev (from .../libtinfo-dev_5.9-4_amd64.deb) ...
-Selecting previously unselected package libncurses5-dev.
-Unpacking libncurses5-dev (from .../libncurses5-dev_5.9-4_amd64.deb) ...
-Setting up libtinfo-dev (5.9-4) ...
-Setting up libncurses5-dev (5.9-4) ...
-madmanazo@ubuntu:~/minilinux/busybox-1.22.1$ <font color="#EE00EE">make menuconfig</font>
-</code></pre>
-
-<p><div align="center"><img src="https://i.imgur.com/Z5tddgb.png" alt="0"><div align="left"></div></div></p>
-<p>选中Busybox Settings按回车进入Busybox Settings界面：<br></p>
-<p><div align="center"><img src="https://i.imgur.com/F4LWML4.png" alt="1"><div align="left"></div></div></p>
-<p>在Busybox Settings配置选项里面需要修改两个地方，第一个是Build Optiions-&gt; Cross<br>Compiler prefix,它是指定用什么编译器来编译Busybox，选中Build Options如上图，然后<br>按回车，进入到Build Options 配置界面，如下图：<br></p>
-<p><div align="center"><img src="https://i.imgur.com/vn1zbOo.png" alt="2"><div align="left"></div></div></p>
-<p>选中Build Options 配置界面的Cross Compiler prefix 如上图，然后按回车，进入Cross<br>Compiler prefix 配置界面，如下图：<br></p>
-<p><div align="center"><img src="https://i.imgur.com/TRtw39n.png" alt="3"><div align="left"></div></div></p>
-<p>输入使用的交叉编译工具arm-none-linux-gnueabi-，如下图：<br></p>
-<p><div align="center"><img src="https://i.imgur.com/4taMhm2.png" alt="4"><div align="left"></div></div></p>
-<p>按回车返回到Build Options 配置界面，这时可以看到刚才设置的交叉编译工具，如<br>下图：<br></p>
-<p><div align="center"><img src="https://i.imgur.com/ndIaiAR.png" alt="5"><div align="left"></div></div></p>
-<p>然后使用键盘的左右按键选中Exit，回到Busybox Settings 设置界面；选中Installation Options，然后按回车，如下图：<br></p>
-<p><div align="center"><img src="https://i.imgur.com/XpDUpNL.png" alt="6"><div align="left"></div></div></p>
-<p>进入Installation Options 配置界面,如下图：<br></p>
-<p><div align="center"><img src="https://i.imgur.com/klCdUJe.png" alt="7"><div align="left"></div></div></p>
-<p>选中BusyBox installation prefix 如上图所示，然后按回车进入BusyBox installation<br>prefix配置界面（这个界面是设置编译完Busybox，把最终生成的二进制文件安装到哪个目录<br>下面），如下图：<br></p>
-<p><div align="center"><img src="https://i.imgur.com/iU5RUjL.png" alt="8"><div align="left"></div></div></p>
-<p>删除上图里面的./_install，然后输入“../system”（最终生成的二进制文件会安装到当前<br>目录的上一级目录下的system目录里面）,如下图：<br></p>
-<p><div align="center"><img src="https://i.imgur.com/KY8VZEM.png" alt="9"><div align="left"></div></div></p>
-<p>然后按回车，回到Installation Options，如下图：<br></p>
-<p><div align="center"><img src="https://i.imgur.com/H6hlQbP.png" alt="10"><div align="left"></div></div></p>
-<p>最后保存退出即可</p>
-<h2 id="编译和安装BusyBox"><a href="#编译和安装BusyBox" class="headerlink" title="编译和安装BusyBox"></a>编译和安装BusyBox</h2><p>前面配置已经完成，接下来开始编译BusyBox，并得到最后成功的截图如下：<br></p>
-<pre><code>
-madmanazo@ubuntu:~/minilinux/busybox-1.22.1$ <font color="#EE00EE">make</font>
-</code></pre>
-<div align="center">![11](https://i.imgur.com/0SHB80h.png)<div align="left">
-
-现在编译完成了，接下来我们需要把编译生成的二进制文件安装到刚才我们指定的../system 目录里面，使用命令“make install”安装二进制文件到“../system”目录，并得到最后成功的截图如下：<br>
-<pre><code>
-madmanazo@ubuntu:~/minilinux/busybox-1.22.1$ <font color="#EE00EE">make install</font>
-</code></pre>
-<div align="center">![12](https://i.imgur.com/QaWUhKK.png)<div align="left">
-
-打开“../system”目录，可以查看到最后生成的几个文件：<font color="#7EC0EE">**bin、linuxrc、sbin、usr**</font>
-
-# 完善最小Linux系统
----
-之前已经基本制作好了最小Linux系统，现在为其添加需要的网络文件、用户文件、库等<br>
-制作的系统还需要dev,etc,lib,mnt,proc,sys,tmp,var文件夹，为其创建各个文件夹：<br>
-<pre><code>
-madmanazo@ubuntu:~/minilinux$ <font color="#EE00EE">cd system/</font>
-madmanazo@ubuntu:~/minilinux/system$ <font color="#EE00EE">ls</font>
-bin  linuxrc  sbin  usr
-madmanazo@ubuntu:~/minilinux/system$ <font color="#EE00EE">mkdir dev etc lib mnt proc sys tmp var</font>
-madmanazo@ubuntu:~/minilinux/system$ <font color="#EE00EE">ls</font>
-bin  dev  etc  lib  linuxrc  mnt  proc  sbin  sys  tmp  usr  var
-</code></pre>
-
-<p>切换到etc文件夹下，为其创建网络连接配置文件：<br></p>
-<pre><code>
-madmanazo@ubuntu:~/minilinux/system$ <font color="#EE00EE">cd etc/</font>
-madmanazo@ubuntu:~/minilinux/system/etc$ <font color="#EE00EE">vi eth0-setting</font>
-IP=192.168.1.230
-Mask=255.255.255.0
-Gateway=192.168.1.1
-DNS=192.168.1.1
-MAC=08:90:90:90:90:90
-~
-~
-~
-"eth0-setting" [New File] 5 lines, 94 characters written
-</code></pre>
-
-<p>保存并退出eth0-setting的编辑后，修改eth0-setting的权限：<br></p>
-<pre><code>
-madmanazo@ubuntu:~/minilinux/system/etc$ <font color="#EE00EE">chmod 755 eth0-setting</font>
-</code></pre>
-
-<p>在etc目录下建立init.d文件夹，并在init.d文件夹下建立ifconfig-eth0文件为其编辑以下内容：<br></p>
-<pre><code>
-madmanazo@ubuntu:~/minilinux/system/etc$ <font color="#EE00EE">mkdir init.d</font>
-madmanazo@ubuntu:~/minilinux/system/etc$ <font color="#EE00EE">>cd init.d/</font>
-madmanazo@ubuntu:~/minilinux/system/etc/init.d$ <font color="#EE00EE">vi ifconfig-eth0</font>
-<font color="#8B2500">#!/bin/sh
-
-echo -n Try to bring eth0 interface up......>/dev/ttySAC2
-
-if [ -f /etc/eth0-setting ] ; then
-        source /etc/eth0-setting
-
-        if grep -q "^/dev/root / nfs " /etc/mtab ; then
-                echo -n NFS root ... > /dev/ttySAC2
-        else
-                ifconfig eth0 down
-                ifconfig eth0 hw ether $MAC
-                ifconfig eth0 $IP netmask $Mask up
-                route add default gw $Gateway
-        fi
-
-        echo nameserver $DNS > /etc/resolv.conf
-else
-
-        if grep -q "^/dev/root / nfs " /etc/mtab ; then
-                echo -n NFS root ... > /dev/ttySAC2
-        else
-        /sbin/ifconfig eth0 192.168.253.12 netmask 255.255.255.0 up
-        fi
-fi
-
-echo Done > /dev/ttySAC2</font>
-~
-~
-"ifconfig-eth0" [New File] 27 lines, 0 characters written
-</code></pre>
-
-<p>保存并退出ifconfig-eth0的编辑后，修改ifconfig-eth0的权限：<br></p>
-<pre><code>
-madmanazo@ubuntu:~/minilinux/system/etc/init.d$ <font color="#EE00EE">chmod 755 ifconfig-eth0</font>
-</code></pre>
-
-<p>再在init.d文件夹下面新建rcS文件，为其编辑如下内容：<br></p>
-<pre><code>
-madmanazo@ubuntu:~/minilinux/system/etc/init.d$ <font color="#EE00EE">vi rcS</font>
-<font color="#8B2500">#! /bin/sh
-PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin:
-runlevel=S
-prevlevel=N
-umask 022
-export PATH runlevel prevlevel
-
-#
-#       Trap CTRL-C &c only in this shell so we can interrupt subprocesses.
-#
-trap ":" INT QUIT TSTP
-/bin/hostname iTOP-4412
-
-#/bin/mount -n -t proc none /proc
-#/bin/mount -n -t sysfs none /sys
-#/bin/mount -n -t usbfs none /proc/bus/usb
-#/bin/mount -t ramfs none /dev
-[ -e /proc/1 ]    || /bin/mount -n -t proc  none /proc
-[ -e /sys/class ] || /bin/mount -n -t sysfs none /sys
-[ -e /dev/tty ]   || /bin/mount    -t ramfs none /dev
-
-echo /sbin/mdev > /proc/sys/kernel/hotplug
-/sbin/mdev -s
-#/bin/hotplug
-# mounting file system specified in /etc/fstab
-mkdir -p /dev/pts
-mkdir -p /dev/shm
-/bin/mount -n -t devpts none /dev/pts -o mode=0622
-/bin/mount -n -t tmpfs tmpfs /dev/shm
-#/bin/mount -n -t ramfs none /tmp
-#/bin/mount -n -t ramfs none /var
-mkdir -p /var/empty
-mkdir -p /var/log
-mkdir -p /var/log/boa
-mkdir -p /var/lock
-mkdir -p /var/run
-mkdir -p /var/tmp
-
-ln -sf /dev/ttyS2 /dev/tty2
-ln -sf /dev/ttyS2 /dev/tty3
-ln -sf /dev/ttyS2 /dev/tty4
-
-syslogd
-/etc/rc.d/init.d/netd start
-echo "                        " > /dev/tty1
-echo "Starting networking..." > /dev/tty1
-#sleep 1
-#/etc/rc.d/init.d/httpd start
-#echo "                        " > /dev/tty1
-#echo "Starting web server..." > /dev/tty1
-#sleep 1
-#/etc/rc.d/init.d/leds start
-#echo "                        " > /dev/tty1
-#echo "Starting leds service..." > /dev/tty1
-#echo "                        "
-#sleep 1
-
-#echo "*************************************" > /dev/ttySAC2
-#echo "     http://www.topeet.com.cn        " > /dev/ttySAC2
-#echo "*************************************" > /dev/ttySAC2
-#echo "*************************************" 
-#echo "     http://www.topeet.com.cn        " 
-#echo "*************************************" 
-
-
-mkdir /mnt/disk
-
-sleep 1
-/sbin/ifconfig lo 127.0.0.1
-/etc/init.d/ifconfig-eth0
-</font>
-~
-~
-"rcS" [New File] 70 lines, 0 characters written
-</code></pre>
-
-<p>保存并退出rcS的编辑后，修改rcS的权限：<br></p>
-<pre><code>
-madmanazo@ubuntu:~/minilinux/system/etc/init.d$ <font color="#EE00EE">chmod 755 rcS</font>
-</code></pre>
-
-<p>回到etc目录，在etc目录下创建passwd文件，为其编辑如下内容：<br></p>
-<pre><code>
-madmanazo@ubuntu:~/minilinux/system/etc$ <font color="#EE00EE">vi passwd</font>
-<font color="#8B2500">
-root::0:0:root:/:/bin/sh
-bin:*:1:1:bin:/bin:
-daemon:*:2:2:daemon:/sbin:
-nobody:*:99:99:Nobody:/:</font>
-~
-~
-"passwd" [New File] 4 lines, 0 characters written
-</code></pre>
-
-<p>保存并退出passwd的编辑后，修改passwd的权限：<br></p>
-<pre><code>
-madmanazo@ubuntu:~/minilinux/system/etc$ <font color="#EE00EE">chmod 755 passwd</font>
-</code></pre>
-
-<p>继续在etc目录下创建profile文件，为其编辑如下内容：<br></p>
-<pre><code>
-madmanazo@ubuntu:~/minilinux/system/etc$ <font color="#EE00EE">vi profile</font>
-<font color="#8B2500">
-# Ash profile 
-# vim: syntax=sh
-
-# No core files by default
-ulimit -S -c 0 > /dev/null 2>&1
-
-USER="`id -un`"
-LOGNAME=$USER
-PS1='[$USER@$HOSTNAME]# '
-PATH=$PATH
-
-HOSTNAME=`/bin/hostname`
-
-export USER LOGNAME PS1 PATH</font>
-~
-~
-"profile" [New File] 14 lines, 0 characters written
-</code></pre>
-
-<p>保存并退出profile的编辑后，修改profile的权限：<br></p>
-<pre><code>
-madmanazo@ubuntu:~/minilinux/system/etc$ <font color="#EE00EE">chmod 755 profile</font>
-</code></pre>
-
-<p>接下来在etc目录下新建文件夹rc.d，并在rc.d文件夹下新建init.d文件夹，然后在init.d文件夹下新建netd文件：<br></p>
-<pre><code>
-madmanazo@ubuntu:~/minilinux/system/etc$ <font color="#EE00EE">mkdir rc.d</font>
-madmanazo@ubuntu:~/minilinux/system/etc$ <font color="#EE00EE">cd rc.d</font>
-madmanazo@ubuntu:~/minilinux/system/etc/rc.d$ <font color="#EE00EE">mkdir init.d</font>
-madmanazo@ubuntu:~/minilinux/system/etc/rc.d$ <font color="#EE00EE">cd init.d</font>
-madmanazo@ubuntu:~/minilinux/system/etc/rc.d/init.d$ <font color="#EE00EE">vi netd</font>
-<font color="#8B2500">
-#!/bin/sh
-
-base=inetd
-
-# See how we were called.
-case "$1" in
-  start)
-                /usr/sbin/$base
-        ;;
-  stop)
-        pid=`/bin/pidof $base`
-        if [ -n "$pid" ]; then
-                kill -9 $pid
-        fi
-        ;;
-esac
-
-exit 0</font>
-~
-~
-"netd" [New File] 18 lines, 0 characters written
-</code></pre>
-
-<p>保存并退出netd的编辑后，修改netd的权限：<br></p>
-<pre><code>
-madmanazo@ubuntu:~/minilinux/system/etc/rc.d/init.d$ <font color="#EE00EE">chmod 755 netd</font>
-</code></pre>
-
-<p>回到sysytem目录下，进入到lib目录中，因为使用的交叉编译环境和编译内核的相同，所以编译器是/home/madmanazo/minilinux/arm-2009q3，Busybox 编译生成的二进制文件是以动态链接库的形式运行，所以我们需要拷贝编译器里面的<br>库文件到lib目录：<br></p>
-<pre><code>
-madmanazo@ubuntu:~/minilinux/system/etc/rc.d/init.d$  <font color="#EE00EE">cd ../../../</font>
-madmanazo@ubuntu:~/minilinux/system$ <font color="#EE00EE">cd lib/</font>
-madmanazo@ubuntu:~/minilinux/system/lib$ <font color="#EE00EE">cp /home/madmanazo/minilinux/arm-2009q3/arm-none-linux-gnueabi/libc/lib/* ./</font>
-madmanazo@ubuntu:~/minilinux/system/lib$ <font color="#EE00EE">ls</font>
-ld-2.10.1.so               libgcc_s.so.1            libnss_nisplus-2.10.1.so
-ld-linux.so.3              libm-2.10.1.so           libnss_nisplus.so.2
-libanl-2.10.1.so           libmemusage.so           libnss_nis.so.2
-libanl.so.1                libm.so.6                libpcprofile.so
-libBrokenLocale-2.10.1.so  libnsl-2.10.1.so         libpthread-2.10.1.so
-libBrokenLocale.so.1       libnsl.so.1              libpthread.so.0
-libc-2.10.1.so             libnss_compat-2.10.1.so  libresolv-2.10.1.so
-libcidn-2.10.1.so          libnss_compat.so.2       libresolv.so.2
-libcidn.so.1               libnss_dns-2.10.1.so     librt-2.10.1.so
-libcrypt-2.10.1.so         libnss_dns.so.2          librt.so.1
-libcrypt.so.1              libnss_files-2.10.1.so   libSegFault.so
-libc.so.6                  libnss_files.so.2        libthread_db-1.0.so
-libdl-2.10.1.so            libnss_hesiod-2.10.1.so  libthread_db.so.1
-libdl.so.2                 libnss_hesiod.so.2       libutil-2.10.1.so
-libgcc_s.so                libnss_nis-2.10.1.so     libutil.so.1
-</code></pre>
-
-<p>上面库拷贝完成后，回到system目录，进入到var目录下，新建lib、lock、log、run、tmp五个目录：<br></p>
-<pre><code>
-madmanazo@ubuntu:~/minilinux/system$ <font color="#EE00EE">cd var/</font>
-madmanazo@ubuntu:~/minilinux/system/var$ <font color="#EE00EE">mkdir lib lock log run tmp</font>
-madmanazo@ubuntu:~/minilinux/system/var$ <font color="#EE00EE">ls</font>
-lib  lock  log  run  tmp
-</code></pre>
-
-<p>回到system目录的上一级目录，至此system已做好</p>
-<pre><code>
-madmanazo@ubuntu:~/minilinux/system/var$ <font color="#EE00EE">cd ../../</font>
-</code></pre>
-
-<h1 id="安装打包软件"><a href="#安装打包软件" class="headerlink" title="安装打包软件"></a>安装打包软件</h1><hr>
-<p>打包工具make_ext4fs可以文件系统制作成二进制文件，先来安装一下make_ext4fs工具，拷贝压缩包“linux_tools.tgz”到Ubuntu 系统的“/”目录下并进行解压：<br></p>
-<pre><code>
-madmanazo@ubuntu:/$ <font color="#EE00EE">ls</font>
-bin    dev   initrd.img  lib64            media  proc  sbin     sys  var
-boot   etc   lib         linux_tools.tgz  mnt    root  selinux  tmp  vmlinuz
-cdrom  home  lib32       lost+found       opt    run   srv      usr
-madmanazo@ubuntu:/$ <font color="#EE00EE">sudo tar -vxf linux_tools.tgz</font> 
-usr/
-usr/local/
-usr/local/bin/
-usr/local/bin/mkimage
-usr/local/bin/make_ext4fs
-</code></pre>
-
-<p>返回minilinux目录下，生成system.img文件系统镜像，完成最小系统制作：<br></p>
-<pre><code>
-madmanazo@ubuntu:~$ <font color="#EE00EE">cd minilinux/</font>
-madmanazo@ubuntu:~/minilinux$ <font color="#EE00EE">ls</font>
-arm-2009q3
-arm-2009q3-67-arm-none-linux-gnueabi-i686-pc-linux-gnu.tar.bz2
-busybox-1.22.1
-busybox-1.22.1.tar.bz2
-linux_tools.tgz
-system
-madmanazo@ubuntu:~/minilinux$ <font color="#EE00EE">make_ext4fs -s -l 314572800 -a root -L linux</font> system.img system
-Creating filesystem with parameters:
-    Size: 314572800
-    Block size: 4096
-    Blocks per group: 32768
-    Inodes per group: 6400
-    Inode size: 256
-    Journal blocks: 1200
-    Label: linux
-    Blocks: 76800
-    Block groups: 3
-    Reserved block group size: 23
-Created filesystem with 437/19200 inodes and 4623/76800 blocks
-madmanazo@ubuntu:~/minilinux$ ls
-arm-2009q3                                                      linux_tools.tgz
-arm-2009q3-67-arm-none-linux-gnueabi-i686-pc-linux-gnu.tar.bz2  system
-busybox-1.22.1                                                  system.img
-busybox-1.22.1.tar.bz2
-</code></pre>
-
-<pre><code>
-make_ext4fs -s -l 314572800 -a root -L linux system.img system
-
--j ：journal size 日志大小
-
--b：block_size 块大小
-
--g: blocks per group 一个组有多少个块
-
--i: inodes 索引节点
-
--I:inode size 索引大小
-
--L:  Label标签
-
--l 分区大小，需要查看分区的大小
-
-       314572800  --300M（ITOP4412大小300M）
-
--s  就是生成ext4的S模式制作
-
--a：android mountpoint， 是指这个image用于Linux系统的哪个挂载点 
-
-     （若为-a system即表示为android系统，挂载点即是/system)
-
-     （若为-a root 即表示为kernel, 挂载点即是/kernel)
-
-      使用这个参数，make_ext4fs会根据private/android_filesystem_config.h里定义好的权限来给文件夹里的所有文件重新设置权限，如果你刷机以后发现有文件权限不对，可以手工修改android_filesystem_config.h来添加权限，重新编译make_ext4fs，也可以不使用 “-a system”参数，这样就会使用文件的默认权限）。
-
-system.img FileName，文件名
-
-system： directory 目录
-</code></pre></div></div></div></div>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">-4412</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Linux//" class="article-tag-list-link color2">-Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/30/Linux/最小Linux系统制作/">展开全文 >></a>
-        </p>
-      
-	  
-	  
-	  
-
-	  
-      
-	  
-      <div class="clearfix"></div>
-	  
-	  
-	  
-	
-	  
-	  
-	  
-    </div>
-	
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1028,11 +623,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-CCS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-OMAPL138</a>
+                <a href="javascript:void(0)" class="js-tag color1">-Keil</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1040,11 +631,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-Keil</a>
+                <a href="javascript:void(0)" class="js-tag color2">-STM32</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-STM32</a>
+                <a href="javascript:void(0)" class="js-tag color5">-CCS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1053,6 +644,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">-翻墙</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">-OMAPL138</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-TFTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1068,10 +667,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-TFTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">-C2000</a>
               </li>
              
@@ -1080,15 +675,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">-Music</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">-Book</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">-PCB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-Music</a>
               </li>
             
             <div class="clearfix"></div>
