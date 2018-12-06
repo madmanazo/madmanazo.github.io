@@ -161,6 +161,190 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Linux/Linux的进程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/04/Linux/Linux的进程/">Linux的进程</a>
+    </h1>
+  
+
+        
+        <a href="/2018/12/04/Linux/Linux的进程/" class="archive-article-date">
+  	<time datetime="2018-12-04T01:00:15.091Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-04</time>
+</a>
+        
+      </header>
+    
+	
+<!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+	
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://baike.baidu.com/item/%E8%BF%9B%E7%A8%8B/382503?fr=aladdin" target="_blank" rel="noopener">进程</a>（Process）是计算机中的程序关于某数据集合上的一次运行活动，是系统进行资源分配和调度的基本单位，是操作系统结构的基础。在早期面向进程设计的计算机结构中，进程是程序的基本执行实体；在当代面向线程设计的计算机结构中，进程是线程的容器。程序是指令、数据及其组织形式的描述，进程是程序的实体</p>
+<h1 id="进程IP"><a href="#进程IP" class="headerlink" title="进程IP"></a>进程IP</h1><hr>
+<p>每一个进程都有一个唯一的标识符，进程ID 简称pid，PID虽然是唯一的，但是其可以重用；当一个进程终止后，其它进程就可以使用它的pid了，内核运行的第一个进程是1，pid为1的进程称为init进程，它是一个普通的用户进程，但是以超级用户特权运行；pid为2的进程是页守护进程，负责支持虚拟存储系统的分页操作<br></p>
+<p>进程id一般默认最大值为32768，不过也是可以修改的，一般不需修改；如果当前进程是1000，那么下一个分配的进程是1001，它是严格线性分配的，直到pid到了最大值，才重新分配已经用过的进程id，当然这些进程都是已经死亡的进程<br></p>
+<p>除了init进程，其它进程都是由其它进程创建的，创建新进程的过程叫父进程，新进程叫子进程</p>
+<h1 id="获取进程函数"><a href="#获取进程函数" class="headerlink" title="获取进程函数"></a>获取进程函数</h1><hr>
+<p>获得父进程和子进程的函数分别是getpid和getppid，可以man查看其用法</p>
+<h1 id="exec函数族"><a href="#exec函数族" class="headerlink" title="exec函数族"></a>exec函数族</h1><hr>
+<p>在Linux中，exec函数族是把程序直接载入内存，而不是在一个程序中运行多个进程；exec函数调用成功后，会在内存里执行一个新的程序，在Linux中要运行多任务需要使用exec函数族和fork进程</p>
+<pre><code>
+madmanazo@ubuntu:~$ <font color="#EE00EE">man 3 exec</font>
+SYNOPSIS
+       #include <unistd.h>
+
+       extern char **environ;
+
+       int execl(const char *path, const char *arg, ...);
+       int execlp(const char *file, const char *arg, ...);
+       int execle(const char *path, const char *arg,
+                  ..., char * const envp[]);
+       int execv(const char *path, char *const argv[]);
+       int execvp(const char *file, char *const argv[]);
+       int execvpe(const char *file, char *const argv[],
+                  char *const envp[]);
+</unistd.h></code></pre>
+
+<h1 id="fork创建新进程"><a href="#fork创建新进程" class="headerlink" title="fork创建新进程"></a>fork创建新进程</h1><hr>
+<p>在linux中可以使用fork创建和当前进程一样的进程，新的进程叫子进程，原来的进程叫父进程</p>
+<pre><code>
+NAME
+       fork - create a child process
+
+SYNOPSIS
+       #include <unistd.h>
+
+       pid_t fork(void);
+
+DESCRIPTION
+       fork()  creates  a new process by duplicating the calling process.  The
+       new process, referred to as the child, is an  exact  duplicate  of  the
+       calling  process,  referred  to as the parent, except for the following
+       points:
+
+       *  The child has its own unique process ID, and this PID does not match
+          the ID of any existing process group (setpgid(2)).
+
+       *  The  child's  parent  process ID is the same as the parent's process
+          ID.
+
+       *  The child does not inherit  its  parent's  memory  locks  (mlock(2),
+          mlockall(2)).
+
+       *  Process  resource  utilizations (getrusage(2)) and CPU time counters
+          (times(2)) are reset to zero in the child.
+
+       *  The child's set of pending  signals  is  initially  empty  (sigpend‐
+          ing(2)).
+
+       *  The  child  does  not  inherit semaphore adjustments from its parent
+          (semop(2)).
+
+       *  The child does not inherit record locks from its parent (fcntl(2)).
+
+       *  The child does not inherit timers  from  its  parent  (setitimer(2),
+          alarm(2), timer_create(2)).
+
+       *  The  child  does not inherit outstanding asynchronous I/O operations
+          from its parent (aio_read(3), aio_write(3)), nor does it inherit any
+          asynchronous I/O contexts from its parent (see io_setup(2)).
+</unistd.h></code></pre>
+
+<ul>
+<li>系统函数fork调用成功，会创建一个新的进程<br></li>
+<li>子进程的pid和父进程不一样，是新分配的<br></li>
+<li>子进程的ppid会设置为父进程的pid，也就是说子进程和父进程各自的父进程不一样<br></li>
+<li>子进程中的资源统计信息会清零<br></li>
+<li>挂起的信号会被清除，也不会被继承<br></li>
+<li>所有文件锁也不会被子进程继承</li>
+<li>fork函数执行一次返回两个值：执行失败返回-1表示没有创建新的进程，最初的进程仍然在运行；执行成功会在子进程中返回0，在父进程中返回子进程的PID；这是因为父进程可能存在很多子进程，必须通过这个返回的子进程ID来跟踪子进程，而子进程只有一个父进程，它的ID可以通过getppid获得。fork()执行失败的唯一情况是内存不够或者id号用尽</li>
+</ul>
+<h1 id="进程终止exit"><a href="#进程终止exit" class="headerlink" title="进程终止exit"></a>进程终止exit</h1><hr>
+<p>在main函数的结尾会使用return或者exit 结束程序。当使用exit 的时候，就是使用的进程终止函数exit</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Linux//" class="article-tag-list-link color2">-Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/12/04/Linux/Linux的进程/">展开全文 >></a>
+        </p>
+      
+	  
+	  
+	  
+
+	  
+      
+	  
+      <div class="clearfix"></div>
+	  
+	  
+	  
+	
+	  
+	  
+	  
+    </div>
+	
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Linux/4412使用TFTP进行文件传输" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -335,192 +519,9 @@ hello world
 
 
   
-    <article id="post-Linux/TFTP服务器搭建与测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/02/Linux/TFTP服务器搭建与测试/">TFTP服务器搭建与测试</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/02/Linux/TFTP服务器搭建与测试/" class="archive-article-date">
-  	<time datetime="2018-12-02T10:40:58.046Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-02</time>
-</a>
-        
-      </header>
-    
-	
-<!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-	
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong><a href="https://baike.baidu.com/item/tftp/455170?fr=aladdin" target="_blank" rel="noopener">TFTP</a></strong>TFTP（Trivial File Transfer Protocol，简单文件传输协议），是一个基于UDP协议实现的用于在客户机和服务器之间进行简单文件传输的协议，适合于开销不大、不复杂的应用场合。TFTP协议专门为小文件传输而设计，只能从服务器上获取文件，或者向服务器写入文件，不能列出目录，也不能进行认证<br></p>
-<p>使用Ubuntu 12.04.2用于TFTP服务器搭建</p>
-<h2 id="安装xinetd"><a href="#安装xinetd" class="headerlink" title="安装xinetd"></a>安装xinetd</h2><pre><code>
-madmanazo@ubuntu:~$ <font color="#EE00EE">sudo apt-get install xinetd</font>
-</code></pre>
-
-<h2 id="安装tftp和tftpd"><a href="#安装tftp和tftpd" class="headerlink" title="安装tftp和tftpd"></a>安装tftp和tftpd</h2><pre><code>
-madmanazo@ubuntu:~$ <font color="#EE00EE">sudo apt-get install tftp tftpd</font>
-</code></pre>
-
-<h2 id="建立TFTP的配置文件"><a href="#建立TFTP的配置文件" class="headerlink" title="建立TFTP的配置文件"></a>建立TFTP的配置文件</h2><pre><code>
-madmanazo@ubuntu:~$ <font color="#EE00EE">sudo vi /etc/xinetd.d/tftp</font>
-[sudo] password for madmanazo: 
-service tftp
-{
-        socket_type             = dgram
-        protocol                = udp
-        wait                    = yes
-        user                    = root
-        server                  = /usr/sbin/in.tftpd    //服务程序路径
-        server_args             = -s /var/tftpboot/    //可以访问的tftpd服务器下的目录
-        disable                 = no            //是否开机启动
-        per_source              = 11
-        cps                     = 100 2
-        flags                   = IPv4
-}
-~                                                                               
-~                                                                               
-~                                                                               
-~                                                                               
-~                                                                                                                                                            
-"/etc/xinetd.d/tftp" [New] 13L, 429C written
-</code></pre>
-
-<h2 id="新建tftp服务器目录"><a href="#新建tftp服务器目录" class="headerlink" title="新建tftp服务器目录"></a>新建tftp服务器目录</h2><pre><code>
-madmanazo@ubuntu:~$ <font color="#EE00EE">sudo mkdir /var/tftpboot</font>
-</code></pre>
-
-<h2 id="设置访问权限"><a href="#设置访问权限" class="headerlink" title="设置访问权限"></a>设置访问权限</h2><pre><code>
-madmanazo@ubuntu:~$ <font color="#EE00EE">sudo chmod 777 /var/tftpboot</font>
-</code></pre>
-
-<h2 id="重启xinetd服务"><a href="#重启xinetd服务" class="headerlink" title="重启xinetd服务"></a>重启xinetd服务</h2><pre><code>
-madmanazo@ubuntu:~$ <font color="#EE00EE">sudo /etc/init.d/xinetd restart</font>
-Rather than invoking init scripts through /etc/init.d, use the service(8)
-utility, e.g. service xinetd restart
-
-Since the script you are attempting to invoke has been converted to an
-Upstart job, you may also use the stop(8) and then start(8) utilities,
-e.g. stop xinetd ; start xinetd. The restart(8) utility is also available.
-xinetd stop/waiting
-xinetd start/running, process 7241
-</code></pre>
-
-<h1 id="服务器测试"><a href="#服务器测试" class="headerlink" title="服务器测试"></a>服务器测试</h1><hr>
-<p>本机测试：在/var/tftpboot下面建立一个文件test，在里面输入hello world，然后保存文件</p>
-<pre><code>
-madmanazo@ubuntu:~$ <font color="#EE00EE">sudo chmod 777 /var/tftpboot</font>
-madmanazo@ubuntu:/var/tftpboot$ <font color="#EE00EE">vim test</font>
-hello world
-~                                                                               
-~                                                                               
-~                                                                                                                                                                                                                                                                                                                                                                                            
-"test" [New] 1L, 12C written                                  
-madmanazo@ubuntu:/var/tftpboot$ cat test 
-hello world
-</code></pre>
-
-<p>启动另一个终端，进行如下测试结果表示成功</p>
-<pre><code>
-madmanazo@ubuntu:~$ <font color="#EE00EE">tftp 127.0.0.1</font>
-tftp> get test
-Received 13 bytes in 0.0 seconds
-tftp> q
-madmanazo@ubuntu:~$ ls
-Desktop    Downloads         iTop-4412  Music     Public     <font color="#FF0000">test</font>
-Documents  examples.desktop  minilinux  Pictures  Templates  Videos
-madmanazo@ubuntu:~$ <font color="#EE00EE">cat test</font>
-hello world
-</code></pre>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">-TFTP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Linux//" class="article-tag-list-link color2">-Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/02/Linux/TFTP服务器搭建与测试/">展开全文 >></a>
-        </p>
-      
-	  
-	  
-	  
-
-	  
-      
-	  
-      <div class="clearfix"></div>
-	  
-	  
-	  
-	
-	  
-	  
-	  
-    </div>
-	
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -623,7 +624,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-Keil</a>
+                <a href="javascript:void(0)" class="js-tag color5">-OMAPL138</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">-CCS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -635,11 +640,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-CCS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">-Github</a>
+                <a href="javascript:void(0)" class="js-tag color1">-Keil</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -647,11 +648,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-OMAPL138</a>
+                <a href="javascript:void(0)" class="js-tag color3">-Github</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-TFTP</a>
+                <a href="javascript:void(0)" class="js-tag color2">-C2000</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -663,11 +664,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-WinCP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-C2000</a>
+                <a href="javascript:void(0)" class="js-tag color1">-TFTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -675,15 +672,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-Music</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">-Book</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">-Music</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">-PCB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">-WinCP</a>
               </li>
             
             <div class="clearfix"></div>
